@@ -54,7 +54,7 @@
                   <td>{{$lophoc->ten}}</td>
                   <td>{{number_format($lophoc->hocphi,0,",",".")}}</td>
                   <td>{{$lophoc->lichhoc}}</td>
-                  <td>{{count($lophoc->rlsThongtinlop)}}</td>
+                  <td>{{count($lophoc->rlsDanhsach)}}</td>
                   <td><a href="/xemlophoc/{{$lophoc->id}}" class="btn btn-primary">Xem</a></td>
                 </tr>
                 </a>

@@ -1,0 +1,8 @@
+/vendor
+/database
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+#file env mau
+.env

@@ -71,6 +71,41 @@
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách lớp đã tham gia</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Tên lớp</th>
+                  <th>Ưu đãi</th>
+                  <th>Tổng thu</th>
+                  <th>Đã thu</th>
+                  <th>Còn lại</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($lophocs as $lophoc)
+                <tr>
+                  <td>{{$lophoc->rlsLophoc->ten}}</td>
+                  <td>{{$biennhan->id}}</td>
+                  <td>{{$biennhan->dongmay}}</td>
+                  <td>
+                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
+                  </td>
+                  <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
+                </tr>
+                @endforeach
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
         <div class="col-md-4">
           <!-- Profile Image -->
@@ -87,6 +122,15 @@
                 </li>
                 <li class="list-group-item">
                   <b>Ngày sinh</b> <a class="float-right">@if (isset($data->ngaysinh)) {{date("d/m/Y", strtotime($data->ngaysinh))}} @else Không có @endif</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Zalo</b> <a class="float-right">@if (isset($data->zalo)) {{$data->zalo}} @else Không có @endif</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Email</b> <a class="float-right">@if (isset($data->email)) {{$data->email}} @else Không có @endif</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Ngành học</b> <a class="float-right">@if (isset($data->nganhhoc)) {{$data->nganhhoc}} @else Không có @endif</a>
                 </li>
               </ul>
               <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">
@@ -105,7 +149,6 @@
           <!-- /.card -->
         </div>
       </div>
-      <!-- /.row -->
     </div>
   </section>
   <!-- /.content -->
@@ -135,6 +178,26 @@
         		"sNext":     "Tiếp",
         		"sLast":     "Cuối"
         	}
+        }
+    });
+    $("#example2").DataTable({
+        "order": [[ 1, "desc" ]],
+        "language": {
+          "sProcessing":   "Đang xử lý...",
+          "sLengthMenu":   "Xem _MENU_ mục",
+          "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+          "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+          "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+          "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+          "sInfoPostFix":  "",
+          "sSearch":       "Tìm:",
+          "sUrl":          "",
+          "oPaginate": {
+            "sFirst":    "Đầu",
+            "sPrevious": "Trước",
+            "sNext":     "Tiếp",
+            "sLast":     "Cuối"
+          }
         }
     });
   });

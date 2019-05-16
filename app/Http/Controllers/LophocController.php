@@ -50,6 +50,7 @@ class LophocController extends Controller
             $danhsach->lophoc_id = $lophoc->id;
             $danhsach->uudai = $req->inputUudai;
             $danhsach->dadong = $req->inputDadong;
+            $danhsach->ghichu = $req->inputGhichu;
             $danhsach->save();
         }
         return redirect('/xemlophoc/'.$req->inputLophocId);
@@ -71,5 +72,29 @@ class LophocController extends Controller
         $data['danhsachs'] = danhsach::where('lophoc_id', $lophoc_id)->get();
         
         return view('lophoc-danhsachlop', $data);
+    }
+
+    public function getSuahocvien($danhsach_id) {
+        $data['danhsach'] = danhsach::findOrFail($danhsach_id);
+        $data['lophocs'] = lophoc::all();
+        return view('lophoc-suahocvien', $data); 
+    }
+
+    public function postSuahocvien(Request $req) {
+        $danhsach = danhsach::findOrFail($req->inputDanhsachId);
+        $danhsach->lophoc_id = $req->inputLophocId;
+        $danhsach->uudai = $req->inputUudai;
+        $danhsach->dadong = $req->inputDadong;
+        $danhsach->ghichu = $req->inputGhichu;
+        $danhsach->save();
+
+        return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Sửa thông tin thành công!');
+    }
+
+    public function getXoahocvien($danhsach_id) {
+        $danhsach = danhsach::findOrFail($danhsach_id);
+        $danhsach->delete();
+
+        return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Đã xóa khỏi lớp thành công!');
     }
 }

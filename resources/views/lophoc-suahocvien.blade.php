@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('head')
-<title>DEMO20 | Thêm học viên</title>
+<title>DEMO20 | Sửa học viên</title>
 <link rel="stylesheet" href="{{ secure_asset('plugins/select2/select2.min.css') }}">
 @stop
   
@@ -13,7 +13,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>THÊM HỌC VIÊN VÀO LỚP</h1>
+            <h1>SỬA THÔNG TIN</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,9 +35,9 @@
       </div>
     @endforeach
     @endif
-    <form action="/themhocvien" method="post">
+    <form action="/suahocvien" method="post">
     {{csrf_field()}}
-    <input type="hidden" name="inputKhachhangId" value="{{$khachhang->id}}"/>
+    <input type="hidden" name="inputDanhsachId" value="{{$danhsach->id}}"/>
     <div class="row">
       <div class="col-md-12">
         <div class="card card-primary">
@@ -45,32 +45,32 @@
             <div class="col-md-12">
               <div class="form-group col-md-12">
                 <label>Tên học viên</label>
-                <input type="text" class="form-control" value="{{$khachhang->ten}}" disabled>
+                <input type="text" class="form-control" value="{{$danhsach->rlsKhachhang->ten}}" disabled>
               </div>
               <div class="form-group col-md-12">
                 <label>Chọn lớp học</label>
                 <select name="inputLophocId" class="form-control select2" style="width: 100%;">
                   @foreach($lophocs as $data)
-                  <option value="{{$data->id}}">{{$data->malophoc}} - {{$data->ten}}</option>
+                  <option value="{{$data->id}}" @if($data->id==$danhsach->lophoc_id) selected="selected" @endif>{{$data->malophoc}} - {{$data->ten}}</option>
                   @endforeach
                 </select>
               </div>
               <div class="form-group col-md-12">
                 <label>Phần trăm ưu đãi (%)</label>
-                <input type="number" class="form-control" name="inputUudai" value="{{ old('inputLichhoc') }}" required>
+                <input type="number" class="form-control" name="inputUudai" value="{{ $danhsach->uudai }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>Số tiền đã thu</label>
-                <input type="number" class="form-control" name="inputDadong" value="{{ old('inputGiaovien') }}" required>
+                <input type="number" class="form-control" name="inputDadong" value="{{ $danhsach->dadong }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>Chương trình ưu đãi</label>
-                <input type="textarea" class="form-control" name="inputGhichu" placeholder="Ghi rõ nội dung ưu đãi">
+                <input type="textarea" class="form-control" name="inputGhichu" value="{{ $danhsach->ghichu }}" placeholder="Ghi rõ nội dung ưu đãi">
               </div>
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary pull-right">Thêm mới</button>
+            <button type="submit" class="btn btn-primary pull-right">Lưu thay đổi</button>
           </div>
         </div>
       </div>

@@ -14,8 +14,8 @@ use App\Model\biennhan_trangthai as trangthai;
 
 class BiennhanController extends Controller
 {
-    public function getDanhsach() {
-        $data['biennhans'] =  biennhan::orderBy('id', 'desc')->orderBy('tiendo', 'desc')->get();
+    public function getDanhsach() { 
+        $data['biennhans'] =  biennhan::orderBy('id', 'desc')->get();
         return view('biennhan-danhsach', $data);
     }
     
@@ -49,7 +49,6 @@ class BiennhanController extends Controller
     
     public function getNhapbiennhantheosdt($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
-        $data['outStt'] = biennhan::orderBy('id', 'desc')->first()->id+1;
         $data['biennhans'] = $data['khachhang']->rlsBiennhan;
         return view('biennhan-nhap', $data);
     }

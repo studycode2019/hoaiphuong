@@ -108,7 +108,7 @@
               <li class="nav-item">
                 <a href="/lophoc" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Danh sach lớp</p>
+                  <p>Danh sách lớp</p>
                 </a>
               </li>
               <li class="nav-item">

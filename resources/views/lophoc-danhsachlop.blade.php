@@ -9,6 +9,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
+        @if (session('success'))
+        <div class="row"><div class="col-md-12">
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fa fa-check"></i> Thành công!</h5> {{ session('success') }}
+          </div>
+        </div></div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>DANH SÁCH HỌC VIÊN</h1>
@@ -39,7 +47,7 @@
                   <th>Tên khách hàng</th>
                   <th>Số điện thoại</th>
                   <th>Ưu đãi</th>
-                  <th>Học phí</th>
+                  <th>Học phí phải đóng</th>
                   <th>Đã thu</th>
                   <th>Chưa thu</th>
                   <th>Tình trạng học phí</th>
@@ -48,28 +56,27 @@
                 <tbody>
                 @foreach($danhsachs as $data)
                 <tr>
-                  <td>{{$data->rlsKhachhang->ten}}</td>
-                  <td>{{$data->rlsKhachhang->sdt}}</td>
-                  <td>{{MoneyFormat($data->uudai)}}</td>
-                  <td>{{MoneyFormat($data->rlsLophoc->hocphi-$data->uudai)}}</td>
+                  <td><a href="/xemkhachhang/{{$data->rlsKhachhang->id}}">{{$data->rlsKhachhang->ten}}</a></td>
+                  <td><a href="tel:{{$data->rlsKhachhang->sdt}}">{{$data->rlsKhachhang->sdt}}</a></td>
+                  <td>{{$data->uudai}}%</td>
+                  <td>{{MoneyFormat($data->rlsLophoc->hocphi*(1-$data->uudai/100))}}</td>
                   <td>{{MoneyFormat($data->dadong)}}</td>
                   <td>
-                    @if(($data->rlsLophoc->hocphi-$data->uudai) - $data->dadong <= 0)
+                    @if(($data->rlsLophoc->hocphi*(1-$data->uudai/100)) - $data->dadong <= 0)
                     <span class="badge bg-success">HOÀN THÀNH</span>
                     @else
-                    {{MoneyFormat(($data->rlsLophoc->hocphi-$data->uudai) - $data->dadong)}}</td>
+                    {{MoneyFormat(($data->rlsLophoc->hocphi*(1-$data->uudai/100)) - $data->dadong)}}</td>
                     @endif
                   </td>
                   <td>
                     <div class="btn-group">
-                      <a href="/thuhocphi/{{$data->rlsKhachhang->id}}" class="btn btn-primary">Xem</a>
+                      <a href="/suahocvien/{{$data->id}}" class="btn btn-primary">Sửa</a>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="/xemphieuthu/" target="_blank">Sửa ghi chú</a>
-                        <a class="dropdown-item" href="/xemphieuthu/" target="_blank">Xóa khỏi lớp</a>
+                        <a class="dropdown-item" href="/xoahocvien/{{$data->id}}">Xóa khỏi lớp</a>
                       </div>
                     </div>
                   </td>

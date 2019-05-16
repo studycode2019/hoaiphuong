@@ -36,27 +36,28 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th class="d-none d-md-table-cell">Ngày/Tháng</th>
+                  <th>Ngày/Tháng</th>
                   <th>Số phiếu</th>
                   <th>Dòng Máy</th>
                   <th>Tên khách hàng</th>
-                  <th class="d-none d-md-table-cell">Số điện thoại</th>
+                  <th>Yêu cầu</th>
                   <th>Tiến độ</th>
-                  <th class="d-none d-md-table-cell"></th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($biennhans as $biennhan)
                 <tr>
-                  <td class="d-none d-md-block d-lg-block">{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
+                  <td>{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
                   <td>{{$biennhan->id}}</td>
                   <td><a href="/xembiennhan/{{$biennhan->id}}">{{$biennhan->dongmay}}</a></td>
                   <td>{{$biennhan->rlsKhachhang->ten}}</td>
-                  <td class="d-none d-md-block d-lg-block">{{$biennhan->rlsKhachhang->sdt}}</td>
+                  <td>{{$biennhan->yeucau}}</td>
                   <td>
-                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
+
+                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}"><span style="display: none;">{{$biennhan->rlsTrangthai->id}}</span>{{$biennhan->rlsTrangthai->ten}}</span>
                   </td>
-                  <td class="d-none d-md-block d-lg-block">
+                  <td>
                     <div class="btn-group">
                     <a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -93,8 +94,8 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-        "order": false,
-        // "order": [[ 5, "desc" ]],
+        // "order": false,
+        "order": [[ 5, "asc" ]],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

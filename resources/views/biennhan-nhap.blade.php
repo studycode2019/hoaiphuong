@@ -26,7 +26,7 @@
   <section class="content">
     <!-- general form elements -->
     <div class="col-md-12">
-      @if(!isset($biennhancu))
+      @if(count($biennhans)>0)
       <div class="card card-default">
           <!--<div class="card-header with-border">-->
           <!--  <h3 class="card-title">Biên nhận trước đó</h3>-->
@@ -66,10 +66,6 @@
               <label for="inputSostt">Số Điện Thoại:</label> {{$khachhang -> sdt}}    |    
               <label for="inputSostt">Ngày Sinh:</label> {{date("d/m/Y", strtotime($khachhang -> ngaysinh))}}
               <input name="inputKhachhang" type="hidden" class="form-control" value="{{$khachhang -> id}}">
-            </div>
-            <div class="form-group">
-              <label for="inputStt">Biên nhận số:</label>
-              <input name="inputStt" type="text" class="form-control" id="inputSostt" value="{{$outStt}}" readonly="readonly">
             </div>
             <div class="form-group">
               <label for="inputYeucau">Yêu cầu khách hàng:</label>

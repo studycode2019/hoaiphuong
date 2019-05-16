@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon; //bo dem thoi gian
 use App\Model\khachhang;
 use App\Model\biennhan;
+use App\Model\lophoc_danhsach as danhsach;
 
 class KhachhangController extends Controller
 {
@@ -23,16 +24,14 @@ class KhachhangController extends Controller
     public function getXemkhachhang($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
         $data['biennhans'] = $data['khachhang']->rlsBiennhan;
+        $data['lophocs'] = danhsach::where('khachhang_id', $khachhang_id)->get();
         return view('khachhang-xem', $data);
-        // echo $data['khachhang'];
     }
     
     public function postTimkhachhang(Request $request) {
         $khachhang = khachhang::where('sdt', $request->inputSdt)->first();
-        if (!$khachhang) {                        //Nếu đã có trong csdl -> nhapbiennhan
-            $data['khachhang'] = $khachhang;
-            $data['outStt'] = biennhan::orderBy('id', 'desc')->first()->id+1;
-            return view('biennhan-nhap', $data);
+        if (!$khachhang) { //Nếu đã có trong csdl -> nhapbiennhan
+            return redirect('/nhapbiennhan/'.$khachhang->id);
         } else {   //Nếu chưa có sdt này trong csdl -> nhapkhachhang
             $data['outSdt'] = $request->inputSdt;
             return view('khachhang-nhap', $data);
@@ -44,6 +43,9 @@ class KhachhangController extends Controller
         $khachhang->ten = $request->inputTen;
         $khachhang->sdt = $request->inputSdt;
         $khachhang->ngaysinh = $request->inputNgaysinh;
+        $khachhang->zalo = $request->inputZalo;
+        $khachhang->email = $request->inputEmail;
+        $khachhang->nganhhoc = $request->inputNganhhoc;
         $khachhang->save();
         
         $data['khachhang'] = $khachhang;
@@ -79,7 +81,6 @@ class KhachhangController extends Controller
         $biennhan->save();
         
         $data['khachhang'] = $khachhang;
-        // $data['outStt'] = biennhan::orderBy('id', 'desc')->first()->id+1;
         return view('biennhan-in', $data);
     }
 }

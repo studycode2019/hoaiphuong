@@ -47,6 +47,18 @@
                     <label for="inputNgaysinh">Ngày sinh:</label>
                     <input name="inputNgaysinh" type="date" class="form-control" id="inputNgaysinh" value="{{$khachhang->ngaysinh}}">
                   </div>
+                  <div class="form-group">
+                    <label for="inputNgaysinh">Zalo:</label>
+                    <input name="inputZalo" type="number" class="form-control" id="inputZalo" value="{{$khachhang->zalo}}" >
+                  </div>
+                  <div class="form-group">
+                    <label for="inputNgaysinh">Email:</label>
+                    <input name="inputEmail" type="text" class="form-control" id="inputEmail" value="{{$khachhang->email}}" >
+                  </div>
+                  <div class="form-group">
+                    <label for="inputNgaysinh">Ngành học:</label>
+                    <input name="inputNganhhoc" type="text" class="form-control" id="inputNganhhoc" value="{{$khachhang->nganhhoc}}" >
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

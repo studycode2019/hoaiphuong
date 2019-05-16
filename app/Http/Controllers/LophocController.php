@@ -25,13 +25,34 @@ class LophocController extends Controller
         $data = new lophoc;
         $data->ten = $request->inputTen;
         $data->malophoc = $request->inputMalophoc;
+        $data->sobuoi = $request->inputSobuoi;
         $data->lichhoc = $request->inputLichhoc;
-        $data->giangvien = $request->inputGiaovien;
+        $data->giangvien = $request->inputGiangvien;
         $data->hocphi = $request->inputHocphi;
         $data->ghichu = $request->inputGhichu;
         $data->save();
         
         return redirect('lophoc')->with('success', 'Đã thêm thành công!');
+    }
+
+    public function getSualophoc($lophoc_id) {
+        $lophoc = lophoc::findOrFail($lophoc_id);
+        $data['lophoc'] = $lophoc;
+        return view('lophoc-sua', $data);
+    }
+    
+    public function postSualophoc(Request $request) {
+        $data = lophoc::findOrFail($request->inputLophocId);
+        $data->ten = $request->inputTen;
+        $data->malophoc = $request->inputMalophoc;
+        $data->sobuoi = $request->inputSobuoi;
+        $data->lichhoc = $request->inputLichhoc;
+        $data->giangvien = $request->inputGiangvien;
+        $data->hocphi = $request->inputHocphi;
+        $data->ghichu = $request->inputGhichu;
+        $data->save();
+        
+        return redirect('lophoc')->with('success', 'Lưu thay đổi thành công!');
     }
     
     public function getThemhocvien($khachhang_id) {

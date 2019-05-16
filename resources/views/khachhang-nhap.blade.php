@@ -48,15 +48,15 @@
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Zalo:</label>
-                    <input name="inputNgaysinh" type="number" class="form-control" id="inputZalo" placeholder="Số điện thoại Zalo" >
+                    <input name="inputZalo" type="number" class="form-control" id="inputZalo" placeholder="Số điện thoại Zalo" >
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Email:</label>
-                    <input name="inputNgaysinh" type="text" class="form-control" id="inputEmail" placeholder="Địa chỉ thư điện tử" >
+                    <input name="inputEmail" type="text" class="form-control" id="inputEmail" placeholder="Địa chỉ thư điện tử" >
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Ngành học:</label>
-                    <input name="inputNgaysinh" type="text" class="form-control" id="inputNganhhoc" placeholder="Ngành học/trường học" >
+                    <input name="inputNganhhoc" type="text" class="form-control" id="inputNganhhoc" placeholder="Ngành học/trường học" >
                   </div>
                 </div>
                 <!-- /.card-body -->

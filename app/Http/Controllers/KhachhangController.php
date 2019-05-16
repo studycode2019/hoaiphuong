@@ -60,13 +60,16 @@ class KhachhangController extends Controller
     }
     
     public function postSuakhachhang(Request $request) {
-        $data = khachhang::findOrFail($request->inputKhachhang);
-        $data->ten = $request->inputTen;
-        $data->sdt = $request->inputSdt;
-        $data->ngaysinh = $request->inputNgaysinh;
-        $data->save();
+        $khachhang = khachhang::findOrFail($request->inputKhachhang);
+        $khachhang->ten = $request->inputTen;
+        $khachhang->sdt = $request->inputSdt;
+        $khachhang->ngaysinh = $request->inputNgaysinh;
+        $khachhang->zalo = $request->inputZalo;
+        $khachhang->email = $request->inputEmail;
+        $khachhang->nganhhoc = $request->inputNganhhoc;
+        $khachhang->save();
         
-        return redirect('/xemkhachhang/'.$data->id)->with('success', 'Đã cập nhật thành công!');
+        return redirect('/xemkhachhang/'.$khachhang->id)->with('success', 'Đã cập nhật thành công!');
     }
     
     public function postNhapbiennhan(Request $request) {

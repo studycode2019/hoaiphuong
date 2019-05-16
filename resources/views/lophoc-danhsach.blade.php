@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Danh sách lớp</title>
+<title>DEMO20 | Danh sách các lớp</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
@@ -9,9 +9,17 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
+        @if (session('success'))
+        <div class="row"><div class="col-md-12">
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fa fa-check"></i> Thành công!</h5> {{ session('success') }}
+          </div>
+        </div></div>
+        @endif
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DANH SÁCH LỚP HỌC</h1>
+            <h1>DANH SÁCH CÁC LỚP HỌC</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,9 +35,9 @@
     <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Danh sách lớp học</h3>
+              <h3 class="card-title">Danh sách các lớp học</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -40,6 +48,7 @@
                   <th>Mã lớp học</th>
                   <th>Tên</th>
                   <th>Học phí</th>
+                  <th>Số buổi</th>
                   <th>Lịch học</th>
                   <th>Số lượng hiện tại</th>
                   <th></th>
@@ -53,9 +62,21 @@
                   <td>{{$lophoc->malophoc}}</td>
                   <td>{{$lophoc->ten}}</td>
                   <td>{{number_format($lophoc->hocphi,0,",",".")}}</td>
+                  <td>{{$lophoc->sobuoi}}</td>
                   <td>{{$lophoc->lichhoc}}</td>
                   <td>{{count($lophoc->rlsDanhsach)}}</td>
-                  <td><a href="/xemlophoc/{{$lophoc->id}}" class="btn btn-primary">Xem</a></td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="/xemlophoc/{{$lophoc->id}}" class="btn btn-primary">Xem</a>
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" href="/sualophoc/{{$lophoc->id}}">Sửa</a>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
                 </a>
                 @endforeach

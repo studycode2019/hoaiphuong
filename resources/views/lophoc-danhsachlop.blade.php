@@ -47,7 +47,7 @@
                   <th>Tên khách hàng</th>
                   <th>Số điện thoại</th>
                   <th>Ưu đãi</th>
-                  <th>Học phí phải đóng</th>
+                  <th>Học phí</th>
                   <th>Đã thu</th>
                   <th>Chưa thu</th>
                   <th>Tình trạng học phí</th>

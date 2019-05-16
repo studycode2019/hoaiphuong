@@ -37,7 +37,7 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-md-8">
-          <div class="card">
+          <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Danh sách biên nhận</h3>
             </div>
@@ -71,7 +71,7 @@
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-          <div class="card">
+          <div class="card card card-info">
             <div class="card-header">
               <h3 class="card-title">Danh sách lớp đã tham gia</h3>
             </div>
@@ -82,7 +82,7 @@
                 <tr>
                   <th>Tên lớp</th>
                   <th>Ưu đãi</th>
-                  <th>Tổng thu</th>
+                  <th>Học phí</th>
                   <th>Đã thu</th>
                   <th>Còn lại</th>
                   <th></th>
@@ -118,19 +118,19 @@
               <!--<p class="text-muted text-center">Software Engineer</p>-->
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Số điện thoại</b> <a class="float-right"> {{$khachhang->sdt}}</a>
+                  <b>Số điện thoại</b> <a class="float-right" href="tel:{{$khachhang->sdt}}"> {{$khachhang->sdt}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Ngày sinh</b> <a class="float-right">@if (isset($data->ngaysinh)) {{date("d/m/Y", strtotime($data->ngaysinh))}} @else Không có @endif</a>
+                  <b>Ngày sinh</b> <a class="float-right">@if (isset($khachhang->ngaysinh)) {{date("d/m/Y", strtotime($khachhang->ngaysinh))}} @else Không có @endif</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Zalo</b> <a class="float-right">@if (isset($data->zalo)) {{$data->zalo}} @else Không có @endif</a>
+                  <b>Zalo</b> @if ($khachhang->zalo!="") <a class="float-right" href="https://zalo.me/{{$khachhang->zalo}}">{{$khachhang->zalo}}</a>  @else <a class="float-right">Không có</a> @endif
                 </li>
                 <li class="list-group-item">
-                  <b>Email</b> <a class="float-right">@if (isset($data->email)) {{$data->email}} @else Không có @endif</a>
+                  <b>Email</b> @if ($khachhang->email!="") <a class="float-right">{{$khachhang->email}}</a> @else <a class="float-right">Không có</a> @endif
                 </li>
                 <li class="list-group-item">
-                  <b>Ngành học</b> <a class="float-right">@if (isset($data->nganhhoc)) {{$data->nganhhoc}} @else Không có @endif</a>
+                  <b>Ngành học</b> @if ($khachhang->nganhhoc!="") <a class="float-right">{{$khachhang->nganhhoc}}</a> @else <a class="float-right">Không có</a> @endif
                 </li>
               </ul>
               <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">

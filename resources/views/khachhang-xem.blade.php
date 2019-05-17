@@ -92,12 +92,11 @@
                 @foreach($lophocs as $lophoc)
                 <tr>
                   <td>{{$lophoc->rlsLophoc->ten}}</td>
-                  <td>{{$biennhan->id}}</td>
-                  <td>{{$biennhan->dongmay}}</td>
-                  <td>
-                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
-                  </td>
-                  <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
+                  <td>{{$lophoc->uudai}}%</td>
+                  <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100)}}</td>
+                  <td>{{$lophoc->dadong}}</td>
+                  <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
+                  <td><a href="/xemlophoc/{{$lophoc->rlsLophoc->id}}" class="btn btn-primary">Xem</a></td>
                 </tr>
                 @endforeach
                 </tfoot>

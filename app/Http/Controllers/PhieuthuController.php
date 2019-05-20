@@ -15,7 +15,6 @@ class PhieuthuController extends Controller
 {
     public function getNhapphieuthu($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
-        $data['outStt'] = phieuthu::orderBy('id', 'desc')->first()->id+1;
         $data['nhanviens'] = nhanvien::all();
         $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();
         return view('phieuthu-nhap', $data);
@@ -23,24 +22,16 @@ class PhieuthuController extends Controller
     
     public function postNhapphieuthu(Request $request) {
         
-        $validator = Validator::make($request->all(), [
-            'inputStt' => 'unique:PHIEUTHU,id',
-        ],[
-            'inputStt.unique' => 'Phiếu này đã tồn tại',
-        ]);
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        
         $data = new phieuthu;
-        $data->id = $request->inputStt;
-        $data->solai = $request->inputStt;
+        $data->solai = 1;
         $data->khachhang_id = $request->inputKhachhang;
         $data->nhanvien_id = $request->inputNhanvien;
         $data->phieuthu_danhmuc_id = $request->inputPhieuthuDanhmuc;
         $data->noidung = $request->inputNoidung;
         $data->sotien = $request->inputSotien;
+        $data->ghichu = $request->inputGhichu;
+        $data->save();
+        $data->solai = $data->id;
         $data->save();
         
         return redirect('/xemphieuthu/'.$data->id);

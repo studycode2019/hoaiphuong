@@ -33,12 +33,19 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/suakhachhang/{khachhang_id}', 'KhachhangController@getSuakhachhang');
     Route::post('/suakhachhang/', 'KhachhangController@postSuakhachhang');
     
+    Route::get('/taichinh', 'TaichinhController@getTongquan');
+
     Route::get('/phieuthu', 'PhieuthuController@getDanhsach');
     Route::get('/danhmuc/{danhmuc_id}', 'PhieuthuController@getDanhsach');
     Route::get('/xemphieuthu/{phieuthu_id}', 'PhieuthuController@getXemphieuthu');
     Route::get('/inphieuthu/{phieuthu_id}', 'PhieuthuController@getInphieuthu');
     Route::get('/nhapphieuthu/{khachhang_id}', 'PhieuthuController@getNhapphieuthu');
     Route::post('/nhapphieuthu/', 'PhieuthuController@postNhapphieuthu');
+
+    Route::get('/phieuchi', 'PhieuchiController@getDanhsach');
+    Route::get('/nhapphieuchi/', 'PhieuchiController@getNhapphieuchi');
+    Route::post('/nhapphieuchi/', 'PhieuchiController@postNhapphieuchi');
+    Route::get('/xemphieuchi/{phieuchi_id}', 'PhieuchiController@getXemphieuchi');
     
     Route::get('/biennhan/timsdt', 'BiennhanController@getTimSDT');
     Route::get('/biennhan/', 'BiennhanController@getDanhsach');

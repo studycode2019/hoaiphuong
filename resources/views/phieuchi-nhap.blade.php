@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Nhập phiếu thu mới</title>
+<title>DEMO20 | Nhập phiếu chi mới</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/select2/select2.min.css')}}">
 @stop
 @section('main')
@@ -11,12 +11,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>NHẬP PHIẾU THU</h1>
+          <h1>NHẬP PHIẾU CHI</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Nhập phiếu thu</li>
+            <li class="breadcrumb-item active">Nhập phiếu chi</li>
           </ol>
         </div>
       </div>
@@ -40,22 +40,20 @@
     <div class="col-md-12">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Nhập thông tin phiếu thu</h3>
+          <h3 class="card-title">Nhập thông tin phiếu chi</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/nhapphieuthu" method="post">
+        <form role="form" action="/nhapphieuchi" method="post">
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="inputSostt">Tên Khách Hàng:</label> {{$khachhang -> ten}}   |   
-              <label for="inputSostt">Số Điện Thoại:</label> {{$khachhang -> sdt}}    |    
-              <label for="inputSostt">Ngày Sinh:</label> {{$khachhang -> ngaysinh}}
-              <input name="inputKhachhang" type="hidden" class="form-control" value="{{$khachhang -> id}}">
+              <label for="inputKhachhang">Tên người nhận:</label>
+              <input name="inputKhachhang" type="text" class="form-control" id="inputKhachhang" placeholder="Nguyễn Văn A">
             </div>
             <div class="form-group">
-              <label for="inputNoidung">Nội dung thu:</label>
-              <input name="inputNoidung" type="text" class="form-control" id="inputNoidung" placeholder="Ví dụ: Thu học phí THCB-K10" autofocus required>
+              <label for="inputNoidung">Nội dung chi:</label>
+              <input name="inputNoidung" type="text" class="form-control" id="inputNoidung" placeholder="Ví dụ: Chi mua trà sữa" autofocus required>
             </div>
             <div class="form-group">
               <label for="inputSotien">Số tiền:</label>
@@ -65,14 +63,6 @@
               <label for="inputNhanvien">Người lập phiếu:</label>
               <select name="inputNhanvien" id="inputNhanvien" class="form-control select2" style="width: 100%;">
                 @foreach ($nhanviens as $data)
-                <option value="{{$data->id}}">{{$data->ten}}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="inputNhanvien">Danh muc thu:</label>
-              <select name="inputPhieuthuDanhmuc" id="inputPhieuthuDanhmuc" class="form-control select2" style="width: 100%;">
-                @foreach ($phieuthudanhmucs as $data)
                 <option value="{{$data->id}}">{{$data->ten}}</option>
                 @endforeach
               </select>

@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Xem phiếu thu #{{$phieuthu->id}}</title>
+<title>DEMO20 | Xem phiếu chi #{{$phieuchi->id}}</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{secure_asset('plugins/iCheck/square/blue.css')}}">
 @stop
@@ -12,12 +12,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>XEM PHIẾU THU</h1>
+          <h1>XEM PHIẾU CHI</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Xem phiếu thu</li>
+            <li class="breadcrumb-item active">Xem phiếu chi</li>
           </ol>
         </div>
       </div>
@@ -34,8 +34,8 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <i class="fa fa-globe"></i>  <b>PHIẾU THU</b>
-                  <small class="float-right"><b>SỐ PHIẾU #{{ $phieuthu -> solai }}</b></small>
+                  <i class="fa fa-globe"></i>  <b>PHIẾU CHI</b>
+                  <small class="float-right"><b>SỐ PHIẾU #{{ $phieuchi -> solai }}</b></small>
                 </h4>
               </div>
               <!-- /.col -->
@@ -53,28 +53,6 @@
                 </address>
               </div>
               <!-- /.col -->
-              <div class="col-md-6 invoice-col">
-                <u>Thông tin khách hàng:</u>
-                <address>
-                  <strong class="text-uppercase">{{ $phieuthu->rlsKhachhang -> ten }}</strong><br>
-                  <b>Số điện thoại:</b> {{ PhoneFormat($phieuthu->rlsKhachhang -> sdt) }}<br>
-                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsKhachhang -> ngaysinh)) }}<br>
-                  <b>Mã khách hàng:</b> {{ $phieuthu->rlsKhachhang -> id }}<br>
-                  <b>Ngày lập phiếu:</b> {{ $phieuthu->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên:</b> {{ $phieuthu->rlsNhanvien->ten }}
-                </address>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-              <div class="col-12">
-                <address>
-                  <h5 class="text-uppercase">
-                    <b>DANH SÁCH DỊCH VỤ</b>
-                  </h5>
-                </address>
-              </div>
             </div>
             <!-- /.row -->
             <!-- Table row -->
@@ -91,8 +69,8 @@
                   <tbody>
                     <tr>
                       <td class="text-uppercase">1</td>
-                      <td class="text-uppercase">{{ $phieuthu -> noidung }}</td>
-                      <td class="text-uppercase">{{ number_format($phieuthu -> sotien,0,",",".") }}</td>
+                      <td class="text-uppercase">{{ $phieuchi -> noidung }}</td>
+                      <td class="text-uppercase">{{ number_format($phieuchi -> sotien,0,",",".") }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -116,9 +94,8 @@
           <!-- this row will not appear when printing -->
           <div class="card card-footer">
             <div class="col-12">
-              <a href="/suakhachhang/{{ $phieuthu -> rlsKhachhang ->id }}" class="btn btn-default" >Sửa khách hàng</a>
-              <a href="/suaphieuthu/{{ $phieuthu -> id }}" class="btn btn-default" autofocus>Sửa phiếu thu</a>
-              <a href="/inphieuthu/{{ $phieuthu -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU THU</a>
+              <a href="/suaphieuchi/{{ $phieuchi -> id }}" class="btn btn-default" autofocus>Sửa phiếu chi</a>
+              <a href="/inphieuchi/{{ $phieuchi -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU chi</a>
             </div>
           </div>
         </div>

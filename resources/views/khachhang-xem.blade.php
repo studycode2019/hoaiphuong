@@ -26,87 +26,20 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-        @if (session('success'))
-        <div class="row"><div class="col-md-12">
+      @if (session('success'))
+      <div class="row">
+        <div class="col-md-12">
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="icon fa fa-check"></i> Thành công!</h5> {{ session('success') }}
+            <h5><i class="icon fa fa-check"></i> Thành công!</h5>
+            {{ session('success') }}
           </div>
-        </div></div>
-        @endif
+        </div>
+      </div>
+      @endif
       <div class="row">
         <!-- /.col -->
-        <div class="col-md-8">
-          <div class="card card-info">
-            <div class="card-header">
-              <h3 class="card-title">Danh sách biên nhận</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Ngày/Tháng</th>
-                  <th>Số phiếu</th>
-                  <th>Dòng Máy</th>
-                  <th>Tiến độ</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($biennhans as $biennhan)
-                <tr>
-                  <td>{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
-                  <td>{{$biennhan->id}}</td>
-                  <td>{{$biennhan->dongmay}}</td>
-                  <td>
-                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
-                  </td>
-                  <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
-                </tr>
-                @endforeach
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-          <div class="card card card-info">
-            <div class="card-header">
-              <h3 class="card-title">Danh sách lớp đã tham gia</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Tên lớp</th>
-                  <th>Ưu đãi</th>
-                  <th>Học phí</th>
-                  <th>Đã thu</th>
-                  <th>Còn lại</th>
-                  <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($lophocs as $lophoc)
-                <tr>
-                  <td>{{$lophoc->rlsLophoc->ten}}</td>
-                  <td>{{$lophoc->uudai}}%</td>
-                  <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100)}}</td>
-                  <td>{{$lophoc->dadong}}</td>
-                  <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
-                  <td><a href="/xemlophoc/{{$lophoc->rlsLophoc->id}}" class="btn btn-primary">Xem</a></td>
-                </tr>
-                @endforeach
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
             <div class="card-body box-profile">
@@ -133,15 +66,85 @@
                 </li>
               </ul>
               <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">
-                  <i class="fa fa-money"></i> Thêm phiếu thu (F7)
+              <i class="fa fa-money"></i> Thêm phiếu thu (F7)
               </a>
               <a href="/nhapbiennhan/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThembiennhan">
-                  <i class="fa fa-book"></i> Thêm biên nhận (F8)
+              <i class="fa fa-book"></i> Thêm biên nhận (F8)
               </a>
               <a href="/themhocvien/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemvaolop">
-                  <i class="fa fa-university"></i> Thêm vào lớp (F9)
+              <i class="fa fa-university"></i> Thêm vào lớp (F9)
               </a>
               <a href="/suakhachhang/{{$khachhang->id}}" class="btn btn-info btn-block"><b>Sửa thông tin</b></a>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <div class="col-md-9">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách biên nhận</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Ngày/Tháng</th>
+                    <th>Số phiếu</th>
+                    <th>Dòng Máy</th>
+                    <th>Tiến độ</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($biennhans as $biennhan)
+                  <tr>
+                    <td>{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
+                    <td>{{$biennhan->id}}</td>
+                    <td>{{$biennhan->dongmay}}</td>
+                    <td>
+                      <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
+                    </td>
+                    <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
+                  </tr>
+                  @endforeach
+                  </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          <div class="card card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách lớp đã tham gia</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Tên lớp</th>
+                    <th>Ưu đãi</th>
+                    <th>Học phí</th>
+                    <th>Đã thu</th>
+                    <th>Còn lại</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($lophocs as $lophoc)
+                  <tr>
+                    <td>{{$lophoc->rlsLophoc->ten}}</td>
+                    <td>{{$lophoc->uudai}}%</td>
+                    <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100)}}</td>
+                    <td>{{$lophoc->dadong}}</td>
+                    <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
+                    <td><a href="/xemlophoc/{{$lophoc->rlsLophoc->id}}" class="btn btn-primary">Xem</a></td>
+                  </tr>
+                  @endforeach
+                  </tfoot>
+              </table>
             </div>
             <!-- /.card-body -->
           </div>
@@ -162,21 +165,21 @@
     $("#example1").DataTable({
         "order": [[ 1, "desc" ]],
         "language": {
-        	"sProcessing":   "Đang xử lý...",
-        	"sLengthMenu":   "Xem _MENU_ mục",
-        	"sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-        	"sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-        	"sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-        	"sInfoFiltered": "(được lọc từ _MAX_ mục)",
-        	"sInfoPostFix":  "",
-        	"sSearch":       "Tìm:",
-        	"sUrl":          "",
-        	"oPaginate": {
-        		"sFirst":    "Đầu",
-        		"sPrevious": "Trước",
-        		"sNext":     "Tiếp",
-        		"sLast":     "Cuối"
-        	}
+          "sProcessing":   "Đang xử lý...",
+          "sLengthMenu":   "Xem _MENU_ mục",
+          "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
+          "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+          "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
+          "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+          "sInfoPostFix":  "",
+          "sSearch":       "Tìm:",
+          "sUrl":          "",
+          "oPaginate": {
+            "sFirst":    "Đầu",
+            "sPrevious": "Trước",
+            "sNext":     "Tiếp",
+            "sLast":     "Cuối"
+          }
         }
     });
     $("#example2").DataTable({
@@ -200,13 +203,13 @@
         }
     });
   });
-window.onkeydown = function(evt) {
+  window.onkeydown = function(evt) {
     if (evt.keyCode == 118) //F8
         document.getElementById("btnThemphieuthu").click();
     if (evt.keyCode == 119) //F8
         document.getElementById("btnThembiennhan").click();
     if (evt.keyCode == 120) //F9
         document.getElementById("btnThemvaolop").click();
-};
+  };
 </script>
 @stop

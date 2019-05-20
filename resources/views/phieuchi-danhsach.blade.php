@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Sổ phiếu thu @if(isset($danhmuc)): {{$danhmuc->ten}} @endif</title>
+<title>DEMO20 | Sổ phiếu chi</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>SỔ PHIẾU THU @if(isset($danhmuc)): {{$danhmuc->ten}} @endif</h1>
+            <h1>SỔ PHIẾU CHI</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Sổ phiếu thu</li>
+              <li class="breadcrumb-item active">Sổ phiếu chi</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Danh sách phiếu thu</h3>
+              <h3 class="card-title">Danh sách phiếu chi</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -41,20 +41,18 @@
                   <th>Khách hàng</th>
                   <th>Nội dung</th>
                   <th>Số tiền</th>
-                  <th>Danh mục</th>
-                  <th></th>
+                  <th>Nhân viên</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($phieuthus as $data)
+                @foreach($phieuchis as $data)
                 <tr>
                   <td>{{date("d/m/Y", strtotime($data->created_at))}}</td>
-                  <td><a href="/xemphieuthu/{{$data->id}}">{{$data->solai}}</a></td>
-                  <td>{{$data->rlsKhachhang->ten}}</td>
+                  <td><a href="/xemphieuchi/{{$data->id}}">{{$data->solai}}</a></td>
+                  <td>{{$data->ten}}</td>
                   <td>{{$data->noidung}}</td>
                   <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
-                  <td>{{$data->rlsPhieuthuDanhmuc->ten}}</td>
-                  <td><a href="/xemphieuthu/{{$data->id}}" class="btn btn-primary">Xem</a></td>
+                  <td>{{$data->rlsNhanvien->ten}}</td>
                 </tr>
                 @endforeach
                 </tfoot>

@@ -119,44 +119,29 @@
               </li>
             </ul>
           </li>
-          <!--<li class="nav-item has-treeview">-->
-          <!--  <a href="#" class="nav-link ">-->
-          <!--    <i class="nav-icon fa fa-money"></i>-->
-          <!--    <p>-->
-          <!--      Phiếu thu-->
-          <!--      <i class="right fa fa-angle-left"></i>-->
-          <!--    </p>-->
-          <!--  </a>-->
-          <!--  <ul class="nav nav-treeview">-->
-          <!--    <li class="nav-item">-->
-          <!--      <a href="/phieuthu" class="nav-link">-->
-          <!--        <i class="fa fa-circle-o nav-icon"></i>-->
-          <!--        <p>Tất cả</p>-->
-          <!--      </a>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <a href="/danhmuc/2" class="nav-link">-->
-          <!--        <i class="fa fa-circle-o nav-icon"></i>-->
-          <!--        <p>Giáo dục</p>-->
-          <!--      </a>-->
-          <!--    </li>-->
-          <!--    <li class="nav-item">-->
-          <!--      <a href="/danhmuc/3" class="nav-link">-->
-          <!--        <i class="fa fa-circle-o nav-icon"></i>-->
-          <!--        <p>Kỹ thuật</p>-->
-          <!--      </a>-->
-          <!--    </li>-->
-          <!--  </ul>-->
-          <!--</li>-->
-          <!--<li class="nav-item">-->
-          <!--  <a href="/phieuthu" class="nav-link">-->
-          <!--    <i class="nav-icon fa fa-money"></i>-->
-          <!--    <p>-->
-          <!--      Phiếu thu-->
-          <!--      <span class="right badge badge-success">New</span>-->
-          <!--    </p>-->
-          <!--  </a>-->
-          <!--</li>-->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fa fa-money"></i>
+              <p>
+                Tài chính
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/phieuthu" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Phiếu thu</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/phieuchi" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Phiếu chi</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           <!--<li class="nav-item has-treeview">-->
           <!--  <a href="#" class="nav-link ">-->
           <!--    <i class="nav-icon fa fa-line-chart"></i>-->

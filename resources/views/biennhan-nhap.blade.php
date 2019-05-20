@@ -77,23 +77,23 @@
             </div>
             <div class="form-group">
               <label for="inputCpu">CPU:</label>
-              <input name="inputCpu" type="text" class="form-control" id="inputCpu" placeholder="AMD AX, Intel iX-1234,..." @if(isset($biennhancu)) value="{{$biennhancu->cpu}}" @endif>
+              <input name="inputCpu" type="text" class="form-control" id="inputCpu" placeholder="AMD AX, Intel iX-1234,..." @if(isset($biennhancu)) value="{{$biennhancu->cpu}}" @endif required>
             </div>
             <div class="form-group">
               <label for="inputRam">Dung lượng RAM:</label>
-              <input name="inputRam" type="text" class="form-control" id="inputRam" placeholder="Bao nhiêu GB?" @if(isset($biennhancu)) value="{{$biennhancu->ram}}" @endif>
+              <input name="inputRam" type="text" class="form-control" id="inputRam" placeholder="Bao nhiêu GB?" @if(isset($biennhancu)) value="{{$biennhancu->ram}}" @endif required>
             </div>
             <div class="form-group">
               <label for="inputOcung">Dung lượng ổ cứng:</label>
-              <input name="inputOcung" type="text" class="form-control" id="inputOcung" placeholder="Bao nhiêu GB?" @if(isset($biennhancu)) value="{{$biennhancu->ocung}}" @endif>
+              <input name="inputOcung" type="text" class="form-control" id="inputOcung" placeholder="Bao nhiêu GB?" @if(isset($biennhancu)) value="{{$biennhancu->ocung}}" @endif required>
             </div>
             <div class="form-group">
               <label for="inputTinhtrang">Tình trạng máy:</label>
-              <input name="inputTinhtrang" type="text" class="form-control" id="inputTinhtrang" placeholder="Bình thường, Tình trạng Pin,...">
+              <input name="inputTinhtrang" type="text" class="form-control" id="inputTinhtrang" placeholder="Bình thường, Tình trạng Pin,..." required>
             </div>
             <div class="form-group">
               <label for="inputPhukien">Phụ kiện kèm theo:</label>
-              <input name="inputPhukien" type="text" class="form-control" id="inputPhukien" placeholder="Sạc, túi chống sốc,...">
+              <input name="inputPhukien" type="text" class="form-control" id="inputPhukien" placeholder="Sạc, túi chống sốc,..." required>
             </div>
           </div>
           <!-- /.card-body -->

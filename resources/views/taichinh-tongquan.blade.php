@@ -38,23 +38,34 @@
                 <tr>
                   <th>Ngày/Tháng</th>
                   <th>Số phiếu</th>
-                  <th>Khách hàng</th>
+                  <th>Họ tên</th>
                   <th>Nội dung</th>
                   <th>Số tiền</th>
-                  <th>Danh mục</th>
+                  <th>Nhân viên</th>
                   <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($phieuthus as $data)
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($data->created_at))}}</td>
+                  <td>{{date("d/m/Y - H:m:s", strtotime($data->created_at))}}</td>
                   <td><a href="/xemphieuthu/{{$data->id}}">{{$data->solai}}</a></td>
                   <td>{{$data->rlsKhachhang->ten}}</td>
                   <td>{{$data->noidung}}</td>
-                  <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
-                  <td>{{$data->rlsPhieuthuDanhmuc->ten}}</td>
+                  <td><span class="badge bg-success">{{number_format($data->sotien,0,",",".")}} ₫</span></td>
+                  <td>{{$data->rlsNhanvien->ten}}</td>
                   <td><a href="/xemphieuthu/{{$data->id}}" class="btn btn-primary">Xem</a></td>
+                </tr>
+                @endforeach
+                @foreach($phieuchis as $data)
+                <tr>
+                  <td>{{date("d/m/Y - H:m:s", strtotime($data->created_at))}}</td>
+                  <td><a href="/xemphieuthu/{{$data->id}}">{{$data->solai}}</a></td>
+                  <td>{{$data->ten}}</td>
+                  <td>{{$data->noidung}}</td>
+                  <td><span class="badge bg-danger">{{number_format($data->sotien,0,",",".")}} ₫</span></td>
+                  <td>{{$data->rlsNhanvien->ten}}</td>
+                  <td></td>
                 </tr>
                 @endforeach
                 </tfoot>
@@ -79,7 +90,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-        "order": [[ 1, "desc" ]],
+        "order": [[ 0, "desc" ]],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

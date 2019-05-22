@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;   
 
 use App\Http\Requests;
 use App\Model\khachhang;
@@ -26,6 +28,7 @@ class LophocController extends Controller
         $data->ten = $request->inputTen;
         $data->malophoc = $request->inputMalophoc;
         $data->sobuoi = $request->inputSobuoi;
+        $data->khaigiang = $request->inputKhaigiang;
         $data->lichhoc = $request->inputLichhoc;
         $data->giangvien = $request->inputGiangvien;
         $data->hocphi = $request->inputHocphi;
@@ -46,6 +49,7 @@ class LophocController extends Controller
         $data->ten = $request->inputTen;
         $data->malophoc = $request->inputMalophoc;
         $data->sobuoi = $request->inputSobuoi;
+        $data->khaigiang = $request->inputKhaigiang;
         $data->lichhoc = $request->inputLichhoc;
         $data->giangvien = $request->inputGiangvien;
         $data->hocphi = $request->inputHocphi;
@@ -62,10 +66,14 @@ class LophocController extends Controller
     }
     
     public function postThemhocvien(Request $req){
+        $lophoc = lophoc::findOrFail($req->inputLophocId);
+        if(count($lophoc->rlsDanhsach)>=$lophoc->siso) {
+            return Redirect::back()->withInput(Input::all())->withErrors(['Lớp này đã đủ sỉ số, hãy chọn lớp khác hoặc sửa thông tin lớp!']); 
+        }
+        $khachhang = khachhang::findOrFail($req->inputKhachhangId);
         $danhsach = danhsach::where('khachhang_id', $req->inputKhachhangId)->where('lophoc_id', $req->inputLophocId)->get();
         if(count($danhsach) == 0) {
             $khachhang = khachhang::findOrFail($req->inputKhachhangId);
-            $lophoc = lophoc::findOrFail($req->inputLophocId);
             $danhsach = new danhsach;
             $danhsach->khachhang_id = $khachhang->id;
             $danhsach->lophoc_id = $lophoc->id;

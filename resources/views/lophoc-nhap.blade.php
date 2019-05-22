@@ -58,6 +58,10 @@
                 <input type="number" class="form-control" name="inputSobuoi" value="{{ old('inputSobuoi') }}" required>
               </div>
               <div class="form-group col-md-12">
+                <label>Ngày khai giảng</label>
+                <input type="date" min="2018-01-01" class="form-control" name="inputKhaigiang" value="{{ old('inputKhaigiang') }}" required>
+              </div>
+              <div class="form-group col-md-12">
                 <label>Lịch học (Thứ - Tiết)</label>
                 <input type="text" class="form-control" name="inputLichhoc" value="{{ old('inputLichhoc') }}" required>
               </div>

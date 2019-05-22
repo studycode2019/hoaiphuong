@@ -59,6 +59,10 @@
                 <input type="number" class="form-control" name="inputSobuoi" value="{{$lophoc->sobuoi}}" required>
               </div>
               <div class="form-group col-md-12">
+                <label>Ngày khai giảng</label>
+                <input type="date" min="2018-01-01" class="form-control" name="inputKhaigiang" value="{{date('Y-m-d', strtotime($lophoc->khaigiang))}}" required>
+              </div>
+              <div class="form-group col-md-12">
                 <label>Lịch học (Thứ - Tiết)</label>
                 <input type="text" class="form-control" name="inputLichhoc" value="{{$lophoc->lichhoc}}" required>
               </div>

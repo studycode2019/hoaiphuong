@@ -206,6 +206,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];

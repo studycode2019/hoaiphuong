@@ -44,7 +44,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Thời gian</th>
+                  <th>Khai giảng</th>
                   <th>Mã lớp học</th>
                   <th>Tên</th>
                   <th>Học phí</th>
@@ -58,7 +58,7 @@
                 @foreach($lophocs as $lophoc)
                 <a href="/xemlophoc/{{$lophoc->id}}">
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($lophoc->created_at))}}</td>
+                  <td>{{date("d/m/Y", strtotime($lophoc->khaigiang))}}</td>
                   <td>{{$lophoc->malophoc}}</td>
                   <td>{{$lophoc->ten}}</td>
                   <td>{{number_format($lophoc->hocphi,0,",",".")}}</td>
@@ -102,7 +102,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-        "ordering": false,
+        "order": [[0, 'desc']],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

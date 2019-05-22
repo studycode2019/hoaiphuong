@@ -57,15 +57,15 @@
               </div>
               <div class="form-group col-md-12">
                 <label>Phần trăm ưu đãi (%)</label>
-                <input type="number" class="form-control" name="inputUudai" value="{{ old('inputLichhoc') }}" required>
+                <input type="number" class="form-control" name="inputUudai" value="{{ old('inputUudai') }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>Số tiền đã thu</label>
-                <input type="number" class="form-control" name="inputDadong" value="{{ old('inputGiaovien') }}" required>
+                <input type="number" class="form-control" name="inputDadong" value="{{ old('inputDadong') }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>Chương trình ưu đãi</label>
-                <input type="textarea" class="form-control" name="inputGhichu" placeholder="Ghi rõ nội dung ưu đãi">
+                <input type="textarea" class="form-control" name="inputGhichu" value="{{ old('inputGhichu') }}" placeholder="Ghi rõ nội dung ưu đãi">
               </div>
             </div>
           </div>

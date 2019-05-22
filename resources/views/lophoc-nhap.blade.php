@@ -66,6 +66,10 @@
                 <input type="text" class="form-control" name="inputLichhoc" value="{{ old('inputLichhoc') }}" required>
               </div>
               <div class="form-group col-md-12">
+                <label>Sỉ số tối đa</label>
+                <input type="number" class="form-control" name="inputSiso" value="{{ old('inputSiso') }}" required>
+              </div>
+              <div class="form-group col-md-12">
                 <label>Giáo viên</label>
                 <input type="text" class="form-control" name="inputGiangvien" value="{{ old('inputGiaovien') }}" required>
               </div>

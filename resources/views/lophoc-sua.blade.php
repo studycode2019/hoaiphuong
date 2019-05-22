@@ -71,6 +71,10 @@
                 <input type="text" class="form-control" name="inputGiangvien" value="{{$lophoc->giangvien}}" required>
               </div>
               <div class="form-group col-md-12">
+                <label>Sỉ số</label>
+                <input type="number" class="form-control" name="inputSiso" value="{{$lophoc->siso}}" required>
+              </div>
+              <div class="form-group col-md-12">
                 <label>Học phí</label>
                 <input type="number" class="form-control" name="inputHocphi" value="{{$lophoc->hocphi}}" required>
               </div>

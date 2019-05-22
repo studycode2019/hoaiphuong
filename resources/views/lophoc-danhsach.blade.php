@@ -60,11 +60,20 @@
                 <tr>
                   <td>{{date("d/m/Y", strtotime($lophoc->khaigiang))}}</td>
                   <td>{{$lophoc->malophoc}}</td>
-                  <td>{{$lophoc->ten}}</td>
+                  <td><a href="/xemlophoc/{{$lophoc->id}}">{{$lophoc->ten}}</a></td>
                   <td>{{number_format($lophoc->hocphi,0,",",".")}}</td>
                   <td>{{$lophoc->sobuoi}}</td>
                   <td>{{$lophoc->lichhoc}}</td>
-                  <td>{{count($lophoc->rlsDanhsach)}}</td>
+                  <td>
+                    @if(count($lophoc->rlsDanhsach)<$lophoc->siso)
+                    <span style="width: 88px;" class="btn btn-warning">
+                    @elseif(count($lophoc->rlsDanhsach)==$lophoc->siso)
+                    <span style="width: 88px;" class="btn btn-success">
+                    @elseif(count($lophoc->rlsDanhsach)>$lophoc->siso)
+                    <span style="width: 88px;" class="btn btn-danger">
+                    @endif
+                    {{count($lophoc->rlsDanhsach)}}/{{$lophoc->siso}}</span>
+                  </td>
                   <td>
                     <div class="btn-group">
                       <a href="/xemlophoc/{{$lophoc->id}}" class="btn btn-primary">Xem</a>

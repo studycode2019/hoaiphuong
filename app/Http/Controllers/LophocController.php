@@ -31,6 +31,7 @@ class LophocController extends Controller
         $data->khaigiang = $request->inputKhaigiang;
         $data->lichhoc = $request->inputLichhoc;
         $data->giangvien = $request->inputGiangvien;
+        $data->siso = $request->inputSiso;
         $data->hocphi = $request->inputHocphi;
         $data->ghichu = $request->inputGhichu;
         $data->save();
@@ -52,6 +53,7 @@ class LophocController extends Controller
         $data->khaigiang = $request->inputKhaigiang;
         $data->lichhoc = $request->inputLichhoc;
         $data->giangvien = $request->inputGiangvien;
+        $data->siso = $request->inputSiso;
         $data->hocphi = $request->inputHocphi;
         $data->ghichu = $request->inputGhichu;
         $data->save();

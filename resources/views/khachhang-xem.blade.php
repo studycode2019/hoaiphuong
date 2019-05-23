@@ -65,8 +65,13 @@
                   <b>Ngành học</b> @if ($khachhang->nganhhoc!="") <a class="float-right">{{$khachhang->nganhhoc}}</a> @else <a class="float-right">Không có</a> @endif
                 </li>
               </ul>
+              @if(UserInfo()->level>=3)
+              <a href="/nhapphieuchi/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuchi">
+              <i class="fa fa-arrow-right"></i> Thêm phiếu chi (F6)
+              </a>
+              @endif
               <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">
-              <i class="fa fa-money"></i> Thêm phiếu thu (F7)
+              <i class="fa fa-arrow-left"></i> Thêm phiếu thu (F7)
               </a>
               <a href="/nhapbiennhan/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThembiennhan">
               <i class="fa fa-book"></i> Thêm biên nhận (F8)
@@ -204,7 +209,9 @@
     });
   });
   window.onkeydown = function(evt) {
-    if (evt.keyCode == 118) //F8
+    if (evt.keyCode == 117) //F6
+        document.getElementById("btnThemphieuchi").click();
+    if (evt.keyCode == 118) //F7
         document.getElementById("btnThemphieuthu").click();
     if (evt.keyCode == 119) //F8
         document.getElementById("btnThembiennhan").click();

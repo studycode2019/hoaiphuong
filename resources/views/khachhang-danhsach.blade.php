@@ -40,17 +40,15 @@
                   <th>Tên khách hàng</th>
                   <th>Số điện thoại</th>
                   <th>Ngày sinh</th>
-                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($khachhangs as $data)
                 <tr>
                   <td>{{$data->id}}</td>
-                  <td>{{$data->ten}}</td>
-                  <td>{{$data->sdt}}</td>
+                  <td><a href="/xemkhachhang/{{$data->id}}">{{$data->ten}}</a></td>
+                  <td><a href="tel:{{$data->sdt}}">{{$data->sdt}}</a></td>
                   <td>@if (isset($data->ngaysinh)) {{date("d/m/Y", strtotime($data->ngaysinh))}} @else Không có @endif</td>
-                  <td><a href="/xemkhachhang/{{$data->id}}" class="btn btn-primary">Xem</a></td>
                 </tr>
                 @endforeach
                 </tfoot>

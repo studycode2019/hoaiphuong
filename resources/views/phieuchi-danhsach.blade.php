@@ -49,7 +49,7 @@
                 <tr>
                   <td>{{date("d/m/Y", strtotime($data->created_at))}}</td>
                   <td><a href="/xemphieuchi/{{$data->id}}">{{$data->solai}}</a></td>
-                  <td>{{$data->ten}}</td>
+                  <td>{{$data->rlsKhachhang->ten}}</td>
                   <td>{{$data->noidung}}</td>
                   <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
                   <td>{{$data->rlsNhanvien->ten}}</td>

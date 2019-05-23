@@ -48,8 +48,10 @@
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">
-              <label for="inputKhachhang">Tên người nhận:</label>
-              <input name="inputKhachhang" type="text" class="form-control" id="inputKhachhang" placeholder="Nguyễn Văn A">
+              <label for="inputSostt">Tên người nhận:</label> {{$khachhang -> ten}}   |   
+              <label for="inputSostt">Số Điện Thoại:</label> {{$khachhang -> sdt}}    |    
+              <label for="inputSostt">Ngày Sinh:</label> {{$khachhang -> ngaysinh}}
+              <input name="inputKhachhang" type="hidden" class="form-control" value="{{$khachhang -> id}}">
             </div>
             <div class="form-group">
               <label for="inputNoidung">Nội dung chi:</label>
@@ -63,6 +65,14 @@
               <label for="inputNhanvien">Người lập phiếu:</label>
               <select name="inputNhanvien" id="inputNhanvien" class="form-control select2" style="width: 100%;">
                 @foreach ($nhanviens as $data)
+                <option value="{{$data->id}}">{{$data->ten}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputNhanvien">Danh muc thu:</label>
+              <select name="inputPhieuthuDanhmuc" id="inputPhieuthuDanhmuc" class="form-control select2" style="width: 100%;">
+                @foreach ($phieuthudanhmucs as $data)
                 <option value="{{$data->id}}">{{$data->ten}}</option>
                 @endforeach
               </select>

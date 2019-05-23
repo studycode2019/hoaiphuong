@@ -43,25 +43,14 @@
             <!-- info row -->
             <div class="row invoice-info">
               <div class="col-md-6 invoice-col">
+                <u>Thông tin phiếu thu:</u>
                 <address>
-                  <strong>Trung tâm Đôrêmon Cần Thơ</strong><br>
-                  C132/10A hẻm 132, đường 3 Tháng 2<br>
-                  P. Hưng Lợi, Q. Ninh Kiều, TP. Cần Thơ<br>
-                  <b>Số điện thoại:</b> 0888-141811 hoặc 096-1020-096<br>
-                  <b>Email:</b> hotro@trungtamdoremon.com<br>
-                  <b>Website:</b> trungtamdoremon.com / cuahangdoremon.com
-                </address>
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6 invoice-col">
-                <u>Thông tin khách hàng:</u>
-                <address>
-                  <strong class="text-uppercase">{{ $phieuthu->rlsKhachhang -> ten }}</strong><br>
-                  <b>Số điện thoại:</b> {{ PhoneFormat($phieuthu->rlsKhachhang -> sdt) }}<br>
+                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuthu->rlsKhachhang->id}}">{{$phieuthu->rlsKhachhang->ten}}</a></strong><br>
+                  <b>Số điện thoại: </b><a href="tel:{{$phieuthu->rlsKhachhang->sdt}}">{{PhoneFormat($phieuthu->rlsKhachhang->sdt)}}</a><br>
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsKhachhang -> ngaysinh)) }}<br>
                   <b>Mã khách hàng:</b> {{ $phieuthu->rlsKhachhang -> id }}<br>
                   <b>Ngày lập phiếu:</b> {{ $phieuthu->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên:</b> {{ $phieuthu->rlsNhanvien->ten }}
+                  <b>Nhân viên lập:</b> {{ $phieuthu->rlsNhanvien->ten }}
                 </address>
               </div>
               <!-- /.col -->

@@ -129,6 +129,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="/taichinh" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Tổng quan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="/phieuthu" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Phiếu thu</p>

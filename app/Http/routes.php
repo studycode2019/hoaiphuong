@@ -43,7 +43,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::post('/nhapphieuthu/', 'PhieuthuController@postNhapphieuthu');
 
     Route::get('/phieuchi', 'PhieuchiController@getDanhsach');
-    Route::get('/nhapphieuchi/', 'PhieuchiController@getNhapphieuchi');
+    Route::get('/nhapphieuchi/{khachhang_id}', 'PhieuchiController@getNhapphieuchi');
     Route::post('/nhapphieuchi/', 'PhieuchiController@postNhapphieuchi');
     Route::get('/xemphieuchi/{phieuchi_id}', 'PhieuchiController@getXemphieuchi');
     

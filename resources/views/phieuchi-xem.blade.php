@@ -43,14 +43,19 @@
             <!-- info row -->
             <div class="row invoice-info">
               <div class="col-md-6 invoice-col">
+                <u>Thông tin phiếu chi:</u>
                 <address>
-                  <strong>Trung tâm Đôrêmon Cần Thơ</strong><br>
-                  C132/10A hẻm 132, đường 3 Tháng 2<br>
-                  P. Hưng Lợi, Q. Ninh Kiều, TP. Cần Thơ<br>
-                  <b>Số điện thoại:</b> 0888-141811 hoặc 096-1020-096<br>
-                  <b>Email:</b> hotro@trungtamdoremon.com<br>
-                  <b>Website:</b> trungtamdoremon.com / cuahangdoremon.com
+                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuchi->rlsKhachhang->id}}">{{$phieuchi->rlsKhachhang->ten}}</a></strong><br>
+                  <b>Số điện thoại: </b><a href="tel:{{$phieuchi->rlsKhachhang->sdt}}">{{PhoneFormat($phieuchi->rlsKhachhang->sdt)}}</a><br>
+                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuchi->rlsKhachhang -> ngaysinh)) }}<br>
+                  <b>Mã khách hàng:</b> {{ $phieuchi->rlsKhachhang -> id }}<br>
+                  <b>Ngày lập phiếu:</b> {{ $phieuchi->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
+                  <b>Nhân viên lập:</b> {{ $phieuchi->rlsNhanvien->ten }}
                 </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6 invoice-col">
+                <div class="btn btn-danger float-right">{{$phieuchi->rlsDanhmuc->ten}}</div>
               </div>
               <!-- /.col -->
             </div>

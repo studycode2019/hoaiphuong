@@ -12,4 +12,14 @@ class phieuchi extends Model
     {
         return $this->belongsTo('App\Model\nhanvien', 'nhanvien_id');
     }
+    
+    public function rlsKhachhang()
+    {
+        return $this->belongsTo('App\Model\khachhang', 'ten');
+    }
+    
+    public function rlsDanhmuc()
+    {
+        return $this->belongsTo('App\Model\phieuthu_danhmuc', 'phieuthu_danhmuc_id');
+    }
 }

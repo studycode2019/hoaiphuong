@@ -13,4 +13,9 @@ class phieuthu_danhmuc extends Model
     {
         return $this->hasMany('App\Model\phieuthu');
     }
+
+    public function rlsPhieuchi()
+    {
+        return $this->hasMany('App\Model\phieuchi');
+    }
 }

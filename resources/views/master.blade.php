@@ -130,24 +130,36 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/taichinh" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-gg-circle nav-icon"></i>
                   <p>Tổng quan</p>
                 </a>
               </li>
-            </ul>
-            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/taichinh/2" class="nav-link">
+                  <i class="fa fa-graduation-cap nav-icon"></i>
+                  <p>Giáo dục</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/taichinh/3" class="nav-link">
+                  <i class="fa fa-wrench nav-icon"></i>
+                  <p>Kỹ thuật</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="/phieuthu" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-arrow-left nav-icon"></i>
                   <p>Phiếu thu</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/phieuchi" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Phiếu chi</p>
                 </a>
               </li>
+            </ul>
+            <ul class="nav nav-treeview">
             </ul>
           </li>
           <!--<li class="nav-item has-treeview">-->
@@ -167,6 +179,7 @@
           <!--    </li>-->
           <!--  </ul>-->
           <!--</li>-->
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-link"></i>

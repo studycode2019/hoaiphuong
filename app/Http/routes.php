@@ -34,6 +34,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::post('/suakhachhang/', 'KhachhangController@postSuakhachhang');
     
     Route::get('/taichinh', 'TaichinhController@getTongquan');
+    Route::get('/taichinh/{danhmuc_id}', 'TaichinhController@getDanhmuc');
 
     Route::get('/phieuthu', 'PhieuthuController@getDanhsach');
     Route::get('/danhmuc/{danhmuc_id}', 'PhieuthuController@getDanhsach');

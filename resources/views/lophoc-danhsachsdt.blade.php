@@ -1,1 +1,1 @@
-@foreach($danhsachs as $data) {{$data->rlsKhachhang->sdt}}, @endforeach
+Danh sách: @foreach($danhsachs as $data) {{$data->rlsKhachhang->sdt}}, @endforeach

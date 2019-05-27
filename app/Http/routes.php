@@ -67,6 +67,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     
     Route::get('/lophoc/', 'LophocController@getDanhsach');
     Route::get('/xemlophoc/{lophoc_id}', 'LophocController@getXemlophoc');
+    Route::get('/danhsachsdt/{lophoc_id}', 'LophocController@getDanhsachsdt');
     Route::get('/nhaplophoc/', 'LophocController@getNhaplophoc');
     Route::post('/nhaplophoc/', 'LophocController@postNhaplophoc');
     Route::get('/sualophoc/{lophoc_id}', 'LophocController@getSualophoc');

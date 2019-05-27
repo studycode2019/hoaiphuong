@@ -105,6 +105,13 @@ class LophocController extends Controller
         return view('lophoc-danhsachlop', $data);
     }
 
+    public function getDanhsachsdt($lophoc_id) {
+        $data['lophoc'] = lophoc::findOrFail($lophoc_id);
+        $data['danhsachs'] = danhsach::where('lophoc_id', $lophoc_id)->get();
+        
+        return view('lophoc-danhsachsdt', $data);
+    }
+
     public function getSuahocvien($danhsach_id) {
         $data['danhsach'] = danhsach::findOrFail($danhsach_id);
         $data['lophocs'] = lophoc::all();

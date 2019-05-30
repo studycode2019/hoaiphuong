@@ -47,7 +47,7 @@
                 <tbody>
                 @foreach($nhatkys as $data)
                 <tr>
-                  <td>{{date("d/m/Y - H:i", strtotime($data->created_at))}}</td>
+                  <td>{{date("Y/m/d - H:i", strtotime($data->created_at))}}</td>
                   <td>{{$data->rlsBiennhan->id}}</td>
                   <td>{{$data->rlsBiennhan->dongmay}}</td>
                   <td>{{$data->noidung}}</td>

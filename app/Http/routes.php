@@ -92,9 +92,14 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::post('/suataive', 'TaiveController@postSua');
 });
 
-Route::get('/test', function () {
-    $phat = App\Model\biennhan::find(364);
-    $phat->tiendo = 2;
-    $phat->save();
-    echo 'ok';
+Route::get('/deletelog', function () {
+    $phat = App\Model\nhatky::all();
+    foreach ($phat as $nhatky) {
+        if (!isset($nhatky->rlsBiennhan->id)) {
+            echo $nhatky->id;
+            $nhatky->delete();
+        }
+    }
 });
+
+

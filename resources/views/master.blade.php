@@ -89,6 +89,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/nhatky" class="nav-link">
+              <i class="nav-icon fa fa-history"></i>
+              <p>
+                Nhật ký sữa chửa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/khachhang" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>

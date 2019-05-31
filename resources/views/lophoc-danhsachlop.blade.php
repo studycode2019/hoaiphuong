@@ -50,7 +50,8 @@
                   <th>Học phí</th>
                   <th>Đã thu</th>
                   <th>Chưa thu</th>
-                  <th>Tình trạng học phí</th>
+                  <th>Ghi chú</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,6 +69,7 @@
                     {{MoneyFormat(($data->rlsLophoc->hocphi*(1-$data->uudai/100)) - $data->dadong)}}</td>
                     @endif
                   </td>
+                  <td>{{$data->ghichu}}</td>
                   <td>
                     <div class="btn-group">
                       <a href="/suahocvien/{{$data->id}}" class="btn btn-primary">Sửa</a>

@@ -58,7 +58,7 @@
                 @foreach($lophocs as $lophoc)
                 <a href="/xemlophoc/{{$lophoc->id}}">
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($lophoc->khaigiang))}}</td>
+                  <td>{{date("Y/m/d", strtotime($lophoc->khaigiang))}}</td>
                   <td>{{$lophoc->malophoc}}</td>
                   <td><a href="/xemlophoc/{{$lophoc->id}}">{{$lophoc->ten}}</a></td>
                   <td>{{number_format($lophoc->hocphi,0,",",".")}}</td>

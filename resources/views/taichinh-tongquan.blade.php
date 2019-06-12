@@ -91,7 +91,7 @@
               <div class="inner">
                 <h4>CÔNG NỢ</h4>
 
-                <h5>0 VNĐ</h5>
+                <h5>8.000.000 VNĐ</h5>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>

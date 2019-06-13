@@ -3,11 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class lophoc_danhsach extends Model
 {
+    use SoftDeletes;
     public $timestamps = true;
     protected $table = 'LOPHOC_DANHSACH';
+    protected $dates = ['deleted_at'];
     
     public function rlsKhachhang()
     {

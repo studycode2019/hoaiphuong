@@ -26,7 +26,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/timkiem', 'TimkiemController@getTimkiem');
     
     Route::get('/khachhang', 'KhachhangController@getDanhsach');
-    Route::get('/xemkhachhang/{khachhang_id}', 'KhachhangController@getXemkhachhang');
+    Route::get('/xemkhachhang/{khachhang_id}', 'KhachhangController@getXemkhachhang')->name('g.khachhang.xem');
     Route::get('/timkhachhang', 'KhachhangController@getTimkhachhang');
     Route::post('/timkhachhang', 'KhachhangController@postTimkhachhang');
     Route::post('/nhapkhachhang', 'KhachhangController@postNhapkhachhang');
@@ -66,7 +66,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/nhatky/{nhatky_id}/congkhai', 'NhatkyController@getCongkhai');
     
     Route::get('/lophoc/', 'LophocController@getDanhsach');
-    Route::get('/xemlophoc/{lophoc_id}', 'LophocController@getXemlophoc');
+    Route::get('/xemlophoc/{lophoc_id}', 'LophocController@getXemlophoc')->name('g.lophoc.xem');
     Route::get('/danhsachsdt/{lophoc_id}', 'LophocController@getDanhsachsdt');
     Route::get('/nhaplophoc/', 'LophocController@getNhaplophoc');
     Route::post('/nhaplophoc/', 'LophocController@postNhaplophoc');
@@ -78,6 +78,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/suahocvien/{danhsach_id}', 'LophocController@getSuahocvien');
     Route::post('/suahocvien/', 'LophocController@postSuahocvien');
     Route::get('/xoahocvien/{danhsach_id}', 'LophocController@getXoahocvien');
+    Route::get('lophoc/nhatky', 'LophocController@getNhatky');
     
     Route::get('/nhanvien/canhan', 'NhanvienController@getCanhan');
     Route::post('/nhanvien/canhan', 'NhanvienController@postSuacanhan');

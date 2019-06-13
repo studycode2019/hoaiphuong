@@ -22,4 +22,8 @@ class khachhang extends Model
     {
         return $this->hasMany('App\Model\danhsachlop');
     }
+
+    public function linkName() {
+        return '<a href="'.route('g.khachhang.xem', ['khachhang_id' => $this->id], false).'">'.$this->ten.'</a>';
+    }
 }

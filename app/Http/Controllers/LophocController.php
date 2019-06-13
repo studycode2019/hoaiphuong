@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Model\khachhang;
 use App\Model\lophoc;
 use App\Model\lophoc_danhsach as danhsach;
+use App\Model\lophoc_nhatky as lnhatky;
 
 class LophocController extends Controller
 {
@@ -35,6 +36,9 @@ class LophocController extends Controller
         $data->hocphi = $request->inputHocphi;
         $data->ghichu = $request->inputGhichu;
         $data->save();
+        $lnhatky = new lnhatky;
+        $lnhatky->setAdd($data->id);
+
         
         return redirect('lophoc')->with('success', 'Đã thêm thành công!');
     }
@@ -120,19 +124,35 @@ class LophocController extends Controller
 
     public function postSuahocvien(Request $req) {
         $danhsach = danhsach::findOrFail($req->inputDanhsachId);
-        $danhsach->lophoc_id = $req->inputLophocId;
+        if($danhsach->lophoc_id != $req->inputLophocId) {
+            $lnhatky = new lnhatky;
+            $lnhatky->setChange($danhsach->khachhang_id, $danhsach->lophoc_id, $req->inputLophocId);
+            $khachhang_id = $danhsach->khachhang_id;
+            $danhsach->delete();
+            $danhsach = new danhsach;
+            $danhsach->lophoc_id = $req->inputLophocId;
+            $danhsach->khachhang_id = $khachhang_id;
+        } 
+
         $danhsach->uudai = $req->inputUudai;
         $danhsach->dadong = $req->inputDadong;
         $danhsach->ghichu = $req->inputGhichu;
         $danhsach->save();
-
+        
         return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Sửa thông tin thành công!');
     }
 
     public function getXoahocvien($danhsach_id) {
         $danhsach = danhsach::findOrFail($danhsach_id);
+        $lnhatky = new lnhatky;
+        $lnhatky->setDelete($danhsach->khachhang_id, $danhsach->lophoc_id);
         $danhsach->delete();
 
         return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Đã xóa khỏi lớp thành công!');
+    }
+
+    public function getNhatky() {
+        $data['nhatkys'] = lnhatky::all();
+        return view('lophoc-nhatky', $data);
     }
 }

@@ -125,6 +125,12 @@
                   <p>Thêm lớp mới</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/lophoc/nhatky" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Nhật ký lớp</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">

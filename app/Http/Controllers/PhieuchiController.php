@@ -20,7 +20,7 @@ class PhieuchiController extends Controller
     }
 
     public function getNhapphieuchi($khachhang_id) {
-        if(UserInfo()->level<=3) {
+        if(UserInfo()->level<3) {
             return Redirect::back();
         }
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);

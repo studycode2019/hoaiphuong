@@ -27,7 +27,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-    @if (count($errors) > 0) 
+    @if (isset($errors)) 
     @foreach ($errors->all() as $error) 
       <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

@@ -140,12 +140,12 @@
                 <tbody>
                   @foreach($lophocs as $lophoc)
                   <tr>
-                    <td>{{$lophoc->rlsLophoc->ten}}</td>
+                    <td>{!!$lophoc->rlsLophoc->linkName()!!}</td>
                     <td>{{$lophoc->uudai}}%</td>
                     <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100)}}</td>
                     <td>{{$lophoc->dadong}}</td>
                     <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
-                    <td><a href="/xemlophoc/{{$lophoc->rlsLophoc->id}}" class="btn btn-primary">Xem</a></td>
+                    <td><a href="{{route('g.hocvien.sua', ['danhsach_id' => $lophoc->id])}}" class="btn btn-primary">Sửa</a></td>
                   </tr>
                   @endforeach
                   </tfoot>

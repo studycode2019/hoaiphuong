@@ -75,7 +75,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/themhocvien/{khachhang_id}', 'LophocController@getThemhocvien');
     Route::post('/themhocvien', 'LophocController@postThemhocvien');
     Route::get('/themhocvien/{khachhang_id}/vaolop/{lophoc_id}', 'LophocController@getThemhocvienVaolop');
-    Route::get('/suahocvien/{danhsach_id}', 'LophocController@getSuahocvien');
+    Route::get('/suahocvien/{danhsach_id}', 'LophocController@getSuahocvien')->name('g.hocvien.sua');
     Route::post('/suahocvien/', 'LophocController@postSuahocvien');
     Route::get('/xoahocvien/{danhsach_id}', 'LophocController@getXoahocvien');
     Route::get('lophoc/nhatky', 'LophocController@getNhatky');

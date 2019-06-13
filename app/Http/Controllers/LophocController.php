@@ -86,6 +86,7 @@ class LophocController extends Controller
             $danhsach->uudai = $req->inputUudai;
             $danhsach->dadong = $req->inputDadong;
             $danhsach->ghichu = $req->inputGhichu;
+            $danhsach->ghichu2 = $req->inputGhichu2;
             $danhsach->save();
         }
         return redirect('/xemlophoc/'.$req->inputLophocId);
@@ -137,6 +138,7 @@ class LophocController extends Controller
         $danhsach->uudai = $req->inputUudai;
         $danhsach->dadong = $req->inputDadong;
         $danhsach->ghichu = $req->inputGhichu;
+        $danhsach->ghichu2 = $req->inputGhichu2;
         $danhsach->save();
         
         return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Sửa thông tin thành công!');

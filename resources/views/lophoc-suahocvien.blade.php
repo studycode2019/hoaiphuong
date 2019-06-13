@@ -65,7 +65,11 @@
               </div>
               <div class="form-group col-md-12">
                 <label>Chương trình ưu đãi</label>
-                <input type="textarea" class="form-control" name="inputGhichu" value="{{ $danhsach->ghichu }}" placeholder="Ghi rõ nội dung ưu đãi">
+                <input type="textarea" class="form-control" name="inputGhichu" value="{{ $danhsach->ghichu }}" placeholder="Ghi rõ nội dung ưu đãi" required>
+              </div>
+              <div class="form-group col-md-12">
+                <label>Ghi chú</label>
+                <input type="textarea" class="form-control" name="inputGhichu2" value="{{ $danhsach->ghichu2 }}" placeholder="Một vài dòng tâm sự...">
               </div>
             </div>
           </div>

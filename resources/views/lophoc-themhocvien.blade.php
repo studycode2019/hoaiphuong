@@ -67,6 +67,10 @@
                 <label>Chương trình ưu đãi</label>
                 <input type="textarea" class="form-control" name="inputGhichu" value="{{ old('inputGhichu') }}" placeholder="Ghi rõ nội dung ưu đãi">
               </div>
+              <div class="form-group col-md-12">
+                <label>Ghi chú</label>
+                <input type="textarea" class="form-control" name="inputGhichu2" value="{{ old('inputGhichu2') }}" placeholder="Một vài dòng tâm sự...">
+              </div>
             </div>
           </div>
           <div class="card-footer">

@@ -158,7 +158,7 @@ class LophocController extends Controller
 
 
         $lnhatky = new lnhatky;
-        $lnhatky->setChange($danhsach->khachhang_id, $danhsach->lophoc_id, $req->inputLophocId, $req->inputUudai, $req->inputDadong, $req->inputGhichu, $req->inputGhichu2);
+        $lnhatky->setChange($danhsach->khachhang_id, $danhsach->lophoc_id, $req->inputLophocId, $noidung);
         return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Sửa thông tin thành công!');
     }
 

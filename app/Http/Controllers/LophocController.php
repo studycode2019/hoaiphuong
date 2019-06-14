@@ -125,22 +125,40 @@ class LophocController extends Controller
 
     public function postSuahocvien(Request $req) {
         $danhsach = danhsach::findOrFail($req->inputDanhsachId);
+        $lophoc1 =  lophoc::findOrFail($danhsach->lophoc_id);
+        $lophoc2 =  lophoc::findOrFail($req->inputLophocId);
+        $khachhang = khachhang::findOrFail($danhsach->khachhang_id);
+        $noidung = "";
         if($danhsach->lophoc_id != $req->inputLophocId) {
-            $lnhatky = new lnhatky;
-            $lnhatky->setChange($danhsach->khachhang_id, $danhsach->lophoc_id, $req->inputLophocId);
+            $noidung .= 'Đã chuyển '.$khachhang->linkName().' từ lớp '.$lophoc1->linkName().' sang lớp '.$lophoc2->linkName().'<br />';
             $khachhang_id = $danhsach->khachhang_id;
             $danhsach->delete();
             $danhsach = new danhsach;
             $danhsach->lophoc_id = $req->inputLophocId;
             $danhsach->khachhang_id = $khachhang_id;
         } 
-
-        $danhsach->uudai = $req->inputUudai;
-        $danhsach->dadong = $req->inputDadong;
-        $danhsach->ghichu = $req->inputGhichu;
-        $danhsach->ghichu2 = $req->inputGhichu2;
+        if($danhsach->uudai != $req->inputUudai) {
+            $noidung .= 'Đã thay đổi mức ưu đãi từ <b>'.MoneyFormat($danhsach->uudai).'%</b> thành <b>'.MoneyFormat($req->inputUudai).'%</b><br />';
+            $danhsach->uudai = $req->inputUudai;
+        }
+        if($danhsach->dadong != $req->inputDadong) {
+            $noidung .= 'Đã thay đổi tiền đã đóng từ <b>'.MoneyFormat($danhsach->dadong).'</b> thành <b>'.MoneyFormat($req->inputDadong).'</b><br />';
+            $danhsach->dadong = $req->inputDadong;
+        }
+        if($danhsach->ghichu != $req->inputGhichu) {
+            $noidung .= 'Đã thay đổi ưu đãi từ <b>'.$danhsach->ghichu.'</b> thành <b>'.$req->inputGhichu.'</b><br />';
+            $danhsach->ghichu = $req->inputGhichu;
+        }
+        if($danhsach->ghichu2 != $req->inputGhichu2) {
+            $noidung .= 'Đã thay đổi ưu đãi từ <b>'.$danhsach->ghichu2.'</b> thành <b>'.$req->inputGhichu2.'</b><br />';
+            $danhsach->ghichu2 = $req->inputGhichu2;
+        }
         $danhsach->save();
-        
+
+
+
+        $lnhatky = new lnhatky;
+        $lnhatky->setChange($danhsach->khachhang_id, $danhsach->lophoc_id, $req->inputLophocId, $req->inputUudai, $req->inputDadong, $req->inputGhichu, $req->inputGhichu2);
         return redirect('xemlophoc/'.$danhsach->lophoc_id)->with('success', 'Sửa thông tin thành công!');
     }
 

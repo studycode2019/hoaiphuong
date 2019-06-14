@@ -40,7 +40,7 @@ class lophoc_nhatky extends Model
     }
 
     
-    public function setChange($client_id, $class1_id, $class2_id) {
+    public function setChange($client_id, $class1_id, $class2_id, $content) {
         $lophoc1 =  lophoc::findOrFail($class1_id);
         $lophoc2 =  lophoc::findOrFail($class2_id);
         $khachhang =  khachhang::findOrFail($client_id);
@@ -49,7 +49,7 @@ class lophoc_nhatky extends Model
         $this->khachhang_id = $client_id;
         $this->lophoc1_id = $class1_id;
         $this->lophoc2_id = $class2_id;
-        $this->noidung = 'Đã chuyển '.$khachhang->linkName().' từ lớp '.$lophoc1->linkName().' sang lớp '.$lophoc2->linkName();
+        $this->noidung = $content;
         $this->save();
     }
     
@@ -63,4 +63,6 @@ class lophoc_nhatky extends Model
         $this->noidung = 'Đã xoá '.$khachhang->linkName().' khỏi lớp '.$lophoc1->linkName();
         $this->save();
     }
+
+
 }

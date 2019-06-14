@@ -18,7 +18,9 @@ class TimkiemController extends Controller
         if (strlen($keyword) < 10) {
             $data = biennhan::findOrFail($keyword);
             return redirect('xembiennhan/'.$data->id);
-        } else {
+        } 
+        
+        if (strlen($keyword) == 10) {
             $data = khachhang::where('sdt', $keyword)->first();
             if ($data) {
                 return redirect('xemkhachhang/'.$data->id);

@@ -40,12 +40,12 @@ class KhachhangController extends Controller
     
     public function postNhapkhachhang(Request $request) {
         $khachhang = new khachhang;
-        $khachhang->ten = $request->inputTen;
-        $khachhang->sdt = $request->inputSdt;
-        $khachhang->ngaysinh = $request->inputNgaysinh;
-        $khachhang->zalo = $request->inputZalo;
-        $khachhang->email = $request->inputEmail;
-        $khachhang->nganhhoc = $request->inputNganhhoc;
+        $khachhang->ten = $request->ten;
+        $khachhang->sdt = $request->sdt;
+        $khachhang->ngaysinh = $request->ngaysinh;
+        $khachhang->zalo = $request->zalo;
+        $khachhang->email = $request->email;
+        $khachhang->nganhhoc = $request->nganhhoc;
         $khachhang->save();
         
         $data['khachhang'] = $khachhang;

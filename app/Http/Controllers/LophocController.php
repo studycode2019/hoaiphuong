@@ -37,7 +37,7 @@ class LophocController extends Controller
         $data->ghichu = $request->inputGhichu;
         $data->save();
         $lnhatky = new lnhatky;
-        $lnhatky->setAdd($data->id);
+        $lnhatky->setAddClass($data->id);
 
         
         return redirect('lophoc')->with('success', 'Đã thêm thành công!');
@@ -99,6 +99,8 @@ class LophocController extends Controller
         $danhsach->khachhang_id = $khachhang->id;
         $danhsach->lophoc_id = $lophoc->id;
         $danhsach->save();
+        $lnhatky = new lnhatky;
+        $lnhatky->setAddStudent($data->id);
         
         return redirect('xemlophoc/'.$lophoc->id)->with('success', 'Đã thêm thành công!');
     }

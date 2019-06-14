@@ -31,7 +31,7 @@ class lophoc_nhatky extends Model
         return $this->belongsTo('App\Model\lophoc', 'lophoc2_id');
     }
 
-    public function setAdd($class_id) {
+    public function setAddClass($class_id) {
         $lophoc =  lophoc::findOrFail($class_id);
         $this->nhanvien_id = UserInfo()->id;
         $this->lophoc1_id = $lophoc->id;
@@ -39,7 +39,17 @@ class lophoc_nhatky extends Model
         $this->save();
     }
 
-    
+    public function setAddStudent($client_id, $class1_id) {
+        $lophoc1 =  lophoc::findOrFail($class1_id);
+        $khachhang =  khachhang::findOrFail($client_id);
+
+        $this->nhanvien_id = UserInfo()->id;
+        $this->khachhang_id = $client_id;
+        $this->lophoc1_id = $class1_id;
+        $this->noidung = 'Đã thêm '.$khachhang->linkName().' vào lớp '.$lophoc1->linkName();
+        $this->save();
+    }
+
     public function setChange($client_id, $class1_id, $class2_id, $content) {
         $lophoc1 =  lophoc::findOrFail($class1_id);
         $lophoc2 =  lophoc::findOrFail($class2_id);

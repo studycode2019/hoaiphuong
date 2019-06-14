@@ -20,4 +20,8 @@ class lophoc extends Model
     public function linkName() {
         return '<a href="'.route('g.lophoc.xem', ['lophocid_id' => $this->id], false).'">'.$this->ten.'</a>';
     }
+
+    public function sum() {
+        return count($this->rlsDanhsach);
+    }
 }

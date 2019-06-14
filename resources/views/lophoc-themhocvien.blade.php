@@ -51,7 +51,9 @@
                 <label>Chọn lớp học</label>
                 <select name="inputLophocId" class="form-control select2" style="width: 100%;">
                   @foreach($lophocs as $data)
-                  <option value="{{$data->id}}">{{$data->malophoc}} - {{$data->ten}}</option>
+                  @if($data->sum()<$data->siso)
+                  <option value="{{$data->id}}">{{$data->malophoc}} - {{$data->ten}} ({{$data->sum()}}/{{$data->siso}})</option>
+                  @endif
                   @endforeach
                 </select>
               </div>

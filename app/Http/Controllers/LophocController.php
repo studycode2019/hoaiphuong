@@ -175,4 +175,10 @@ class LophocController extends Controller
         $data['nhatkys'] = lnhatky::all();
         return view('lophoc-nhatky', $data);
     }
+
+    public function getXuatexcel($lophoc_id) {
+        $data['lophoc'] = lophoc::findOrFail($lophoc_id);
+        $data['danhsachs'] = $data['lophoc']->rlsDanhsach;
+        return view('lophoc-xuatexcel', $data);
+    }
 }

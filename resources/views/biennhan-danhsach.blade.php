@@ -65,6 +65,7 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu" role="menu">
+                      <a class="dropdown-item" href="/inbiennhanpos/{{$biennhan->id}}" target="_blank">In máy POS</a>
                       <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
                     </div>
                   </div>

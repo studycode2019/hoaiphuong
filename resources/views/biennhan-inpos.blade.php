@@ -202,12 +202,12 @@
             </div>
             <div id="legalcopy">
                 <p class="legal"><strong>Xác nhận khách hàng</strong> 
-                <p style="height: 100px"></p>
+                <p style="height: 80px"></p>
                 </p>
             </div>
             <div id="legalcopy">
                 <p class="legal"><strong>Xác nhận nhân viên</strong> 
-                <p style="height: 100px"></p>
+                <p style="height: 80px"></p>
                 </p>
             </div>
 

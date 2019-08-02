@@ -46,6 +46,11 @@ class BiennhanController extends Controller
         $data['khachhang'] = $data['biennhan']->rlsKhachhang;
         return view('biennhan-in', $data);
     }
+    public function getInbiennhanPos($biennhan_id) {
+        $data['biennhan'] = biennhan::find($biennhan_id);
+        $data['khachhang'] = $data['biennhan']->rlsKhachhang;
+        return view('biennhan-inpos', $data);
+    }
     
     public function getNhapbiennhantheosdt($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);

@@ -160,7 +160,8 @@
               <div class="col-12">
                 <a href="/suakhachhang/{{ $biennhan -> rlsKhachhang ->id }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
                 <a href="/suabiennhan/{{ $biennhan -> id }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
-                <a href="/inbiennhan/{{ $biennhan -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN BIÊN NHẬN</a>
+                <a href="/inbiennhanpos/{{ $biennhan -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
+                <a href="/inbiennhan/{{ $biennhan -> id }}" target="_blank" class="btn btn float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN BIÊN NHẬN</a>
               </div>
             </div>
           </div>

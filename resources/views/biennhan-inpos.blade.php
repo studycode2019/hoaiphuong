@@ -202,14 +202,15 @@
             </div>
             <div id="legalcopy">
                 <p class="legal"><strong>Xác nhận khách hàng</strong> 
-                <p style="height: 80px"></p>
+                <p style="height: 99px"></p>
                 </p>
             </div>
             <div id="legalcopy">
                 <p class="legal"><strong>Xác nhận nhân viên</strong> 
-                <p style="height: 80px"></p>
+                <p style="height: 99px"></p>
                 </p>
             </div>
+            <center>...</center>
 
         </div>
         <!--End InvoiceBot-->

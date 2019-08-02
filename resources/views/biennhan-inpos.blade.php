@@ -201,16 +201,16 @@
                 </p>
             </div>
             <div id="legalcopy">
-                <p class="legal"><strong>Xác nhận khách hàng</strong> 
-                <p style="height: 99px"></p>
-                </p>
-            </div>
-            <div id="legalcopy">
                 <p class="legal"><strong>Xác nhận nhân viên</strong> 
                 <p style="height: 99px"></p>
                 </p>
             </div>
-            <center>___________________</center>
+            <div id="legalcopy">
+                <p class="legal"><strong>Xác nhận khách hàng</strong> 
+                <p style="height: 135px"></p>
+                </p>
+            </div>
+            <center><p>Website: eduking.edu.vn<br>Phone: 0888141811</p></center>
 
         </div>
         <!--End InvoiceBot-->

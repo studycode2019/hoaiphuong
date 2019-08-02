@@ -210,7 +210,7 @@
                 <p style="height: 99px"></p>
                 </p>
             </div>
-            <center>...</center>
+            <center>___________________</center>
 
         </div>
         <!--End InvoiceBot-->

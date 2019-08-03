@@ -59,16 +59,17 @@
                   </td>
                   <td>
                     <div class="btn-group">
-                    <a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      <span class="caret"></span>
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu" role="menu">
-                      <a class="dropdown-item" href="/inbiennhanpos/{{$biennhan->id}}" target="_blank">In máy POS</a>
-                      <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
+                      <a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a>
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" href="/inbiennhanpos/{{$biennhan->id}}" target="_blank">In máy POS</a>
+                        <a class="dropdown-item" href="/inbiennhanluu/{{$biennhan->id}}" target="_blank">In phiếu dán</a>
+                        <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
+                      </div>
                     </div>
-                  </div>
                   </td>
                 </tr>
                 @endforeach

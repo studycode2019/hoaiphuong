@@ -44,11 +44,12 @@
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Ngày sinh:</label>
-                    <input name="ngaysinh" type="date" class="form-control" id="inputNgaysinh">
+                    <input name="ngaysinh" type="date" class="form-control" id="inputNgaysinh" required>
                   </div>
+                  <p style="color: red; font-weight: bold">THÔNG TIN DƯỚI ĐÂY LÀ BẮT BUỘC ĐỐI VỚI HỌC VIÊN</p>
                   <div class="form-group">
                     <label for="inputNgaysinh">Zalo:</label>
-                    <input name="zalo" type="number" class="form-control" id="inputZalo" placeholder="Số điện thoại Zalo" >
+                    <input name="zalo" type="number" class="form-control" id="inputZalo" placeholder="Số điện thoại Zalo">
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Email:</label>

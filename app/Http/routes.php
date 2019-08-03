@@ -55,6 +55,7 @@ Route::group(['prefix' => '','middleware' => 'nhanvien'], function() {
     Route::get('/xembiennhan/{biennhan_id}/hoanthanh', 'BiennhanController@getHoanThanh');
     Route::get('/inbiennhan/{biennhan_id}', 'BiennhanController@getInbiennhan');
     Route::get('/inbiennhanpos/{biennhan_id}', 'BiennhanController@getInbiennhanPos');
+    Route::get('/inbiennhanluu/{biennhan_id}', 'BiennhanController@getInbiennhanLuu');
     Route::get('/suabiennhan/{biennhan_id}', 'BiennhanController@getSuabiennhan');
     Route::post('/suabiennhan/', 'BiennhanController@postSuabiennhan');
     Route::get('/nhapbiennhan/{khachhang_id}', 'BiennhanController@getNhapbiennhantheosdt');

@@ -45,7 +45,7 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <i class="fa fa-wrench"></i>  <b>BIÊN NHẬN SỬA CHỮA MÁY</b>
+                  <i class="fa fa-wrench"></i> <b>BIÊN NHẬN SỬA CHỮA MÁY</b>
                   <small class="float-right"><b>SỐ PHIẾU #{{ $biennhan -> id }}</b></small>
                 </h4>
               </div>
@@ -80,8 +80,8 @@
                 <div class="btn-group" style="width: 100%">
                   <div class="btn btn-{{$biennhan->rlsTrangthai->class}}" style="width: 100%">{{$biennhan->rlsTrangthai->ten}}</div>
                   <button type="button" class="btn btn-{{$biennhan->rlsTrangthai->class}} dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">
                     @foreach ($trangthais as $data)
@@ -108,20 +108,28 @@
                 <table class="table table-striped table table-bordered">
                   <tbody>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dòng máy</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> dongmay }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>Dòng máy</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> dongmay }}</h5>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>CPU</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> cpu }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>CPU</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> cpu }}</h5>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng RAM</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> ram }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng RAM</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> ram }}</h5>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng ổ cứng</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> ocung }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng ổ cứng</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> ocung }}</h5>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -130,12 +138,16 @@
                 <table class="table table-striped table table-bordered">
                   <tbody>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Phụ kiện kèm theo</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> khac }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>Phụ kiện kèm theo</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> khac }}</h5>
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Tình trạng máy</b></h5></td>
-                      <td class="text-uppercase">{{ $biennhan -> tinhtrang }}</h5></td>
+                      <td class="text-uppercase" style="width: 200px"><b>Tình trạng máy</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $biennhan -> tinhtrang }}</h5>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -160,8 +172,19 @@
               <div class="col-12">
                 <a href="/suakhachhang/{{ $biennhan -> rlsKhachhang ->id }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
                 <a href="/suabiennhan/{{ $biennhan -> id }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
-                <a href="/inbiennhanpos/{{ $biennhan -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
-                <a href="/inbiennhan/{{ $biennhan -> id }}" target="_blank" class="btn btn float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN BIÊN NHẬN</a>
+
+                <div class="btn-group float-right">
+                  <a href="/inbiennhanpos/{{ $biennhan -> id }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu" role="menu">
+                    <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
+                  </div>
+                </div>
+                
+                <a href="/inbiennhanluu/{{ $biennhan -> id }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
               </div>
             </div>
           </div>
@@ -178,13 +201,13 @@
                   {{csrf_field()}}
                   <div class="input-group">
                     <input name="inputNoidung" type="text" class="form-control" placeholder="Nhập nội dung..." required>
-                    <input name="inputBiennhan" type="hidden" value="{{$biennhan->id}}"/>
+                    <input name="inputBiennhan" type="hidden" value="{{$biennhan->id}}" />
                   </div>
                   <div class="row my-2">
                     <div class="col-md-8">
                       <div class="checkbox icheck">
                         <label>
-                        <input name="inputCongkhai" type="checkbox"> Công khai cho khách hàng
+                          <input name="inputCongkhai" type="checkbox"> Công khai cho khách hàng
                         </label>
                       </div>
                     </div>
@@ -215,14 +238,14 @@
                   <tr>
                     <td>{{ $data->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}</td>
                     <td>
-                      @if($data->congkhai) 
-                      <a style="color: #0a0" href="/nhatky/{{$data->id}}/congkhai" ="Đang công khai, ấn để thay đổi">
-                      <i class="fa fa-globe"></i>
-                      </a>&nbsp; 
-                      @else 
+                      @if($data->congkhai)
+                      <a style="color: #0a0" href="/nhatky/{{$data->id}}/congkhai"="Đang công khai, ấn để thay đổi">
+                        <i class="fa fa-globe"></i>
+                      </a>&nbsp;
+                      @else
                       <a style="color: #a00" href="/nhatky/{{$data->id}}/congkhai">
-                      <i class="fa fa-times"></i>
-                      </a>&nbsp; 
+                        <i class="fa fa-times"></i>
+                      </a>&nbsp;
                       @endif {{ $data->noidung }}
                     </td>
                     <td>{{ $data->rlsNhanvien->ten }}</td>
@@ -251,24 +274,24 @@
 <!-- iCheck -->
 <script src="{{secure_asset('plugins/iCheck/icheck.min.js')}}"></script>
 <script>
-  $(function () {
+  $(function() {
     $("#example1").DataTable({
-        "paging": false,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": false,
-        "info": false,
-        "autoWidth": true,
+      "paging": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": false,
+      "info": false,
+      "autoWidth": true,
     });
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
-      radioClass   : 'iradio_square-blue',
-      increaseArea : '20%' // optional
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
     })
   });
   window.onkeydown = function(evt) {
     if (evt.keyCode == 119) //F8
-        document.getElementById("btnIn").click();
+      document.getElementById("btnIn").click();
   };
 </script>
 @stop

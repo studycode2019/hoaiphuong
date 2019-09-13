@@ -26,7 +26,7 @@ class PhieuthuController extends Controller
         $phieuthu = phieuthu::where('branch_id',$request->branch_id)->latest('created_at')->first();
         // return ($phieuthu->solai) + 1;
         $data = new phieuthu;
-        $data->solai = ($phieuthu->solai) + 1;
+        $data->solai = (isset($phieuthu->solai))? ($phieuthu->solai) + 1 : 1;
         $data->khachhang_id = $request->inputKhachhang;
         $data->nhanvien_id = UserInfo()->id;
         $data->phieuthu_danhmuc_id = $request->inputPhieuthuDanhmuc;

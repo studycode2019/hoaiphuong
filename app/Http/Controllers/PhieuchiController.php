@@ -10,6 +10,7 @@ use App\Model\phieuchi;
 use App\Model\khachhang;
 use App\Model\nhanvien;
 use App\Model\phieuthu_danhmuc;
+use App\Model\branch;
 
 class PhieuchiController extends Controller
 {
@@ -24,22 +25,22 @@ class PhieuchiController extends Controller
         //     return Redirect::back();
         // }
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
-        $data['nhanviens'] = nhanvien::all();
+        $data['branches'] = branch::all();
         $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();
         return view('phieuchi-nhap', $data);
     }
     
     public function postNhapphieuchi(Request $request) {
+        $phieuchi = phieuchi::where('branch_id',$request->branch_id)->latest('created_at')->first();
         $data = new phieuchi;
-        $data->solai = 1;
+        $data->solai = (isset($phieuchi->solai))? ($phieuchi->solai) + 1 : 1;
         $data->ten = $request->inputKhachhang;
-        $data->nhanvien_id = $request->inputNhanvien;
+        $data->nhanvien_id = UserInfo()->id;
         $data->noidung = $request->inputNoidung;
         $data->sotien = $request->inputSotien;
         $data->ghichu = $request->inputGhichu;
         $data->phieuthu_danhmuc_id = $request->inputPhieuthuDanhmuc;
-        $data->save();
-        $data->solai = $data->id;
+        $data->branch_id = $request->branch_id;
         $data->save();
         
         return redirect('/xemphieuchi/'.$data->id);

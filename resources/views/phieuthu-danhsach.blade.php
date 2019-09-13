@@ -36,13 +36,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Ngày/Tháng</th>
-                  <th>CN</th>
-                  <th>Số phiếu</th>
-                  <th>Khách hàng</th>
-                  <th>Nội dung</th>
-                  <th>Số tiền</th>
-                  <th>Danh mục</th>
+                  <th>Timestamp</th>
+                  <th>Branch</th>
+                  <th>No.</th>
+                  <th>Custommer</th>
+                  <th>Note</th>
+                  <th>Amount</th>
+                  <th>Cate</th>
                   <th></th>
                 </tr>
                 </thead>

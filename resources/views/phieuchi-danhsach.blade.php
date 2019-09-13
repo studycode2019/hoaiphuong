@@ -36,18 +36,20 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Ngày/Tháng</th>
-                  <th>Số phiếu</th>
-                  <th>Khách hàng</th>
-                  <th>Nội dung</th>
-                  <th>Số tiền</th>
-                  <th>Nhân viên</th>
+                  <th>Timestamp</th>
+                  <th>Branch</th>
+                  <th>No.</th>
+                  <th>Receiver</th>
+                  <th>Note</th>
+                  <th>Amount</th>
+                  <th>Staff</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($phieuchis as $data)
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($data->created_at))}}</td>
+                  <td>{{date("Y/m/d h:m:i", strtotime($data->created_at))}}</td>
+                  <td><span class="badge bg-info">{{$data->rlsBranch->name}}</span></td>
                   <td><a href="/xemphieuchi/{{$data->id}}">{{$data->solai}}</a></td>
                   <td>{{$data->rlsKhachhang->ten}}</td>
                   <td>{{$data->noidung}}</td>
@@ -77,7 +79,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-        "order": [[ 1, "desc" ]],
+        "order": [[ 0, "desc" ]],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

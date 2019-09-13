@@ -22,4 +22,9 @@ class phieuchi extends Model
     {
         return $this->belongsTo('App\Model\phieuthu_danhmuc', 'phieuthu_danhmuc_id');
     }
+
+    public function rlsBranch()
+    {
+        return $this->belongsTo('App\Model\branch', 'branch_id');
+    }
 }

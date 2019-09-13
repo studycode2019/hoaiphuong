@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class taive extends Model
 {
     public $timestamps = true;
-    protected $table = 'TAIVE';
+    protected $table = '_download';
 }

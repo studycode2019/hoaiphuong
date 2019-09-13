@@ -37,6 +37,7 @@
                 <thead>
                 <tr>
                   <th>Ngày/Tháng</th>
+                  <th>CN</th>
                   <th>Số phiếu</th>
                   <th>Khách hàng</th>
                   <th>Nội dung</th>
@@ -48,7 +49,8 @@
                 <tbody>
                 @foreach($phieuthus as $data)
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($data->created_at))}}</td>
+                  <td>{{date("Y/m/d h:m:i", strtotime($data->created_at))}}</td>
+                  <td><span class="badge bg-info">{{$data->rlsBranch->name}}</span></td>
                   <td><a href="/xemphieuthu/{{$data->id}}">{{$data->solai}}</a></td>
                   <td>{{$data->rlsKhachhang->ten}}</td>
                   <td>{{$data->noidung}}</td>
@@ -79,7 +81,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-        "order": [[ 1, "desc" ]],
+        "order": [[ 0, "desc" ]],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

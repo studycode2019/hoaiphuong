@@ -65,11 +65,9 @@
                   <b>Ngành học</b> @if ($khachhang->nganhhoc!="") <a class="float-right">{{$khachhang->nganhhoc}}</a> @else <a class="float-right">Không có</a> @endif
                 </li>
               </ul>
-              @if(UserInfo()->level>=3)
               <a href="/nhapphieuchi/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuchi">
               <i class="fa fa-arrow-right"></i> Thêm phiếu chi (F6)
               </a>
-              @endif
               <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">
               <i class="fa fa-arrow-left"></i> Thêm phiếu thu (F7)
               </a>

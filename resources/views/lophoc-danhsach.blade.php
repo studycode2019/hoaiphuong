@@ -65,14 +65,14 @@
                   <td>{{$lophoc->sobuoi}}</td>
                   <td>{{$lophoc->lichhoc}}</td>
                   <td>
-                    @if(count($lophoc->rlsDanhsach)<$lophoc->siso)
+                    @if($lophoc->sum()<$lophoc->siso)
                     <span style="width: 88px;" class="btn btn-warning">
-                    @elseif(count($lophoc->rlsDanhsach)==$lophoc->siso)
+                    @elseif($lophoc->sum()==$lophoc->siso)
                     <span style="width: 88px;" class="btn btn-success">
-                    @elseif(count($lophoc->rlsDanhsach)>$lophoc->siso)
+                    @elseif($lophoc->sum()>$lophoc->siso)
                     <span style="width: 88px;" class="btn btn-danger">
                     @endif
-                    {{count($lophoc->rlsDanhsach)}}/{{$lophoc->siso}}</span>
+                    {{$lophoc->sum()}}/{{$lophoc->siso}}</span>
                   </td>
                   <td>
                     <div class="btn-group">

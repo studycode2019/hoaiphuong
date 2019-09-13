@@ -8,7 +8,7 @@ use biennhan_trangthai as trangthai;
 class biennhan extends Model
 {
     public $timestamps = true;
-    protected $table = 'BIENNHAN';
+    protected $table = '_case';
     
     public function rlsKhachhang()
     {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class danhsachlop extends Model
 {
     public $timestamps = true;
-    protected $table = 'DANHSACHLOP';
+    protected $table = '_class_list';
     
     public function rlsKhachhang()
     {

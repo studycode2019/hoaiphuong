@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class phieuchi extends Model
 {
-    protected $table = 'PHIEUCHI';
+    protected $table = '_payment';
     
     public function rlsNhanvien()
     {

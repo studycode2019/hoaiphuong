@@ -16,7 +16,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -80,22 +80,30 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           </li>
-          <li class="nav-item">
-            <a href="/biennhan" class="nav-link">
-              <i class="nav-icon fa fa-book"></i>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fa fa-wrench"></i>
               <p>
-                Sổ biên nhận
+                Kỹ thuật
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/biennhan" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>Danh sách</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/nhatky" class="nav-link">
+                  <i class="fa fa-history nav-icon"></i>
+                  <p>Nhật ký sửa chữa</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="/nhatky" class="nav-link">
-              <i class="nav-icon fa fa-history"></i>
-              <p>
-                Nhật ký sữa chửa
-              </p>
-            </a>
-          </li>
+          @if(UserInfo()->level>=3)
           <li class="nav-item">
             <a href="/khachhang" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
@@ -104,7 +112,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          @endif
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-university"></i>
               <p>
@@ -115,51 +124,33 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/lophoc" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-list nav-icon"></i>
                   <p>Danh sách lớp</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/nhaplophoc" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-plus nav-icon"></i>
                   <p>Thêm lớp mới</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/lophoc/nhatky" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                  <i class="fa fa-history nav-icon"></i>
                   <p>Nhật ký lớp</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-money"></i>
               <p>
-                Tài chính
+                Thu - Chi
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/taichinh" class="nav-link">
-                  <i class="fa fa-gg-circle nav-icon"></i>
-                  <p>Tổng quan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/taichinh/2" class="nav-link">
-                  <i class="fa fa-graduation-cap nav-icon"></i>
-                  <p>Giáo dục</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/taichinh/3" class="nav-link">
-                  <i class="fa fa-wrench nav-icon"></i>
-                  <p>Kỹ thuật</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="/phieuthu" class="nav-link">
                   <i class="fa fa-arrow-left nav-icon"></i>
@@ -176,7 +167,7 @@
             <ul class="nav nav-treeview">
             </ul>
           </li>
-          <!--<li class="nav-item has-treeview">-->
+          <!-- <li class="nav-item has-treeview">-->
           <!--  <a href="#" class="nav-link ">-->
           <!--    <i class="nav-icon fa fa-line-chart"></i>-->
           <!--    <p>-->
@@ -192,9 +183,9 @@
           <!--      </a>-->
           <!--    </li>-->
           <!--  </ul>-->
-          <!--</li>-->
+          <!--</li> -->
 
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-link"></i>
               <p>

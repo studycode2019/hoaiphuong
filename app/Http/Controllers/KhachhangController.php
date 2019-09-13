@@ -14,6 +14,9 @@ use App\Model\lophoc_danhsach as danhsach;
 class KhachhangController extends Controller
 {
     public function getDanhsach() {
+        if(UserInfo()->level<3) {
+            return Redirect::back();
+        }
         $data['khachhangs'] = khachhang::all();
         return view('khachhang-danhsach', $data);
     }

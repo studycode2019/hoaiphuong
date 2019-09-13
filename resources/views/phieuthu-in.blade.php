@@ -12,7 +12,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{secure_asset('dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   </head>
@@ -23,9 +23,9 @@
       <section class="invoice">
         <!-- title row -->
         <div class="row">
-          <div class="col-7 offset-md-5">
+          <div class="col-8 offset-md-4">
             <h2 class="page-header">
-              <i class="fa fa-globe"></i>&nbsp;&nbsp;<b style="font-size:30pt">PHIẾU THU</b>
+              <i class="fa fa-globe"></i>&nbsp;&nbsp;<b style="font-size:30pt">PHIẾU THU (TẠM THỜI)</b>
               <small class="float-right"><b>SỐ PHIẾU #{{ $phieuthu -> solai }}</b></small>
             </h2>
           </div>
@@ -91,6 +91,7 @@
             </table>
           </div>
         </div>
+        <i>(Phiếu này chỉ có giá trị tạm thời trong 7 ngày, xin liên hệ nhân viên để nhận lai gốc) </i>
         <div class="row">
           <div class="col-md-3 offset-md-9">
             <h4 class=""><b>Tổng cộng:</b> {{ number_format($phieuthu -> sotien,0,",",".") }} VNĐ</h4>

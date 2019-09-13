@@ -9,7 +9,7 @@ class lophoc_danhsach extends Model
 {
     use SoftDeletes;
     public $timestamps = true;
-    protected $table = 'LOPHOC_DANHSACH';
+    protected $table = '_class_list';
     protected $dates = ['deleted_at'];
     
     public function rlsKhachhang()

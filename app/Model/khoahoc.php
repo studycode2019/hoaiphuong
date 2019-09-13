@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class khoahoc extends Model
 {
     public $timestamps = true;
-    protected $table = 'KHOAHOC';
+    protected $table = '_course';
     
     public function rlsLophoc()
     {

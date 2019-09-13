@@ -9,7 +9,7 @@ use App\Model\khachhang;
 class lophoc_nhatky extends Model
 {
     public $timestamps = true;
-    protected $table = 'LOPHOC_NHATKY';
+    protected $table = '_class_log';
     
     public function rlsNhanvien()
     {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class nhatky extends Model
 {
     public $timestamps = true;
-    protected $table = 'NHATKY';
+    protected $table = '_case_log';
     protected $fillable = ['id','biennhan_id','nhanvien_id','noidung', 'congkhai'];
     
     public function rlsNhanvien()

@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class lophoc extends Model
 {
-    use SoftDeletes;
     public $timestamps = true;
-    protected $table = 'LOPHOC';
+    protected $table = '_class';
     protected $dates = ['deleted_at'];
     
     public function rlsDanhsach()

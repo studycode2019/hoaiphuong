@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class biennhan_trangthai extends Model
 {
     public $timestamps = false;
-    protected $table = 'BIENNHAN_TRANGTHAI';
+    protected $table = '_case_status';
     
     public function rlsBiennhan()
     {

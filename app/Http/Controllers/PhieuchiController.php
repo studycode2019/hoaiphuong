@@ -20,9 +20,9 @@ class PhieuchiController extends Controller
     }
 
     public function getNhapphieuchi($khachhang_id) {
-        if(UserInfo()->level<3) {
-            return Redirect::back();
-        }
+        // if(UserInfo()->level<3) {
+        //     return Redirect::back();
+        // }
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
         $data['nhanviens'] = nhanvien::all();
         $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();

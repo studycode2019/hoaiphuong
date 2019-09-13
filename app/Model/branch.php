@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class phieuthu_danhmuc extends Model
+class branch extends Model
 {
-    protected $table = '_receipt_cate';
-    protected $fillable = ['id', 'ten'];
+    protected $table = '_branch';
+    protected $fillable = ['id', 'name'];
     
     public function rlsPhieuthu()
     {

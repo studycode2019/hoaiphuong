@@ -10,28 +10,30 @@ use App\Model\khachhang;
 use App\Model\phieuthu;
 use App\Model\phieuthu_danhmuc;
 use App\Model\nhanvien;
+use App\Model\branch;
 
 class PhieuthuController extends Controller
 {
     public function getNhapphieuthu($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
-        $data['nhanviens'] = nhanvien::all();
+        $data['branches'] = branch::all();
         $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();
         return view('phieuthu-nhap', $data);
     }
     
-    public function postNhapphieuthu(Request $request) {
-        
+    public function postNhapphieuthu(Request $request) 
+    {
+        $phieuthu = phieuthu::where('branch_id',$request->branch_id)->latest('created_at')->first();
+        // return ($phieuthu->solai) + 1;
         $data = new phieuthu;
-        $data->solai = 1;
+        $data->solai = ($phieuthu->solai) + 1;
         $data->khachhang_id = $request->inputKhachhang;
-        $data->nhanvien_id = $request->inputNhanvien;
+        $data->nhanvien_id = UserInfo()->id;
         $data->phieuthu_danhmuc_id = $request->inputPhieuthuDanhmuc;
+        $data->branch_id = $request->branch_id;
         $data->noidung = $request->inputNoidung;
         $data->sotien = $request->inputSotien;
         $data->ghichu = $request->inputGhichu;
-        $data->save();
-        $data->solai = $data->id;
         $data->save();
         
         return redirect('/xemphieuthu/'.$data->id);

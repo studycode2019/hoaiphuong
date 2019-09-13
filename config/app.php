@@ -158,7 +158,7 @@ return [
         
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
-
+        Sentry\Laravel\ServiceProvider::class,
     ],
 
     /*
@@ -207,6 +207,7 @@ return [
         
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Sentry' => Sentry\Laravel\Facade::class,
     ],
 
 ];

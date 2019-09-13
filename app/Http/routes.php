@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
+
 Route::get('/download', 'TaiveController@getDanhsachCongkhai');
 Route::get('/tracking', 'TrackingController@getTimkiem');
 Route::post('/search', 'TrackingController@postTracking');

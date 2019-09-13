@@ -17,6 +17,7 @@ class PhieuthuController extends Controller
     public function getNhapphieuthu($khachhang_id) {
         $data['khachhang'] = khachhang::findOrFail($khachhang_id);
         $data['branches'] = branch::all();
+        $data['nhanviens'] = nhanvien::all();
         $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();
         return view('phieuthu-nhap', $data);
     }
@@ -28,7 +29,7 @@ class PhieuthuController extends Controller
         $data = new phieuthu;
         $data->solai = (isset($phieuthu->solai))? ($phieuthu->solai) + 1 : 1;
         $data->khachhang_id = $request->inputKhachhang;
-        $data->nhanvien_id = UserInfo()->id;
+        $data->nhanvien_id = $request->nhanvien_id;
         $data->phieuthu_danhmuc_id = $request->inputPhieuthuDanhmuc;
         $data->branch_id = $request->branch_id;
         $data->noidung = $request->inputNoidung;

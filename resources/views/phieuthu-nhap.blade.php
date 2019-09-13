@@ -70,6 +70,14 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="nhanvien_id">Người lập phiếu:</label>
+              <select name="nhanvien_id" id="nhanvien_id" class="form-control select2" style="width: 100%;">
+                @foreach ($nhanviens as $data)
+                <option value="{{$data->id}}">{{$data->ten}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label for="inputNhanvien">Danh muc thu:</label>
               <select name="inputPhieuthuDanhmuc" id="inputPhieuthuDanhmuc" class="form-control select2" style="width: 100%;">
                 @foreach ($phieuthudanhmucs as $data)

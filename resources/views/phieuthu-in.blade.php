@@ -48,12 +48,12 @@
           <div class="col-sm-6 invoice-col">
             <u>Thông tin khách hàng:</u>
             <address>
-              <strong class="text-uppercase">{{ $phieuthu->rlsKhachhang -> ten }}</strong><br>
-              <b>Số điện thoại:</b> {{ PhoneFormat($phieuthu->rlsKhachhang->sdt) }}<br>
-              <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsKhachhang -> ngaysinh)) }}<br>
-              <b>Mã khách hàng:</b> {{ $phieuthu->rlsKhachhang -> id }}<br>
+              <strong class="text-uppercase">{{ $phieuthu->rlsClient -> ten }}</strong><br>
+              <b>Số điện thoại:</b> {{ PhoneFormat($phieuthu->rlsClient->sdt) }}<br>
+              <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsClient -> ngaysinh)) }}<br>
+              <b>Mã khách hàng:</b> {{ $phieuthu->rlsClient -> id }}<br>
               <b>Ngày lập phiếu:</b> {{ $phieuthu->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-              <b>Nhân viên:</b> {{ $phieuthu->rlsNhanvien->ten }}
+              <b>Nhân viên:</b> {{ $phieuthu->rlsStaff->ten }}
             </address>
           </div>
           <!-- /.col -->

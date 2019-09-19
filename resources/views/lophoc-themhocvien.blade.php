@@ -35,7 +35,7 @@
       </div>
     @endforeach
     @endif
-    <form action="/themhocvien" method="post">
+    <form action="{{route('staff.classlist.add.post')}}" method="post">
     {{csrf_field()}}
     <input type="hidden" name="inputKhachhangId" value="{{$khachhang->id}}"/>
     <div class="row">

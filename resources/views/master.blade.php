@@ -27,15 +27,15 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/biennhan" class="nav-link">Biên nhận</a>
+        <a href="{{route('staff.cases.list.get')}}" class="nav-link">Biên nhận</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/khachhang" class="nav-link">Khách hàng</a>
+        <a href="{{route('staff.client.list.get')}}" class="nav-link">Khách hàng</a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
-    <form action="/timkiem" method="get" class="form-inline ml-3" >
+    <form action="{{route('staff.search.get')}}" method="get" class="form-inline ml-3" >
       <div class="input-group input-group-md">
         <input name="keyword" class="form-control form-control-navbar" type="search" placeholder="Số điện thoại / Biên nhận" aria-label="Tìm số điện thoại">
         <div class="input-group-append">
@@ -67,10 +67,10 @@
           <img src="{{secure_asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="/nhanvien/canhan" class="d-block">{{ UserInfo()->ten }}</a>
+          <a href="{{route('staff.profile.edit.get')}}" class="d-block">{{ UserInfo()->ten }}</a>
         </div>
         <div class="info">
-          <a href="/dangxuat" class="d-block"><i class="fa fa-sign-out"></i></a>
+          <a href="{{route('staff.logout.get')}}" class="d-block"><i class="fa fa-sign-out"></i></a>
         </div>
       </div>
 
@@ -90,7 +90,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/biennhan" class="nav-link">
+                <a href="{{route('staff.cases.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
                   <p>Danh sách</p>
                 </a>
@@ -105,7 +105,7 @@
           </li>
           @if(UserInfo()->level>=3)
           <li class="nav-item">
-            <a href="/khachhang" class="nav-link">
+            <a href="{{route('staff.client.list.get')}}" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Danh bạ khách
@@ -123,19 +123,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/lophoc" class="nav-link">
+                <a href="{{route('staff.classes.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
                   <p>Danh sách lớp</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/nhaplophoc" class="nav-link">
+                <a href="{{route('staff.classes.add.get')}}" class="nav-link">
                   <i class="fa fa-plus nav-icon"></i>
                   <p>Thêm lớp mới</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/lophoc/nhatky" class="nav-link">
+                <a href="{{route('staff.classlog.list.get')}}" class="nav-link">
                   <i class="fa fa-history nav-icon"></i>
                   <p>Nhật ký lớp</p>
                 </a>
@@ -152,13 +152,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/phieuthu" class="nav-link">
+                <a href="{{route('staff.receipt.list.get')}}" class="nav-link">
                   <i class="fa fa-arrow-left nav-icon"></i>
                   <p>Phiếu thu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/phieuchi" class="nav-link">
+                <a href="{{route('staff.payment.list.get')}}" class="nav-link">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Phiếu chi</p>
                 </a>

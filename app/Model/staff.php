@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class nhanvien extends Authenticatable
+class staff extends Authenticatable
 {
     protected $table = '_staff';
     protected $fillable = ['id', 'sdt', 'ten', 'ngaysinh'];
@@ -25,5 +25,9 @@ class nhanvien extends Authenticatable
     }
     public function rlsPhieuthu() {
         return $this->hasMany('App\Model\phieuthu');
+    }
+    public function rlsGroup()
+    {
+        return $this->belongsTo('App\Model\group', 'group_id');
     }
 }

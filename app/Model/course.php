@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class khoahoc extends Model
+class course extends Model
 {
     public $timestamps = true;
     protected $table = '_course';
     
-    public function rlsLophoc()
+    public function rlsClasses()
     {
-        return $this->hasMany('App\Model\lophoc');
+        return $this->hasMany('App\Model\classes');
     }
     
 }

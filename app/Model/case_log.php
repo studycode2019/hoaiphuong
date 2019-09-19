@@ -4,18 +4,18 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class nhatky extends Model
+class case_log extends Model
 {
     public $timestamps = true;
     protected $table = '_case_log';
     protected $fillable = ['id','biennhan_id','nhanvien_id','noidung', 'congkhai'];
     
-    public function rlsNhanvien()
+    public function rlsStaff()
     {
-        return $this->belongsTo('App\Model\nhanvien', 'nhanvien_id');
+        return $this->belongsTo('App\Model\staff', 'nhanvien_id');
     }
-    public function rlsBiennhan()
+    public function rlsCases()
     {
-        return $this->belongsTo('App\Model\biennhan', 'biennhan_id');
+        return $this->belongsTo('App\Model\cases', 'biennhan_id');
     }
 }

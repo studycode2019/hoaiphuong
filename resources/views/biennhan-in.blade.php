@@ -53,7 +53,7 @@
               <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}<br>
               <b>Mã khách hàng:</b> KH{{ $khachhang -> id }}<br>
               <b>Ngày nhận máy:</b> {{ $biennhan->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-              <b>Nhân viên nhận:</b> {{ $biennhan->rlsNhanvien->ten }}
+              <b>Nhân viên nhận:</b> {{ $biennhan->rlsStaff->ten }}
             </address>
           </div>
           <!-- /.col -->

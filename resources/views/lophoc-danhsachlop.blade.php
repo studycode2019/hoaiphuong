@@ -57,28 +57,28 @@
                 <tbody>
                 @foreach($danhsachs as $data)
                 <tr>
-                  <td><a href="/xemkhachhang/{{$data->rlsKhachhang->id}}">{{$data->rlsKhachhang->ten}}</a></td>
-                  <td><a href="tel:{{$data->rlsKhachhang->sdt}}">{{$data->rlsKhachhang->sdt}}</a></td>
+                  <td>{!!$data->rlsClient->linkName()!!}</a></td>
+                  <td>{!!$data->rlsClient->linkPhone()!!}</td>
                   <td>{{$data->uudai}}%</td>
-                  <td>{{MoneyFormat($data->rlsLophoc->hocphi*(1-$data->uudai/100))}}</td>
+                  <td>{{MoneyFormat($data->rlsClasses->hocphi*(1-$data->uudai/100))}}</td>
                   <td>{{MoneyFormat($data->dadong)}}</td>
                   <td>
-                    @if(($data->rlsLophoc->hocphi*(1-$data->uudai/100)) - $data->dadong <= 0)
+                    @if(($data->rlsClasses->hocphi*(1-$data->uudai/100)) - $data->dadong <= 0)
                     <span class="badge bg-success">HOÀN THÀNH</span>
                     @else
-                    {{MoneyFormat(($data->rlsLophoc->hocphi*(1-$data->uudai/100)) - $data->dadong)}}</td>
+                    {{MoneyFormat(($data->rlsClasses->hocphi*(1-$data->uudai/100)) - $data->dadong)}}</td>
                     @endif
                   </td>
                   <td>{{$data->ghichu}}</td>
                   <td>
                     <div class="btn-group">
-                      <a href="/suahocvien/{{$data->id}}" class="btn btn-primary">Sửa</a>
+                      <a href="{{route('staff.classlist.edit.get', ['classlist_id' => $data->id])}}" class="btn btn-primary">Sửa</a>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="/xoahocvien/{{$data->id}}">Xóa khỏi lớp</a>
+                        <a class="dropdown-item" href="{{route('staff.classlist.delete.get', ['classlist_id' => $data->id])}}">Xóa khỏi lớp</a>
                       </div>
                     </div>
                   </td>

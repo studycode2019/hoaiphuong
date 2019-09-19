@@ -1,6 +1,6 @@
 <?php
 function UserInfo() {
-    return Auth::guard('nhanvien')->user();
+    return Auth::guard('staff')->user();
 }
 
 function PhoneFormat($data) {

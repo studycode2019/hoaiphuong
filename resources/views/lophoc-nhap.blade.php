@@ -35,7 +35,7 @@
       </div>
     @endforeach
     @endif
-    <form action="/nhaplophoc" method="post">
+    <form action="{{route('staff.classes.add.post')}}" method="post">
     {{csrf_field()}}
     <div class="row">
       <div class="col-md-12">

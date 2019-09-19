@@ -65,19 +65,19 @@
                   <b>Ngành học</b> @if ($khachhang->nganhhoc!="") <a class="float-right">{{$khachhang->nganhhoc}}</a> @else <a class="float-right">Không có</a> @endif
                 </li>
               </ul>
-              <a href="/nhapphieuchi/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuchi">
+              <a href="{{route('staff.payment.add.get', ['client_id'=>$khachhang->id])}}" class="btn btn-block btn-default" id="btnThemphieuchi">
               <i class="fa fa-arrow-right"></i> Thêm phiếu chi (F6)
               </a>
-              <a href="/nhapphieuthu/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemphieuthu">
+              <a href="{{route('staff.receipt.add.get', ['client_id'=>$khachhang->id])}}" class="btn btn-block btn-default" id="btnThemphieuthu">
               <i class="fa fa-arrow-left"></i> Thêm phiếu thu (F7)
               </a>
-              <a href="/nhapbiennhan/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThembiennhan">
+              <a href="{{route('staff.cases.add.get', ['client_id'=>$khachhang->id])}}" class="btn btn-block btn-default" id="btnThembiennhan">
               <i class="fa fa-book"></i> Thêm biên nhận (F8)
               </a>
-              <a href="/themhocvien/{{$khachhang->id}}" class="btn btn-block btn-default" id="btnThemvaolop">
+              <a href="{{route('staff.classlist.add.get', ['client_id'=>$khachhang->id])}}" class="btn btn-block btn-default" id="btnThemvaolop">
               <i class="fa fa-university"></i> Thêm vào lớp (F9)
               </a>
-              <a href="/suakhachhang/{{$khachhang->id}}" class="btn btn-info btn-block"><b>Sửa thông tin</b></a>
+              <a href="{{route('staff.client.edit.get', ['client_id'=>$khachhang->id])}}" class="btn btn-info btn-block"><b>Sửa thông tin</b></a>
             </div>
             <!-- /.card-body -->
           </div>
@@ -107,7 +107,7 @@
                     <td>{{$biennhan->id}}</td>
                     <td>{{$biennhan->dongmay}}</td>
                     <td>
-                      <span class="badge bg-{{$biennhan->rlsTrangthai->class}}">{{$biennhan->rlsTrangthai->ten}}</span>
+                      <span class="badge bg-{{$biennhan->rlsCaseStatus->class}}">{{$biennhan->rlsCaseStatus->ten}}</span>
                     </td>
                     <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
                   </tr>
@@ -138,12 +138,12 @@
                 <tbody>
                   @foreach($lophocs as $lophoc)
                   <tr>
-                    <td>{!!$lophoc->rlsLophoc->linkName()!!}</td>
+                    <td>{!!$lophoc->rlsClasses->linkName()!!}</td>
                     <td>{{$lophoc->uudai}}%</td>
-                    <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100)}}</td>
+                    <td>{{$lophoc->rlsClasses->hocphi * (1-$lophoc->uudai/100)}}</td>
                     <td>{{$lophoc->dadong}}</td>
-                    <td>{{$lophoc->rlsLophoc->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
-                    <td><a href="{{route('g.hocvien.sua', ['danhsach_id' => $lophoc->id])}}" class="btn btn-primary">Sửa</a></td>
+                    <td>{{$lophoc->rlsClasses->hocphi * (1-$lophoc->uudai/100) - $lophoc->dadong}}</td>
+                    <td><a href="{{route('staff.classlist.edit.get', ['classlist_id' => $lophoc->id])}}" class="btn btn-primary">Sửa</a></td>
                   </tr>
                   @endforeach
                   </tfoot>

@@ -45,17 +45,17 @@
               <div class="col-md-6 invoice-col">
                 <u>Thông tin phiếu chi:</u>
                 <address>
-                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuchi->rlsKhachhang->id}}">{{$phieuchi->rlsKhachhang->ten}}</a></strong><br>
-                  <b>Số điện thoại: </b><a href="tel:{{$phieuchi->rlsKhachhang->sdt}}">{{PhoneFormat($phieuchi->rlsKhachhang->sdt)}}</a><br>
-                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuchi->rlsKhachhang -> ngaysinh)) }}<br>
-                  <b>Mã khách hàng:</b> {{ $phieuchi->rlsKhachhang -> id }}<br>
+                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuchi->rlsClient->id}}">{{$phieuchi->rlsClient->ten}}</a></strong><br>
+                  <b>Số điện thoại: </b><a href="tel:{{$phieuchi->rlsClient->sdt}}">{{PhoneFormat($phieuchi->rlsClient->sdt)}}</a><br>
+                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuchi->rlsClient -> ngaysinh)) }}<br>
+                  <b>Mã khách hàng:</b> {{ $phieuchi->rlsClient -> id }}<br>
                   <b>Ngày lập phiếu:</b> {{ $phieuchi->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên lập:</b> {{ $phieuchi->rlsNhanvien->ten }}
+                  <b>Nhân viên lập:</b> {{ $phieuchi->rlsStaff->ten }}
                 </address>
               </div>
               <!-- /.col -->
               <div class="col-md-6 invoice-col">
-                <div class="btn btn-danger float-right">{{$phieuchi->rlsDanhmuc->ten}}</div>
+                <div class="btn btn-danger float-right">{{$phieuchi->rlsField->ten}}</div>
               </div>
               <!-- /.col -->
             </div>

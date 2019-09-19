@@ -76,13 +76,13 @@
                   </td>
                   <td>
                     <div class="btn-group">
-                      <a href="/xemlophoc/{{$lophoc->id}}" class="btn btn-primary">Xem</a>
+                      <a href="{{route('staff.classes.view.get', ['class_id' => $lophoc->id])}}" class="btn btn-primary">Xem</a>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="/sualophoc/{{$lophoc->id}}">Sửa</a>
+                        <a class="dropdown-item" href="{{route('staff.classes.edit.get', ['class_id' => $lophoc->id])}}">Sửa</a>
                       </div>
                     </div>
                   </td>

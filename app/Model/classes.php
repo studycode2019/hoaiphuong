@@ -5,22 +5,22 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class lophoc extends Model
+class classes extends Model
 {
     public $timestamps = true;
     protected $table = '_class';
     protected $dates = ['deleted_at'];
     
-    public function rlsDanhsach()
+    public function rlsClassList()
     {
-        return $this->hasMany('App\Model\lophoc_danhsach');
+        return $this->hasMany('App\Model\class_list', 'lophoc_id');
     }
 
     public function linkName() {
-        return '<a href="'.route('g.lophoc.xem', ['lophocid_id' => $this->id], false).'">'.$this->ten.'</a>';
+        return '<a href="'.route('staff.classes.view.get', ['class_id' => $this->id], false).'">'.$this->ten.'</a>';
     }
 
     public function sum() {
-        return count($this->rlsDanhsach);
+        return count($this->rlsClassList);
     }
 }

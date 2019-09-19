@@ -44,7 +44,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/nhapphieuthu" method="post">
+        <form role="form" action="{{route('staff.receipt.add.post')}}" method="post">
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">

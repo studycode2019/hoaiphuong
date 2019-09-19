@@ -72,20 +72,20 @@
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}<br>
                   <b>Mã khách hàng:</b> KH{{ $khachhang -> id }}<br>
                   <b>Ngày nhận máy:</b> {{ $biennhan->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên nhận:</b> {{ $biennhan->rlsNhanvien->ten }}
+                  <b>Nhân viên nhận:</b> {{ $biennhan->rlsStaff->ten }}
                 </address>
               </div>
               <!-- /.col -->
               <div class="col-md-4">
                 <div class="btn-group" style="width: 100%">
-                  <div class="btn btn-{{$biennhan->rlsTrangthai->class}}" style="width: 100%">{{$biennhan->rlsTrangthai->ten}}</div>
-                  <button type="button" class="btn btn-{{$biennhan->rlsTrangthai->class}} dropdown-toggle" data-toggle="dropdown">
+                  <div class="btn btn-{{$biennhan->rlsCaseStatus->class}}" style="width: 100%">{{$biennhan->rlsCaseStatus->ten}}</div>
+                  <button type="button" class="btn btn-{{$biennhan->rlsCaseStatus->class}} dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">
                     @foreach ($trangthais as $data)
-                    <a class="dropdown-item" href="/xembiennhan/{{$biennhan->id}}/trangthai/{{$data->id}}">{{$data->ten}}</a>
+                    <a class="dropdown-item" href="{{route('staff.cases.changestatus.get', ['case_id'=>$biennhan->id, 'status_id'=>$data->id])}}">{{$data->ten}}</a>
                     @endforeach
                   </div>
                 </div>
@@ -170,21 +170,21 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
-                <a href="/suakhachhang/{{ $biennhan -> rlsKhachhang ->id }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
-                <a href="/suabiennhan/{{ $biennhan -> id }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
+                <a href="{{ route('staff.client.edit.get', ['client_id' => $biennhan->rlsClient->id]) }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
+                <a href="{{ route('staff.cases.edit.get', ['case_id' => $biennhan->id]) }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
 
                 <div class="btn-group float-right">
-                  <a href="/inbiennhanpos/{{ $biennhan -> id }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
+                  <a href="{{ route('staff.cases.printpos.get', ['case_id' => $biennhan->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
+                    <a class="dropdown-item" href="{{ route('staff.cases.print.get', ['case_id' => $biennhan->id]) }}" target="_blank">In biên nhận</a>
                   </div>
                 </div>
                 
-                <a href="/inbiennhanluu/{{ $biennhan -> id }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
+                <a href="{{ route('staff.cases.printinternal.get', ['case_id' => $biennhan->id]) }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
               </div>
             </div>
           </div>
@@ -248,7 +248,7 @@
                       </a>&nbsp;
                       @endif {{ $data->noidung }}
                     </td>
-                    <td>{{ $data->rlsNhanvien->ten }}</td>
+                    <td>{{ $data->rlsStaff->ten }}</td>
                   </tr>
                   @endforeach
                   </tfoot>

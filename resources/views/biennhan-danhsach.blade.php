@@ -50,24 +50,23 @@
                 <tr>
                   <td>{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
                   <td>{{$biennhan->id}}</td>
-                  <td><a href="/xembiennhan/{{$biennhan->id}}">{{$biennhan->dongmay}}</a></td>
-                  <td>{{$biennhan->rlsKhachhang->ten}}</td>
+                  <td><a href="{{route('staff.cases.view.get', ['case_id' => $biennhan->id])}}">{{$biennhan->dongmay}}</a></td>
+                  <td>{{$biennhan->rlsClient->ten}}</td>
                   <td>{{$biennhan->yeucau}}</td>
                   <td>
-
-                    <span class="badge bg-{{$biennhan->rlsTrangthai->class}}"><span style="display: none;">{{$biennhan->rlsTrangthai->id}}</span>{{$biennhan->rlsTrangthai->ten}}</span>
+                    <span class="badge bg-{{$biennhan->rlsCaseStatus->class}}"><span style="display: none;">{{$biennhan->rlsCaseStatus->id}}</span>{{$biennhan->rlsCaseStatus->ten}}</span>
                   </td>
                   <td>
                     <div class="btn-group">
-                      <a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a>
+                      <a href="{{route('staff.cases.view.get', ['case_id' => $biennhan->id])}}" class="btn btn-primary">Xem</a>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="/inbiennhanpos/{{$biennhan->id}}" target="_blank">In máy POS</a>
-                        <a class="dropdown-item" href="/inbiennhanluu/{{$biennhan->id}}" target="_blank">In phiếu dán</a>
-                        <a class="dropdown-item" href="/inbiennhan/{{$biennhan->id}}" target="_blank">In biên nhận</a>
+                        <a class="dropdown-item" href="{{route('staff.cases.printpos.get', ['case_id' => $biennhan->id])}}" target="_blank">In máy POS</a>
+                        <a class="dropdown-item" href="{{route('staff.cases.printinternal.get', ['case_id' => $biennhan->id])}}" target="_blank">In phiếu dán</a>
+                        <a class="dropdown-item" href="{{route('staff.cases.print.get', ['case_id' => $biennhan->id])}}" target="_blank">In biên nhận</a>
                       </div>
                     </div>
                   </td>
@@ -98,6 +97,7 @@
     $("#example1").DataTable({
         // "order": false,
         "order": [[ 5, "asc" ]],
+        "lengthMenu": [ 25, 50, 75, 100 ],
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

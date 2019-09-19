@@ -6,33 +6,33 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Requests;
-use App\Model\phieuchi;
-use App\Model\khachhang;
-use App\Model\nhanvien;
-use App\Model\phieuthu_danhmuc;
+use App\Model\payment;
+use App\Model\client;
+use App\Model\staff;
+use App\Model\field;
 use App\Model\branch;
 
-class PhieuchiController extends Controller
+class PaymentController extends Controller
 {
-    public function getDanhsach() {
-        $data['phieuchis'] = phieuchi::all();
+    public function getList() {
+        $data['phieuchis'] = payment::all();
         
         return view('phieuchi-danhsach', $data);
     }
 
-    public function getNhapphieuchi($khachhang_id) {
+    public function getAdd($khachhang_id) {
         // if(UserInfo()->level<3) {
         //     return Redirect::back();
         // }
-        $data['khachhang'] = khachhang::findOrFail($khachhang_id);
+        $data['khachhang'] = client::findOrFail($khachhang_id);
         $data['branches'] = branch::all();
-        $data['phieuthudanhmucs'] = phieuthu_danhmuc::all();
+        $data['phieuthudanhmucs'] = field::all();
         return view('phieuchi-nhap', $data);
     }
     
-    public function postNhapphieuchi(Request $request) {
-        $phieuchi = phieuchi::where('branch_id',$request->branch_id)->latest('created_at')->first();
-        $data = new phieuchi;
+    public function postAdd(Request $request) {
+        $phieuchi = payment::where('branch_id',$request->branch_id)->latest('created_at')->first();
+        $data = new payment;
         $data->solai = (isset($phieuchi->solai))? ($phieuchi->solai) + 1 : 1;
         $data->ten = $request->inputKhachhang;
         $data->nhanvien_id = UserInfo()->id;
@@ -43,11 +43,11 @@ class PhieuchiController extends Controller
         $data->branch_id = $request->branch_id;
         $data->save();
         
-        return redirect('/xemphieuchi/'.$data->id);
+        return redirect()->route('staff.payment.view.get', ['payment_id' => $data->id]);
     }
     
-    public function getXemphieuchi($phieuchi_id) {
-        $data['phieuchi'] = phieuchi::findOrFail($phieuchi_id);
+    public function getView($phieuchi_id) {
+        $data['phieuchi'] = payment::findOrFail($phieuchi_id);
         return view('phieuchi-xem', $data);
     }
 }

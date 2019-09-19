@@ -3,36 +3,36 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\lophoc;
-use App\Model\khachhang;
+use App\Model\classes;
+use App\Model\client;
 
-class lophoc_nhatky extends Model
+class class_log extends Model
 {
     public $timestamps = true;
     protected $table = '_class_log';
     
-    public function rlsNhanvien()
+    public function rlsStaff()
     {
-        return $this->belongsTo('App\Model\nhanvien', 'nhanvien_id');
+        return $this->belongsTo('App\Model\staff', 'nhanvien_id');
     }
     
-    public function rlsKhachhang()
+    public function rlsClient()
     {
-        return $this->belongsTo('App\Model\khachhang', 'khachhang_id');
+        return $this->belongsTo('App\Model\client', 'khachhang_id');
     }
     
-    public function rlsLophoc1()
+    public function rlsClasses1()
     {
-        return $this->belongsTo('App\Model\lophoc', 'lophoc1_id');
+        return $this->belongsTo('App\Model\classes', 'lophoc1_id');
     }
 
-    public function rlsLophoc2()
+    public function rlsClasses2()
     {
-        return $this->belongsTo('App\Model\lophoc', 'lophoc2_id');
+        return $this->belongsTo('App\Model\classes', 'lophoc2_id');
     }
 
     public function setAddClass($class_id) {
-        $lophoc =  lophoc::findOrFail($class_id);
+        $lophoc =  classes::findOrFail($class_id);
         $this->nhanvien_id = UserInfo()->id;
         $this->lophoc1_id = $lophoc->id;
         $this->noidung = 'Đã tạo lớp '.$lophoc->linkName();
@@ -40,8 +40,8 @@ class lophoc_nhatky extends Model
     }
 
     public function setAddStudent($client_id, $class1_id) {
-        $lophoc1 =  lophoc::findOrFail($class1_id);
-        $khachhang =  khachhang::findOrFail($client_id);
+        $lophoc1 =  classes::findOrFail($class1_id);
+        $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;
         $this->khachhang_id = $client_id;
@@ -51,9 +51,9 @@ class lophoc_nhatky extends Model
     }
 
     public function setChange($client_id, $class1_id, $class2_id, $content) {
-        $lophoc1 =  lophoc::findOrFail($class1_id);
-        $lophoc2 =  lophoc::findOrFail($class2_id);
-        $khachhang =  khachhang::findOrFail($client_id);
+        $lophoc1 =  classes::findOrFail($class1_id);
+        $lophoc2 =  classes::findOrFail($class2_id);
+        $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;
         $this->khachhang_id = $client_id;
@@ -64,8 +64,8 @@ class lophoc_nhatky extends Model
     }
     
     public function setDelete($client_id, $class1_id) {
-        $lophoc1 =  lophoc::findOrFail($class1_id);
-        $khachhang =  khachhang::findOrFail($client_id);
+        $lophoc1 =  classes::findOrFail($class1_id);
+        $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;
         $this->khachhang_id = $client_id;

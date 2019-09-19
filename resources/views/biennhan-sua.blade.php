@@ -29,7 +29,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/suabiennhan" method="post">
+              <form role="form" action="{{route('staff.cases.edit.post', ['case_id' => $biennhan->id])}}" method="post">
                 {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">

@@ -45,9 +45,9 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
-        'nhanvien' => [
+        'staff' => [
             'driver' => 'session',
-            'provider' => 'nhanviens',
+            'provider' => 'staffs',
         ],
     ],
 
@@ -73,9 +73,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-        'nhanviens' => [
+        'staffs' => [
             'driver' => 'eloquent',
-            'model' => App\Model\nhanvien::class,
+            'model' => App\Model\staff::class,
         ],
 
         // 'users' => [
@@ -110,8 +110,8 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'nhanviens' => [
-            'provider' => 'nhanviens',
+        'staffs' => [
+            'provider' => 'staffs',
             'email' => 'auth.sdt.matkhau',
             'table' => 'password_resets',
             'expire' => 60,

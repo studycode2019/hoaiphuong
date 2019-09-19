@@ -35,7 +35,7 @@
       </div>
     @endforeach
     @endif
-    <form action="/suahocvien" method="post">
+    <form action="{{route('staff.classlist.edit.post')}}" method="post">
     {{csrf_field()}}
     <input type="hidden" name="inputDanhsachId" value="{{$danhsach->id}}"/>
     <div class="row">
@@ -45,7 +45,7 @@
             <div class="col-md-12">
               <div class="form-group col-md-12">
                 <label>Tên học viên</label>
-                <input type="text" class="form-control" value="{{$danhsach->rlsKhachhang->ten}}" disabled>
+                <input type="text" class="form-control" value="{{$danhsach->rlsClient->ten}}" disabled>
               </div>
               <div class="form-group col-md-12">
                 <label>Chọn lớp học</label>

@@ -45,12 +45,12 @@
               <div class="col-md-6 invoice-col">
                 <u>Thông tin phiếu thu:</u>
                 <address>
-                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuthu->rlsKhachhang->id}}">{{$phieuthu->rlsKhachhang->ten}}</a></strong><br>
-                  <b>Số điện thoại: </b><a href="tel:{{$phieuthu->rlsKhachhang->sdt}}">{{PhoneFormat($phieuthu->rlsKhachhang->sdt)}}</a><br>
-                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsKhachhang -> ngaysinh)) }}<br>
-                  <b>Mã khách hàng:</b> {{ $phieuthu->rlsKhachhang -> id }}<br>
+                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$phieuthu->rlsClient->id}}">{{$phieuthu->rlsClient->ten}}</a></strong><br>
+                  <b>Số điện thoại: </b><a href="tel:{{$phieuthu->rlsClient->sdt}}">{{PhoneFormat($phieuthu->rlsClient->sdt)}}</a><br>
+                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($phieuthu->rlsClient -> ngaysinh)) }}<br>
+                  <b>Mã khách hàng:</b> {{ $phieuthu->rlsClient -> id }}<br>
                   <b>Ngày lập phiếu:</b> {{ $phieuthu->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên lập:</b> {{ $phieuthu->rlsNhanvien->ten }}
+                  <b>Nhân viên lập:</b> {{ $phieuthu->rlsStaff->ten }}
                 </address>
               </div>
               <!-- /.col -->
@@ -105,9 +105,8 @@
           <!-- this row will not appear when printing -->
           <div class="card card-footer">
             <div class="col-12">
-              <a href="/suakhachhang/{{ $phieuthu -> rlsKhachhang ->id }}" class="btn btn-default" >Sửa khách hàng</a>
-              <a href="/suaphieuthu/{{ $phieuthu -> id }}" class="btn btn-default" autofocus>Sửa phiếu thu</a>
-              <a href="/inphieuthu/{{ $phieuthu -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU THU</a>
+              <a href="{{route('staff.client.edit.get', ['client_id' => $phieuthu->rlsClient->id])}}" class="btn btn-default" >Sửa khách hàng</a>
+              <a href="{{route('staff.receipt.print.get', ['client_id' => $phieuthu->id])}}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU THU</a>
             </div>
           </div>
         </div>

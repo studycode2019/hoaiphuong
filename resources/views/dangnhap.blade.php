@@ -28,7 +28,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Đăng nhập với số điện thoại</p>
 
-      <form action="/dangnhap" method="post">
+      <form action="{{route('guest.login.post')}}" method="post">
         {{csrf_field()}}
         <div class="form-group has-feedback">
           <input name="sdt" class="form-control" placeholder="Số điện thoại">

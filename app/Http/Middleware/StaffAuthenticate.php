@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class NhanvienAuthenticate
+class StaffAuthenticate
 {
     /**
      * Handle an incoming request.
@@ -14,10 +14,10 @@ class NhanvienAuthenticate
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = 'nhanvien')
+    public function handle($request, Closure $next, $guard = 'staff')
     {
         if (!Auth::guard($guard)->check()) {
-            return redirect('/dangnhap');
+            return redirect()->route('guest.login.get');
         }
 
         return $next($request);

@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Requests\loginRequest;
 
-class DangnhapController extends Controller
+class LoginController extends Controller
 {
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
@@ -25,16 +25,16 @@ class DangnhapController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
     
-    public function getDangnhap() {
-        if (Auth::guard('nhanvien')->check()) {
-            return redirect('/');
+    public function getLogin() {
+        if (Auth::guard('staff')->check()) {
+            return redirect()->name('staff.home.get');
         } else {
             return view('dangnhap');
         }
         
     }
     
-    public function postDangnhap(Request $request)
+    public function postLogin(Request $request)
     {
         $this->validateLogin($request);
 
@@ -51,7 +51,7 @@ class DangnhapController extends Controller
 
         $credentials = $this->getCredentials($request);
 
-        if (Auth::guard('nhanvien')->attempt($credentials, $request->has('remember'))) {
+        if (Auth::guard('staff')->attempt($credentials, $request->has('remember'))) {
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
@@ -65,8 +65,8 @@ class DangnhapController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
     
-    public function getDangxuat() {
-    	Auth::guard('nhanvien')->logout();
-    	return redirect('dangnhap');
+    public function getLogout() {
+    	Auth::guard('staff')->logout();
+    	return route('guest.login.get');
     }
 }

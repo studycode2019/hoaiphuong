@@ -4,13 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class biennhan_trangthai extends Model
+class case_status extends Model
 {
     public $timestamps = false;
     protected $table = '_case_status';
     
-    public function rlsBiennhan()
+    public function rlsCases()
     {
-        return $this->hasMany('App\Model\biennhan');
+        return $this->hasMany('App\Model\cases');
     }
 }

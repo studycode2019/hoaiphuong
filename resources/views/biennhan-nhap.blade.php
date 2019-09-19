@@ -45,7 +45,7 @@
                 <td>{{$data->id}}</td>
                 <td>{{$data->dongmay}}</td>
                 <td>Dòng máy {{$data->cpu}}, CPU {{$data->cpu}}, RAM {{$data->ram}}, Ổ CỨNG {{$data->ocung}}</td>
-                <td><a href="/nhapbiennhan/{{$khachhang->id}}/sudung/{{$data->id}}" class="btn btn-block btn-primary">Sử dụng</a></td>
+                <td><a href="{{route('staff.cases.useold.get', ['client_id' => $khachhang->id, 'case_id' => $data->id])}}" class="btn btn-block btn-primary">Sử dụng</a></td>
               </tr>
               @endforeach
             </table>
@@ -58,7 +58,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/nhapbiennhan" method="post">
+        <form role="form" action="{{route('staff.cases.add.post')}}" method="post">
           {{csrf_field()}}
           <div class="card-body">
             <div class="form-group">

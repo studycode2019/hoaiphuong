@@ -43,7 +43,7 @@ class ClientController extends Controller
         }
     }
     
-    public function postNhapkhachhang(Request $request) {
+    public function postAdd(Request $request) {
         $khachhang = new client;
         $khachhang->ten = $request->ten;
         $khachhang->sdt = $request->sdt;
@@ -59,12 +59,12 @@ class ClientController extends Controller
         return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id]);
     }
     
-    public function getSuakhachhang($khachhang_id) {
+    public function getEdit($khachhang_id) {
         $data['khachhang'] = client::findOrFail($khachhang_id);
         return view('khachhang-sua', $data);
     }
     
-    public function postSuakhachhang(Request $request) {
+    public function postEdit(Request $request) {
         $khachhang = client::findOrFail($request->inputKhachhang);
         $khachhang->ten = $request->inputTen;
         $khachhang->sdt = $request->inputSdt;

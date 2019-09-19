@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/nhapkhachhang" method="post">
+              <form role="form" action="{{route('staff.client.add.post')}}" method="post">
                 {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">

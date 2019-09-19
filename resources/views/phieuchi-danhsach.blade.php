@@ -51,10 +51,10 @@
                   <td>{{date("Y/m/d h:m:i", strtotime($data->created_at))}}</td>
                   <td><span class="badge bg-info">{{$data->rlsBranch->name}}</span></td>
                   <td><a href="/xemphieuchi/{{$data->id}}">{{$data->solai}}</a></td>
-                  <td>{{$data->rlsKhachhang->ten}}</td>
+                  <td>{{$data->rlsClient->ten}}</td>
                   <td>{{$data->noidung}}</td>
                   <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
-                  <td>{{$data->rlsNhanvien->ten}}</td>
+                  <td>{{$data->rlsStaff->ten}}</td>
                 </tr>
                 @endforeach
                 </tfoot>

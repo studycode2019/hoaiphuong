@@ -51,12 +51,12 @@
                 <tr>
                   <td>{{date("Y/m/d h:m:i", strtotime($data->created_at))}}</td>
                   <td><span class="badge bg-info">{{$data->rlsBranch->name}}</span></td>
-                  <td><a href="/xemphieuthu/{{$data->id}}">{{$data->solai}}</a></td>
-                  <td>{{$data->rlsKhachhang->ten}}</td>
+                  <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}">{{$data->solai}}</a></td>
+                  <td>{{$data->rlsClient->ten}}</td>
                   <td>{{$data->noidung}}</td>
                   <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
-                  <td>{{$data->rlsPhieuthuDanhmuc->ten}}</td>
-                  <td><a href="/xemphieuthu/{{$data->id}}" class="btn btn-primary">Xem</a></td>
+                  <td>{{$data->rlsBranch->ten}}</td>
+                  <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}" class="btn btn-primary">Xem</a></td>
                 </tr>
                 @endforeach
                 </tfoot>

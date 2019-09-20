@@ -27,7 +27,7 @@ class LoginController extends Controller
     
     public function getLogin() {
         if (Auth::guard('staff')->check()) {
-            return redirect()->name('staff.home.get');
+            return redirect()->route('staff.home.get');
         } else {
             return view('dangnhap');
         }

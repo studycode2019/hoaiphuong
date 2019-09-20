@@ -12,15 +12,15 @@ class client extends Model
     
     public function rlsCases()
     {
-        return $this->hasMany('App\Model\cases');
+        return $this->hasMany('App\Model\cases', 'khachhang_id');
     }
     public function rlsReceipt()
     {
-        return $this->hasMany('App\Model\receipt');
+        return $this->hasMany('App\Model\receipt', 'khachhang_id');
     }
     public function rlsClassList()
     {
-        return $this->hasMany('App\Model\class_list');
+        return $this->hasMany('App\Model\class_list', 'khachhang_id');
     }
 
     public function linkName() {

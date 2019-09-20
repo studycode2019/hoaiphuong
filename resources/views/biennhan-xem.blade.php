@@ -67,7 +67,7 @@
               <div class="col-md-8 invoice-col">
                 <u>Thông tin khách hàng:</u>
                 <address>
-                  <strong class="text-uppercase"><a href="/xemkhachhang/{{ $khachhang -> id }}">{{ $khachhang -> ten }}</a></strong><br>
+                  <strong class="text-uppercase">{!! $khachhang -> linkName() !!}</strong><br>
                   <b>Số điện thoại:</b> <a href="tel:{{$khachhang -> sdt}}">{{ PhoneFormat($khachhang -> sdt) }}</a><br>
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}<br>
                   <b>Mã khách hàng:</b> KH{{ $khachhang -> id }}<br>
@@ -197,7 +197,7 @@
             </div>
             <div class="card-body">
               <div class="col-md-12">
-                <form action="/nhapnhatky" method="post">
+                <form action="{{route('staff.caselog.add.post')}}" method="post">
                   {{csrf_field()}}
                   <div class="input-group">
                     <input name="inputNoidung" type="text" class="form-control" placeholder="Nhập nội dung..." required>
@@ -239,11 +239,11 @@
                     <td>{{ $data->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}</td>
                     <td>
                       @if($data->congkhai)
-                      <a style="color: #0a0" href="/nhatky/{{$data->id}}/congkhai"="Đang công khai, ấn để thay đổi">
+                      <a style="color: #0a0" href="{{route('staff.caselog.setpublic.get', ['caselog_id' => $data->id])}}" alt="Đang công khai, ấn để thay đổi">
                         <i class="fa fa-globe"></i>
                       </a>&nbsp;
                       @else
-                      <a style="color: #a00" href="/nhatky/{{$data->id}}/congkhai">
+                      <a style="color: #a00" href="{{route('staff.caselog.setpublic.get', ['caselog_id' => $data->id])}}">
                         <i class="fa fa-times"></i>
                       </a>&nbsp;
                       @endif {{ $data->noidung }}

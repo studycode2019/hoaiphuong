@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
-
 Route::get('/download', 'TaiveController@getDanhsachCongkhai');
 Route::get('/tracking', 'TrackingController@getTimkiem');
 Route::post('/search', 'TrackingController@postTracking');
@@ -23,7 +19,8 @@ Route::get('/customer/{khachhang_id}', 'TrackingController@getByKhachhang');
 
 Route::get('/login','LoginController@getLogin')->name('guest.login.get');
 Route::post('/login','LoginController@postLogin')->name('guest.login.post');
-Route::group(['prefix' => '','middleware' => 'staff'], function() {
+Route::group(['prefix' => '','middleware' => 'staff'], function() 
+{
     Route::get('/logout','LoginController@getLogout')->name('staff.logout.get');
     
     Route::get('/', function() { return redirect()->route('staff.cases.list.get'); })->name('staff.home.get');
@@ -78,9 +75,12 @@ Route::group(['prefix' => '','middleware' => 'staff'], function() {
         Route::get('/view/{case_id}/status/{status_id}', 'CasesController@getChangeStatus')->name('staff.cases.changestatus.get');
     });
     
-    Route::get('/nhatky', 'NhatkyController@getDanhsach');
-    Route::post('/nhapnhatky', 'NhatkyController@postNhapnhatky');
-    Route::get('/nhatky/{nhatky_id}/congkhai', 'NhatkyController@getCongkhai');
+    Route::group(['prefix' => 'caselog'], function() 
+    {
+        Route::get('/', 'CaselogController@getList')->name('staff.caselog.list.get');
+        Route::post('/add', 'CaselogController@postAdd')->name('staff.caselog.add.post');
+        Route::get('/{caselog_id}/setpublic', 'CaselogController@getSetpublic')->name('staff.caselog.setpublic.get');
+    });
     
     Route::group(['prefix' => 'classes'], function ()
     {
@@ -113,22 +113,13 @@ Route::group(['prefix' => '','middleware' => 'staff'], function() {
     
     Route::get('/thongke/biennhan/{year}', 'ThongkeController@getBiennhanTheonam');
     
-    Route::get('/taive', 'TaiveController@getDanhsach');
-    Route::get('/themtaive', 'TaiveController@getThemtaive');
-    Route::post('/themtaive', 'TaiveController@postThemtaive');
-    Route::get('/xoataive/{taive_id}', 'TaiveController@getXoa');
-    Route::get('/suataive/{taive_id}', 'TaiveController@getSua');
-    Route::post('/suataive', 'TaiveController@postSua');
+    Route::group(['prefix' => 'download'], function ()
+    {
+        Route::get('/', 'DownloadController@getList')->name('staff.download.list.get');
+        Route::get('/add', 'DownloadController@getAdd')->name('staff.download.add.get');
+        Route::post('/add', 'DownloadController@postAdd')->name('staff.download.add.post');
+        Route::get('/delete/{taive_id}', 'DownloadController@getDelete')->name('staff.download.delete.get');
+        Route::get('/edit/{taive_id}', 'DownloadController@getEdit')->name('staff.download.edit.get');
+        Route::post('/edit', 'DownloadController@postEdit')->name('staff.download.edit.post');
+    });
 });
-
-Route::get('/deletelog', function () {
-    $phat = App\Model\nhatky::all();
-    foreach ($phat as $nhatky) {
-        if (!isset($nhatky->rlsBiennhan->id)) {
-            echo $nhatky->id;
-            $nhatky->delete();
-        }
-    }
-});
-
-

@@ -109,7 +109,7 @@
                     <td>
                       <span class="badge bg-{{$biennhan->rlsCaseStatus->class}}">{{$biennhan->rlsCaseStatus->ten}}</span>
                     </td>
-                    <td><a href="/xembiennhan/{{$biennhan->id}}" class="btn btn-primary">Xem</a></td>
+                    <td><a href="{{route('staff.cases.view.get', ['case_id' => $biennhan->id])}}" class="btn btn-primary">Xem</a></td>
                   </tr>
                   @endforeach
                   </tfoot>

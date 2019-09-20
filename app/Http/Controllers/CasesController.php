@@ -59,13 +59,13 @@ class CasesController extends Controller
         return view('biennhan-inluu', $data);
     }
     
-    public function getNhapbiennhantheosdt($khachhang_id) {
+    public function getAdd($khachhang_id) {
         $data['khachhang'] = client::findOrFail($khachhang_id);
         $data['biennhans'] = $data['khachhang']->rlsCases;
         return view('biennhan-nhap', $data);
     }
     
-    public function postNhapbiennhan(Request $request) {
+    public function postAdd(Request $request) {
         $biennhan = new cases;
         $biennhan->khachhang_id = $request->inputKhachhang;
         $biennhan->nhanvien_id = UserInfo()->id;
@@ -84,7 +84,7 @@ class CasesController extends Controller
         $nhatky->congkhai = 1;
         $nhatky->save();
         
-        return redirect()->name('staff.cases.view.get', ['case_id' => $biennhan->id]);
+        return redirect()->route('staff.cases.view.get', ['case_id' => $biennhan->id]);
     }
     
     public function getUseOld($khachhang_id, $biennhan_id) {

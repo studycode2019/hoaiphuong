@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Excel;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -75,5 +76,16 @@ class ClientController extends Controller
         $khachhang->save();
         
         return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id])->with('success', 'Đã cập nhật thành công!');
+    }
+
+    public function getExportExcel()
+    {
+        $clients_array = client::all();
+        Excel::create('clients_export', function($excel) use($clients_array) {
+            $excel->sheet('data', function($sheet) use($clients_array) {
+                $sheet->fromArray($clients_array);
+            });
+        
+        })->download('xls');
     }
 }

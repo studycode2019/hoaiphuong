@@ -15,7 +15,11 @@ use App\Model\case_status as status;
 class CasesController extends Controller
 {
     public function getList() { 
-        $data['biennhans'] =  cases::where('tiendo', '!=', 5)->orderBy('id', 'desc')->get();
+        if(UserInfo()->level>=3) {
+            $data['biennhans'] =  cases::orderBy('id', 'desc')->get();
+        } else {
+            $data['biennhans'] =  cases::where('tiendo', '!=', 5)->orderBy('id', 'desc')->get();
+        }
         return view('biennhan-danhsach', $data);
     }
     

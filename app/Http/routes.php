@@ -35,7 +35,8 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::post('/add', 'ClientController@postAdd')->name('staff.client.add.post');
         Route::get('/edit/{client_id}', 'ClientController@getEdit')->name('staff.client.edit.get');
         Route::post('/edit', 'ClientController@postEdit')->name('staff.client.edit.post');
-        Route::get('/export/excel', 'ClientController@getExportExcel')->name('staff.client.exportexcel.get');
+        Route::get('/export/excel/edu', 'ClientController@getExportExcelEdu')->name('staff.client.exportexceledu.get');
+        Route::get('/export/excel/tech', 'ClientController@getExportExcelTech')->name('staff.client.exportexceltech.get');
     });
     
     Route::get('/taichinh', 'TaichinhController@getTongquan');

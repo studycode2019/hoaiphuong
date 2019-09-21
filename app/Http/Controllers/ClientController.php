@@ -88,4 +88,36 @@ class ClientController extends Controller
         
         })->download('xls');
     }
+
+    public function getExportExcelEdu()
+    {
+        $clients = client::all();
+        foreach ($clients as $client) {
+            if(count($client->rlsCases) == 0) {
+                $clients_array[] = $client->toArray();
+            }
+        }
+        Excel::create('clients_export_edu', function($excel) use($clients_array) {
+            $excel->sheet('data', function($sheet) use($clients_array) {
+                $sheet->fromArray($clients_array);
+            });
+        
+        })->download('xls');
+    }
+
+    public function getExportExcelTech()
+    {
+        $clients = client::all();
+        foreach ($clients as $client) {
+            if(count($client->rlsCases) != 0) {
+                $clients_array[] = $client->toArray();
+            }
+        }
+        Excel::create('clients_export', function($excel) use($clients_array) {
+            $excel->sheet('data', function($sheet) use($clients_array) {
+                $sheet->fromArray($clients_array);
+            });
+        
+        })->download('xls');
+    }
 }

@@ -67,6 +67,6 @@ class LoginController extends Controller
     
     public function getLogout() {
     	Auth::guard('staff')->logout();
-    	return route('guest.login.get');
+    	return redirect()->route('guest.login.get');
     }
 }

@@ -39,9 +39,14 @@ class ClientController extends Controller
         if (!$khachhang) { //Nếu đã có trong csdl -> nhapbiennhan
             return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id]);
         } else {   //Nếu chưa có sdt này trong csdl -> nhapkhachhang
-            $data['outSdt'] = $request->inputSdt;
-            return view('khachhang-nhap', $data);
+            return redirect()->route('staff.client.add.get', ['phone' => $request->inputSdt]);
         }
+    }
+
+    public function getAdd($phone = NULL)
+    {
+        $data['phone'] = $phone;
+        return view('khachhang-nhap', $data);
     }
     
     public function postAdd(Request $request) {
@@ -54,9 +59,6 @@ class ClientController extends Controller
         $khachhang->nganhhoc = $request->nganhhoc;
         $khachhang->save();
         
-        $data['khachhang'] = $khachhang;
-        $data['outStt'] = cases::orderBy('id', 'desc')->first()->id+1;
-        // return view('biennhan-nhap', $data);
         return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id]);
     }
     
@@ -81,12 +83,7 @@ class ClientController extends Controller
     public function getExportExcel()
     {
         $clients_array = client::all();
-        Excel::create('clients_export', function($excel) use($clients_array) {
-            $excel->sheet('data', function($sheet) use($clients_array) {
-                $sheet->fromArray($clients_array);
-            });
-        
-        })->download('xls');
+        $this->downloadExcel('client_export', 'xls', $clients_array);
     }
 
     public function getExportExcelEdu()
@@ -97,12 +94,7 @@ class ClientController extends Controller
                 $clients_array[] = $client->toArray();
             }
         }
-        Excel::create('clients_export_edu', function($excel) use($clients_array) {
-            $excel->sheet('data', function($sheet) use($clients_array) {
-                $sheet->fromArray($clients_array);
-            });
-        
-        })->download('xls');
+        $this->downloadExcel('client_export_edu', 'xls', $clients_array);
     }
 
     public function getExportExcelTech()
@@ -113,11 +105,17 @@ class ClientController extends Controller
                 $clients_array[] = $client->toArray();
             }
         }
-        Excel::create('clients_export', function($excel) use($clients_array) {
-            $excel->sheet('data', function($sheet) use($clients_array) {
-                $sheet->fromArray($clients_array);
+        $this->downloadExcel('client_export_tech', 'xls', $clients_array);
+        
+    }
+
+    public function downloadExcel($name, $type, $arr)
+    {
+        Excel::create($name, function($excel) use($arr) {
+            $excel->sheet('data', function($sheet) use($arr) {
+                $sheet->fromArray($arr);
             });
         
-        })->download('xls');
+        })->download($type);
     }
 }

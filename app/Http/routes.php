@@ -26,12 +26,13 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
     Route::get('/', function() { return redirect()->route('staff.cases.list.get'); })->name('staff.home.get');
     Route::get('/search', 'SearchController@getSearch')->name('staff.search.get');
     
-    Route::group(['prefix' => 'client'], function() 
+    Route::group(['prefix' => 'clients'], function() 
     {
         Route::get('/', 'ClientController@getList')->name('staff.client.list.get');
-        Route::get('/view/{client_id}', 'ClientController@getView')->name('staff.client.view.get');
         Route::get('/search', 'ClientController@getSearch')->name('staff.client.search.get');
         Route::post('/search', 'ClientController@postSearch')->name('staff.client.search.post');
+        Route::get('/{client_id}', 'ClientController@getView')->where('client_id', '[0-9]+')->name('staff.client.view.get');
+        Route::get('/add/{phone?}', 'ClientController@getAdd')->name('staff.client.add.get');
         Route::post('/add', 'ClientController@postAdd')->name('staff.client.add.post');
         Route::get('/edit/{client_id}', 'ClientController@getEdit')->name('staff.client.edit.get');
         Route::post('/edit', 'ClientController@postEdit')->name('staff.client.edit.post');

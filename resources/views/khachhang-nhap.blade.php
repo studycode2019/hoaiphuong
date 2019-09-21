@@ -36,7 +36,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="inputSdt">Số điện thoại *:</label>
-                    <input name="sdt" type="number" class="form-control" id="inputSdt" value="{{$outSdt}}" readonly="readonly">
+                    <input name="sdt" type="number" class="form-control" id="inputSdt" @if(isset($phone)) value="{{$phone}}" readonly="readonly" @endif>
                   </div>
                   <div class="form-group">
                     <label for="inputTen">Tên khách hàng *:</label>

@@ -46,7 +46,7 @@
                 @foreach($khachhangs as $data)
                 <tr>
                   <td>{{$data->id}}</td>
-                  <td><a href="/xemkhachhang/{{$data->id}}">{{$data->ten}}</a></td>
+                  <td>{!!$data->linkName()!!}</td>
                   <td><a href="tel:{{$data->sdt}}">{{$data->sdt}}</a></td>
                   <td>@if (isset($data->ngaysinh)) {{date("d/m/Y", strtotime($data->ngaysinh))}} @else Không có @endif</td>
                 </tr>

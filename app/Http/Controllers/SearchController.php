@@ -25,8 +25,7 @@ class SearchController extends Controller
             if ($data) {
                 return redirect()->route('staff.client.view.get', ['client_id'=>$data->id]);
             } else {
-                $data['outSdt'] = $keyword;
-                return view('khachhang-nhap', $data);
+                return redirect()->route('staff.client.add.get', ['phone' => $keyword]);
             }
         }
     }

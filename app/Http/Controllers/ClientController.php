@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Excel;
+use DB;
 
 use App\Http\Requests;
+use App\Http\Requests\AddClientRequest;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon; //bo dem thoi gian
 use App\Model\client;
@@ -22,10 +24,6 @@ class ClientController extends Controller
         $data['khachhangs'] = client::all();
         return view('khachhang-danhsach', $data);
     }
-
-    public function getSearch() {
-        return view('timkhachhang');
-    }
     
     public function getView($khachhang_id) {
         $data['khachhang'] = client::findOrFail($khachhang_id);
@@ -33,12 +31,18 @@ class ClientController extends Controller
         $data['lophocs'] = class_list::where('khachhang_id', $khachhang_id)->get();
         return view('khachhang-xem', $data);
     }
+
+    public function getSearch() {
+        return view('timkhachhang');
+    }
     
     public function postSearch(Request $request) {
         $khachhang = client::where('sdt', $request->inputSdt)->first();
-        if (!$khachhang) { //Nếu đã có trong csdl -> nhapbiennhan
+
+        if (!$khachhang) { //Nếu đã có trong csdl -> xem
             return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id]);
-        } else {   //Nếu chưa có sdt này trong csdl -> nhapkhachhang
+        } 
+        else {   //Nếu chưa có sdt này trong csdl -> nhap
             return redirect()->route('staff.client.add.get', ['phone' => $request->inputSdt]);
         }
     }
@@ -49,17 +53,14 @@ class ClientController extends Controller
         return view('khachhang-nhap', $data);
     }
     
-    public function postAdd(Request $request) {
-        $khachhang = new client;
-        $khachhang->ten = $request->ten;
-        $khachhang->sdt = $request->sdt;
-        $khachhang->ngaysinh = $request->ngaysinh;
-        $khachhang->zalo = $request->zalo;
-        $khachhang->email = $request->email;
-        $khachhang->nganhhoc = $request->nganhhoc;
-        $khachhang->save();
-        
-        return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id]);
+    public function postAdd(AddClientRequest $req) 
+    {
+        $model = new client;
+        $data = $req->only($model->fillable);
+
+        $id = DB::table($model->table)->insertGetId($data);
+
+        return redirect()->route('staff.client.view.get', ['client_id'=>$id]);
     }
     
     public function getEdit($khachhang_id) {
@@ -67,16 +68,13 @@ class ClientController extends Controller
         return view('khachhang-sua', $data);
     }
     
-    public function postEdit(Request $request) {
-        $khachhang = client::findOrFail($request->inputKhachhang);
-        $khachhang->ten = $request->inputTen;
-        $khachhang->sdt = $request->inputSdt;
-        $khachhang->ngaysinh = $request->inputNgaysinh;
-        $khachhang->zalo = $request->inputZalo;
-        $khachhang->email = $request->inputEmail;
-        $khachhang->nganhhoc = $request->inputNganhhoc;
-        $khachhang->save();
+    public function postEdit(AddClientRequest $req) 
+    {
+        $model = new client;
+        $data = $req->only($model::fillable);
         
+        DB::table($model->table)->where('id', $req->id)->update($data);
+
         return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id])->with('success', 'Đã cập nhật thành công!');
     }
 

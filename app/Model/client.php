@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class client extends Model
 {
     public $timestamps = true;
-    protected $table = '_client';
-    protected $fillable = ['id','ten','sdt','ngaysinh'];
+    public $table = '_client';
+    public $fillable = ['sdt', 'ten', 'ngaysinh', 'zalo', 'nganhhoc', 'email'];
     
     public function rlsCases()
     {

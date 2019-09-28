@@ -26,7 +26,7 @@
           <div class="col-8 offset-md-4">
             <h2 class="page-header">
               <i class="fa fa-wrench"></i>  <b>BIÊN NHẬN SỬA CHỮA MÁY</b>
-              <small class="float-right"><b>SỐ PHIẾU #{{ $biennhan -> id }}</b></small>
+              <small class="float-right"><b>SỐ PHIẾU #{{ $ticket -> id }}</b></small>
             </h2>
           </div>
           <!-- /.col -->
@@ -48,18 +48,18 @@
           <div class="col-sm-5 invoice-col">
             <u>Thông tin khách hàng:</u>
             <address>
-              <strong class="text-uppercase">{{ $khachhang -> ten }}</strong><br>
-              <b>Số điện thoại:</b> {{ PhoneFormat($khachhang -> sdt) }}<br>
-              <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}<br>
-              <b>Mã khách hàng:</b> KH{{ $khachhang -> id }}<br>
-              <b>Ngày nhận máy:</b> {{ $biennhan->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-              <b>Nhân viên nhận:</b> {{ $biennhan->rlsStaff->ten }}
+              <strong class="text-uppercase">{{ $ticket->client -> ten }}</strong><br>
+              <b>Số điện thoại:</b> {{ PhoneFormat($ticket->client -> sdt) }}<br>
+              <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($ticket->client -> ngaysinh)) }}<br>
+              <b>Mã khách hàng:</b> KH{{ $ticket->client -> id }}<br>
+              <b>Ngày nhận máy:</b> {{ $ticket->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
+              <b>Nhân viên nhận:</b> {{ $ticket->staff->ten }}
             </address>
           </div>
           <!-- /.col -->
           <div class="col-sm-2 invoice-col">
             <div class="float-right"><img src="/images/QUET.png" /></div>
-            <div class="float-right">{!! QrCode::size(170)->margin(0)->generate('http://trungtamdoremon.com/tracking/'.$biennhan->id) !!}</div>
+            <div class="float-right">{!! QrCode::size(170)->margin(0)->generate('http://trungtamdoremon.com/tracking/'.$ticket->id) !!}</div>
           </div>
           <!-- /.col -->
         </div>
@@ -69,7 +69,7 @@
           <div class="col-10">
             <address>
               <h5 class="text-uppercase">
-                  <b>Yêu cầu khách hàng:</b> {{ $biennhan -> yeucau }}
+                  <b>Yêu cầu khách hàng:</b> {{ $ticket -> yeucau }}
               </h5>
             </address>
           </div>
@@ -85,11 +85,11 @@
               <tbody>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>Dòng máy</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> dongmay }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> dongmay }}</h5></td>
                 </tr>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>CPU</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> cpu }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> cpu }}</h5></td>
                 </tr>
               </tbody>
             </table>
@@ -99,11 +99,11 @@
               <tbody>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>Dung lượng RAM</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> ram }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> ram }}</h5></td>
                 </tr>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>Dung lượng ổ cứng</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> ocung }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> ocung }}</h5></td>
                 </tr>
               </tbody>
             </table>
@@ -113,11 +113,11 @@
               <tbody>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>Phụ kiện kèm theo</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> khac }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> khac }}</h5></td>
                 </tr>
                 <tr>
                   <td class="text-uppercase" style="width: 200px"><b>Tình trạng máy</b></h5></td>
-                  <td class="text-uppercase">{{ $biennhan -> tinhtrang }}</h5></td>
+                  <td class="text-uppercase">{{ $ticket -> tinhtrang }}</h5></td>
                 </tr>
               </tbody>
             </table>
@@ -128,7 +128,7 @@
         
         <div class="row">
           <div class="col-md-12"><h5><b>* Xin quý khách mang theo phiếu này khi đến nhận máy.
-          <br/>** Quý khách hàng có thể kiểm tra tình trạng sửa chữa máy của mình tại http://trungtamdoremon.com/tracking/{{$biennhan->id}}.
+          <br/>** Quý khách hàng có thể kiểm tra tình trạng sửa chữa máy của mình tại http://trungtamdoremon.com/tracking/{{$ticket->id}}.
           </b></h5></div>
         </div>
         <div class="row">

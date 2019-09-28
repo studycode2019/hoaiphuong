@@ -45,14 +45,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($nhatkys as $data)
+                @foreach($ticket_logs as $data)
                 <tr>
                   <td>{{date("Y/m/d - H:i", strtotime($data->created_at))}}</td>
-                  <td>{{$data->rlsBiennhan->id}}</td>
-                  <td>{{$data->rlsBiennhan->dongmay}}</td>
+                  <td>{{$data->ticket->id}}</td>
+                  <td>{{$data->ticket->dongmay}}</td>
                   <td>{{$data->noidung}}</td>
-                  <td>{{$data->rlsNhanvien->ten}}</td>
-                  <td><a href="/xembiennhan/{{$data->rlsBiennhan->id}}" class="btn btn-primary">Xem</a></td>
+                  <td>{{$data->staff->ten}}</td>
+                  <td><a href="{{route('staff.ticket.view.get', ['ticket_id' => $data->ticket->id])}}" class="btn btn-primary">Xem</a></td>
                 </tr>
                 @endforeach
                 </tfoot>

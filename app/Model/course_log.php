@@ -6,29 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\classes;
 use App\Model\client;
 
-class class_log extends Model
+class course_log extends Model
 {
     public $timestamps = true;
-    protected $table = '_class_log';
+    protected $table = '_course_logs';
     
-    public function rlsStaff()
+    public function staff()
     {
         return $this->belongsTo('App\Model\staff', 'nhanvien_id');
     }
     
-    public function rlsClient()
+    public function client()
     {
         return $this->belongsTo('App\Model\client', 'khachhang_id');
     }
     
-    public function rlsClasses1()
+    public function course1()
     {
-        return $this->belongsTo('App\Model\classes', 'lophoc1_id');
+        return $this->belongsTo('App\Model\course', 'lophoc1_id');
     }
 
-    public function rlsClasses2()
+    public function course2()
     {
-        return $this->belongsTo('App\Model\classes', 'lophoc2_id');
+        return $this->belongsTo('App\Model\course', 'lophoc2_id');
     }
 
     public function setAddClass($class_id) {

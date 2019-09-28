@@ -27,7 +27,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('staff.cases.list.get')}}" class="nav-link">Biên nhận</a>
+        <a href="{{route('staff.ticket.list.get')}}" class="nav-link">Biên nhận</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('staff.client.list.get')}}" class="nav-link">Khách hàng</a>
@@ -90,13 +90,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('staff.cases.list.get')}}" class="nav-link">
+                <a href="{{route('staff.ticket.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
                   <p>Danh sách</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/nhatky" class="nav-link">
+                <a href="{{route('staff.ticketlog.list.get')}}" class="nav-link">
                   <i class="fa fa-history nav-icon"></i>
                   <p>Nhật ký sửa chữa</p>
                 </a>

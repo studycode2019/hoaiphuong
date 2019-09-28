@@ -45,28 +45,28 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="inputSdt">Số điện thoại *:</label>
-                    <input name="sdt" type="number" class="form-control" id="inputSdt" @if(isset($phone)) value="{{$phone}}" readonly="readonly" @endif>
+                    <input name="sdt" type="number" class="form-control" id="sdt" @if(isset($phone)) value="{{$phone}}" readonly="readonly" @endif>
                   </div>
                   <div class="form-group">
                     <label for="inputTen">Tên khách hàng *:</label>
-                    <input name="ten" type="text" class="form-control" id="inputTen" placeholder="Nhập vào tên khách hàng" autofocus required>
+                    <input name="ten" type="text" class="form-control" id="ten" placeholder="Nhập vào tên khách hàng" autofocus required>
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Ngày sinh:</label>
-                    <input name="ngaysinh" type="date" class="form-control" id="inputNgaysinh" required>
+                    <input name="ngaysinh" type="date" class="form-control" id="ngaysinh" required>
                   </div>
                   <p style="color: red; font-weight: bold">THÔNG TIN DƯỚI ĐÂY LÀ BẮT BUỘC ĐỐI VỚI HỌC VIÊN</p>
                   <div class="form-group">
                     <label for="inputNgaysinh">Zalo:</label>
-                    <input name="zalo" type="number" class="form-control" id="inputZalo" placeholder="Số điện thoại Zalo">
+                    <input name="zalo" type="number" class="form-control" id="zalo" placeholder="Số điện thoại Zalo">
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Email:</label>
-                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Địa chỉ thư điện tử" >
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Địa chỉ thư điện tử" >
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Ngành học:</label>
-                    <input name="nganhhoc" type="text" class="form-control" id="inputNganhhoc" placeholder="Ngành học/trường học" >
+                    <input name="nganhhoc" type="text" class="form-control" id="nganhhoc" placeholder="Ngành học/trường học" >
                   </div>
                 </div>
                 <!-- /.card-body -->

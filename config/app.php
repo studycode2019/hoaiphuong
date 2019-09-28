@@ -160,6 +160,7 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Core\Providers\CoreServiceProvider::class,
     ],
 
     /*

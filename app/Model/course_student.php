@@ -5,19 +5,19 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class class_list extends Model
+class course_student extends Model
 {
     public $timestamps = true;
-    protected $table = '_class_list';
+    protected $table = '_course_students';
     protected $dates = ['deleted_at'];
     
-    public function rlsClient()
+    public function client()
     {
         return $this->belongsTo('App\Model\client', 'khachhang_id');
     }
     
-    public function rlsClasses()
+    public function course()
     {
-        return $this->belongsTo('App\Model\classes', 'lophoc_id');
+        return $this->belongsTo('App\Model\course', 'lophoc_id');
     }
 }

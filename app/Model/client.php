@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class client extends Model
 {
     public $timestamps = true;
-    public $table = '_client';
+    public $table = '_clients';
     public $fillable = ['sdt', 'ten', 'ngaysinh', 'zalo', 'nganhhoc', 'email'];
     
-    public function rlsCases()
+    public function tickets()
     {
-        return $this->hasMany('App\Model\cases', 'khachhang_id');
+        return $this->hasMany('App\Model\ticket', 'khachhang_id');
     }
-    public function rlsReceipt()
+    public function receipts()
     {
         return $this->hasMany('App\Model\receipt', 'khachhang_id');
     }
-    public function rlsClassList()
+    public function courseStudents()
     {
-        return $this->hasMany('App\Model\class_list', 'khachhang_id');
+        return $this->hasMany('App\Model\course_student', 'khachhang_id');
     }
 
     public function linkName() {

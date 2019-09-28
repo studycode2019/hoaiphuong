@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Sửa khách hàng: {{$khachhang->ten}}</title>
+<title>DEMO20 | Sửa khách hàng: {{$client->ten}}</title>
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -24,6 +24,16 @@
 
     <!-- Main content -->
     <section class="content">
+    
+    @if (count($errors) > 0) 
+    @foreach ($errors->all() as $error) 
+      <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-ban"></i> Thất bại!</h4> {!! $error !!}
+      </div>
+    @endforeach
+    @endif
+    
       <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -31,33 +41,33 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/suakhachhang" method="post">
+              <form role="form" action="{{route('staff.client.edit.post')}}" method="post">
                 {{csrf_field()}}
-                <input type="hidden" name="inputKhachhang" value="{{$khachhang->id}}"/>
+                <input type="hidden" name="id" value="{{$client->id}}"/>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputSdt">Số điện thoại:</label>
-                    <input name="inputSdt" pattern="[0-9]{10}" class="form-control" id="inputSdt" value="{{$khachhang->sdt}}" autofocus required>
+                    <label for="sdt">Số điện thoại:</label>
+                    <input name="sdt" pattern="[0-9]{10}" class="form-control" id="sdt" value="{{$client->sdt}}" autofocus required>
                   </div>
                   <div class="form-group">
-                    <label for="inputTen">Tên khách hàng:</label>
-                    <input name="inputTen" type="text" class="form-control" id="inputTen" value="{{$khachhang->ten}}" required>
+                    <label for="ten">Tên khách hàng:</label>
+                    <input name="ten" type="text" class="form-control" id="ten" value="{{$client->ten}}" required>
                   </div>
                   <div class="form-group">
                     <label for="inputNgaysinh">Ngày sinh:</label>
-                    <input name="inputNgaysinh" type="date" class="form-control" id="inputNgaysinh" value="{{$khachhang->ngaysinh}}">
+                    <input name="ngaysinh" type="date" class="form-control" id="ngaysinh" value="{{$client->ngaysinh}}">
                   </div>
                   <div class="form-group">
-                    <label for="inputNgaysinh">Zalo:</label>
-                    <input name="inputZalo" type="number" class="form-control" id="inputZalo" value="{{$khachhang->zalo}}" >
+                    <label for="zalo">Zalo:</label>
+                    <input name="zalo" type="number" class="form-control" id="zalo" value="{{$client->zalo}}" >
                   </div>
                   <div class="form-group">
-                    <label for="inputNgaysinh">Email:</label>
-                    <input name="inputEmail" type="text" class="form-control" id="inputEmail" value="{{$khachhang->email}}" >
+                    <label for="email">Email:</label>
+                    <input name="email" type="text" class="form-control" id="email" value="{{$client->email}}" >
                   </div>
                   <div class="form-group">
-                    <label for="inputNgaysinh">Ngành học:</label>
-                    <input name="inputNganhhoc" type="text" class="form-control" id="inputNganhhoc" value="{{$khachhang->nganhhoc}}" >
+                    <label for="nganhhoc">Ngành học:</label>
+                    <input name="nganhhoc" type="text" class="form-control" id="nganhhoc" value="{{$client->nganhhoc}}" >
                   </div>
                 </div>
                 <!-- /.card-body -->

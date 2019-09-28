@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class download extends Model
 {
     public $timestamps = true;
-    protected $table = '_download';
+    protected $table = '_downloads';
 }

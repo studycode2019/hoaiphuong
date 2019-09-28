@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Xem biên nhân #{{$biennhan->id}}</title>
+<title>DEMO20 | Xem biên nhân #{{$ticket->id}}</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{secure_asset('plugins/iCheck/square/blue.css')}}">
 @stop
@@ -46,7 +46,7 @@
               <div class="col-12">
                 <h4>
                   <i class="fa fa-wrench"></i> <b>BIÊN NHẬN SỬA CHỮA MÁY</b>
-                  <small class="float-right"><b>SỐ PHIẾU #{{ $biennhan -> id }}</b></small>
+                  <small class="float-right"><b>SỐ PHIẾU #{{ $ticket -> id }}</b></small>
                 </h4>
               </div>
               <!-- /.col -->
@@ -67,25 +67,25 @@
               <div class="col-md-8 invoice-col">
                 <u>Thông tin khách hàng:</u>
                 <address>
-                  <strong class="text-uppercase">{!! $khachhang -> linkName() !!}</strong><br>
-                  <b>Số điện thoại:</b> <a href="tel:{{$khachhang -> sdt}}">{{ PhoneFormat($khachhang -> sdt) }}</a><br>
-                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}<br>
-                  <b>Mã khách hàng:</b> KH{{ $khachhang -> id }}<br>
-                  <b>Ngày nhận máy:</b> {{ $biennhan->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
-                  <b>Nhân viên nhận:</b> {{ $biennhan->rlsStaff->ten }}
+                  <strong class="text-uppercase">{!! $ticket->client->linkName() !!}</strong><br>
+                  <b>Số điện thoại:</b> <a href="tel:{{$ticket->client->sdt}}">{{ PhoneFormat($ticket->client->sdt) }}</a><br>
+                  <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($ticket->client->ngaysinh)) }}<br>
+                  <b>Mã khách hàng:</b> KH{{ $ticket->client->id }}<br>
+                  <b>Ngày nhận máy:</b> {{ $ticket->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
+                  <b>Nhân viên nhận:</b> {{ $ticket->staff->ten }}
                 </address>
               </div>
               <!-- /.col -->
               <div class="col-md-4">
                 <div class="btn-group" style="width: 100%">
-                  <div class="btn btn-{{$biennhan->rlsCaseStatus->class}}" style="width: 100%">{{$biennhan->rlsCaseStatus->ten}}</div>
-                  <button type="button" class="btn btn-{{$biennhan->rlsCaseStatus->class}} dropdown-toggle" data-toggle="dropdown">
+                  <div class="btn btn-{{$ticket->ticketStatus->class}}" style="width: 100%">{{$ticket->ticketStatus->ten}}</div>
+                  <button type="button" class="btn btn-{{$ticket->ticketStatus->class}} dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">
-                    @foreach ($trangthais as $data)
-                    <a class="dropdown-item" href="{{route('staff.cases.changestatus.get', ['case_id'=>$biennhan->id, 'status_id'=>$data->id])}}">{{$data->ten}}</a>
+                    @foreach ($ticket_statuses as $data)
+                    <a class="dropdown-item" href="{{route('staff.ticket.changestatus.get', ['case_id'=>$ticket->id, 'status_id'=>$data->id])}}">{{$data->ten}}</a>
                     @endforeach
                   </div>
                 </div>
@@ -97,7 +97,7 @@
             <div class="row">
               <div class="col-12">
                 <address>
-                  <h5 class="text-uppercase"><b>Yêu cầu khách hàng:</b> {{ $biennhan -> yeucau }}</h5>
+                  <h5 class="text-uppercase"><b>Yêu cầu khách hàng:</b> {{ $ticket -> yeucau }}</h5>
                 </address>
               </div>
             </div>
@@ -110,25 +110,25 @@
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>Dòng máy</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> dongmay }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> dongmay }}</h5>
                       </td>
                     </tr>
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>CPU</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> cpu }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> cpu }}</h5>
                       </td>
                     </tr>
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>Dung lượng RAM</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> ram }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> ram }}</h5>
                       </td>
                     </tr>
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>Dung lượng ổ cứng</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> ocung }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> ocung }}</h5>
                       </td>
                     </tr>
                   </tbody>
@@ -140,13 +140,13 @@
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>Phụ kiện kèm theo</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> khac }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> khac }}</h5>
                       </td>
                     </tr>
                     <tr>
                       <td class="text-uppercase" style="width: 200px"><b>Tình trạng máy</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $biennhan -> tinhtrang }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> tinhtrang }}</h5>
                       </td>
                     </tr>
                   </tbody>
@@ -170,21 +170,21 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
-                <a href="{{ route('staff.client.edit.get', ['client_id' => $biennhan->rlsClient->id]) }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
-                <a href="{{ route('staff.cases.edit.get', ['case_id' => $biennhan->id]) }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
+                <a href="{{ route('staff.client.edit.get', ['client_id' => $ticket->client->id]) }}" class="btn btn-default" autofocus>Sửa khách hàng</a>
+                <a href="{{ route('staff.ticket.edit.get', ['case_id' => $ticket->id]) }}" class="btn btn-default" autofocus>Sửa biên nhận</a>
 
                 <div class="btn-group float-right">
-                  <a href="{{ route('staff.cases.printpos.get', ['case_id' => $biennhan->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
+                  <a href="{{ route('staff.ticket.printpos.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" href="{{ route('staff.cases.print.get', ['case_id' => $biennhan->id]) }}" target="_blank">In biên nhận</a>
+                    <a class="dropdown-item" href="{{ route('staff.ticket.print.get', ['case_id' => $ticket->id]) }}" target="_blank">In biên nhận</a>
                   </div>
                 </div>
                 
-                <a href="{{ route('staff.cases.printinternal.get', ['case_id' => $biennhan->id]) }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
+                <a href="{{ route('staff.ticket.printinternal.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
               </div>
             </div>
           </div>
@@ -197,11 +197,11 @@
             </div>
             <div class="card-body">
               <div class="col-md-12">
-                <form action="{{route('staff.caselog.add.post')}}" method="post">
+                <form action="{{route('staff.ticketlog.add.post')}}" method="post">
                   {{csrf_field()}}
                   <div class="input-group">
                     <input name="inputNoidung" type="text" class="form-control" placeholder="Nhập nội dung..." required>
-                    <input name="inputBiennhan" type="hidden" value="{{$biennhan->id}}" />
+                    <input name="inputBiennhan" type="hidden" value="{{$ticket->id}}" />
                   </div>
                   <div class="row my-2">
                     <div class="col-md-8">
@@ -234,21 +234,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($nhatkys as $data)
+                  @foreach($ticket->ticketLogs as $data)
                   <tr>
                     <td>{{ $data->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}</td>
                     <td>
                       @if($data->congkhai)
-                      <a style="color: #0a0" href="{{route('staff.caselog.setpublic.get', ['caselog_id' => $data->id])}}" alt="Đang công khai, ấn để thay đổi">
+                      <a style="color: #0a0" href="{{route('staff.ticketlog.setpublic.get', ['ticketlog_id' => $data->id])}}" alt="Đang công khai, ấn để thay đổi">
                         <i class="fa fa-globe"></i>
                       </a>&nbsp;
                       @else
-                      <a style="color: #a00" href="{{route('staff.caselog.setpublic.get', ['caselog_id' => $data->id])}}">
+                      <a style="color: #a00" href="{{route('staff.ticketlog.setpublic.get', ['ticketlog_id' => $data->id])}}">
                         <i class="fa fa-times"></i>
                       </a>&nbsp;
                       @endif {{ $data->noidung }}
                     </td>
-                    <td>{{ $data->rlsStaff->ten }}</td>
+                    <td>{{ $data->staff->ten }}</td>
                   </tr>
                   @endforeach
                   </tfoot>

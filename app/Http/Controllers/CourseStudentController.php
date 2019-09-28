@@ -10,7 +10,7 @@ use App\Model\classes;
 use App\Model\class_list;
 use App\Model\class_log;
 
-class ClasslistController extends Controller
+class CourseStudentController extends Controller
 {
     public function getAdd($khachhang_id) {
         $data['khachhang'] = client::findOrFail($khachhang_id);

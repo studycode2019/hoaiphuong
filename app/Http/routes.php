@@ -23,21 +23,21 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
 {
     Route::get('/logout','LoginController@getLogout')->name('staff.logout.get');
     
-    Route::get('/', function() { return redirect()->route('staff.cases.list.get'); })->name('staff.home.get');
+    Route::get('/', function() { return redirect()->route('staff.ticket.list.get'); })->name('staff.home.get');
     Route::get('/search', 'SearchController@getSearch')->name('staff.search.get');
     
     Route::group(['prefix' => 'clients'], function() 
     {
-        Route::get('/', 'ClientController@getList')->name('staff.client.list.get');
-        Route::get('/search', 'ClientController@getSearch')->name('staff.client.search.get');
-        Route::post('/search', 'ClientController@postSearch')->name('staff.client.search.post');
-        Route::get('/{client_id}', 'ClientController@getView')->where('client_id', '[0-9]+')->name('staff.client.view.get');
-        Route::get('/add/{phone?}', 'ClientController@getAdd')->name('staff.client.add.get');
-        Route::post('/add', 'ClientController@postAdd')->name('staff.client.add.post');
-        Route::get('/edit/{client_id}', 'ClientController@getEdit')->name('staff.client.edit.get');
-        Route::post('/edit', 'ClientController@postEdit')->name('staff.client.edit.post');
-        Route::get('/export/excel/edu', 'ClientController@getExportExcelEdu')->name('staff.client.exportexceledu.get');
-        Route::get('/export/excel/tech', 'ClientController@getExportExcelTech')->name('staff.client.exportexceltech.get');
+        Route::get('/', 'ClientsController@getList')->name('staff.client.list.get');
+        Route::get('/search', 'ClientsController@getSearch')->name('staff.client.search.get');
+        Route::post('/search', 'ClientsController@postSearch')->name('staff.client.search.post');
+        Route::get('/{client_id}', 'ClientsController@getView')->where('client_id', '[0-9]+')->name('staff.client.view.get');
+        Route::get('/add/{phone?}', 'ClientsController@getAdd')->name('staff.client.add.get');
+        Route::post('/add', 'ClientsController@postAdd')->name('staff.client.add.post');
+        Route::get('/edit/{client_id}', 'ClientsController@getEdit')->name('staff.client.edit.get');
+        Route::post('/edit', 'ClientsController@postEdit')->name('staff.client.edit.post');
+        Route::get('/export/excel/edu', 'ClientsController@getExportExcelEdu')->name('staff.client.exportexceledu.get');
+        Route::get('/export/excel/tech', 'ClientsController@getExportExcelTech')->name('staff.client.exportexceltech.get');
     });
     
     Route::get('/taichinh', 'TaichinhController@getTongquan');
@@ -61,28 +61,28 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::get('/view/{payment_id}', 'PaymentController@getView')->name('staff.payment.view.get');
     });
     
-    Route::group(['prefix' => 'cases'], function() 
+    Route::group(['prefix' => 'tickets'], function() 
     {
-        Route::get('/', 'CasesController@getList')->name('staff.cases.list.get');
-        Route::get('/searchByPhone', 'CasesController@getSearchByPhone')->name('staff.cases.seachbyphone.get');
-        Route::post('/searchByPhone', 'CasesController@postSearchByPhone')->name('staff.cases.seachbyphone.post');
-        Route::get('/view/{case_id}', 'CasesController@getView')->name('staff.cases.view.get');
-        Route::get('/print/{case_id}', 'CasesController@getPrint')->name('staff.cases.print.get');
-        Route::get('/printpos/{case_id}', 'CasesController@getPrintPos')->name('staff.cases.printpos.get');
-        Route::get('/printinternal/{case_id}', 'CasesController@getPrintInternal')->name('staff.cases.printinternal.get');
-        Route::get('/edit/{case_id}', 'CasesController@getEdit')->name('staff.cases.edit.get');
-        Route::post('/edit', 'CasesController@postEdit')->name('staff.cases.edit.post');
-        Route::get('/add/{client_id}', 'CasesController@getAdd')->name('staff.cases.add.get');
-        Route::post('/add', 'CasesController@postAdd')->name('staff.cases.add.post');
-        Route::get('/add/{client_id}/old/{case_id}', 'CasesController@getUseOld')->name('staff.cases.useold.get');
-        Route::get('/view/{case_id}/status/{status_id}', 'CasesController@getChangeStatus')->name('staff.cases.changestatus.get');
+        Route::get('/', 'TicketsController@getList')->name('staff.ticket.list.get');
+        Route::get('/searchByPhone', 'TicketsController@getSearchByPhone')->name('staff.ticket.seachbyphone.get');
+        Route::post('/searchByPhone', 'TicketsController@postSearchByPhone')->name('staff.ticket.seachbyphone.post');
+        Route::get('/{ticket_id}', 'TicketsController@getView')->where('ticket_id', '[0-9]+')->name('staff.ticket.view.get');
+        Route::get('/print/{ticket_id}', 'TicketsController@getPrint')->name('staff.ticket.print.get');
+        Route::get('/printpos/{ticket_id}', 'TicketsController@getPrintPos')->name('staff.ticket.printpos.get');
+        Route::get('/printinternal/{ticket_id}', 'TicketsController@getPrintInternal')->name('staff.ticket.printinternal.get');
+        Route::get('/edit/{ticket_id}', 'TicketsController@getEdit')->name('staff.ticket.edit.get');
+        Route::post('/edit', 'TicketsController@postEdit')->name('staff.ticket.edit.post');
+        Route::get('/add/{client_id}', 'TicketsController@getAdd')->name('staff.ticket.add.get');
+        Route::post('/add', 'TicketsController@postAdd')->name('staff.ticket.add.post');
+        Route::get('/add/{client_id}/old/{ticket_id}', 'TicketsController@getUseOld')->name('staff.ticket.useold.get');
+        Route::get('/view/{ticket_id}/status/{status_id}', 'TicketsController@getChangeStatus')->name('staff.ticket.changestatus.get');
     });
     
-    Route::group(['prefix' => 'caselog'], function() 
+    Route::group(['prefix' => 'ticketlogs'], function() 
     {
-        Route::get('/', 'CaselogController@getList')->name('staff.caselog.list.get');
-        Route::post('/add', 'CaselogController@postAdd')->name('staff.caselog.add.post');
-        Route::get('/{caselog_id}/setpublic', 'CaselogController@getSetpublic')->name('staff.caselog.setpublic.get');
+        Route::get('/', 'TicketLogController@getList')->name('staff.ticketlog.list.get');
+        Route::post('/add', 'TicketLogController@postAdd')->name('staff.ticketlog.add.post');
+        Route::get('/{ticketlog_id}/setpublic', 'TicketLogController@getSetpublic')->name('staff.ticketlog.setpublic.get');
     });
     
     Route::group(['prefix' => 'classes'], function ()
@@ -98,14 +98,14 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::get('/log', 'ClassesController@getNhatky')->name('staff.classlog.list.get');
     });
 
-    Route::group(['prefix' => 'classlist'], function ()
+    Route::group(['prefix' => 'coursestudents'], function ()
     {
-        Route::get('/add/{client_id}', 'ClasslistController@getAdd')->name('staff.classlist.add.get');
-        Route::post('/add', 'ClasslistController@postAdd')->name('staff.classlist.add.post');
-        Route::get('/add/{client_id}/toclass/{class_id}', 'ClasslistController@getAddnow')->name('staff.classlist.addnow.get');
-        Route::get('/edit/{classlist_id}', 'ClasslistController@getEdit')->name('staff.classlist.edit.get');
-        Route::post('/edit', 'ClasslistController@postEdit')->name('staff.classlist.edit.post');
-        Route::get('/delete/{classlist_id}', 'ClasslistController@getDelete')->name('staff.classlist.delete.get');  
+        Route::get('/add/{client_id}', 'CourseStudentController@getAdd')->name('staff.coursestudent.add.get');
+        Route::post('/add', 'CourseStudentController@postAdd')->name('staff.coursestudent.add.post');
+        Route::get('/add/{client_id}/toclass/{class_id}', 'CourseStudentController@getAddnow')->name('staff.coursestudent.addnow.get');
+        Route::get('/edit/{coursestudent_id}', 'CourseStudentController@getEdit')->name('staff.coursestudent.edit.get');
+        Route::post('/edit', 'CourseStudentController@postEdit')->name('staff.coursestudent.edit.post');
+        Route::get('/delete/{coursestudent_id}', 'CourseStudentController@getDelete')->name('staff.coursestudent.delete.get');  
     });
 
     Route::group(['prefix' => 'profile'], function ()

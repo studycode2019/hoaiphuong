@@ -141,7 +141,7 @@
 
         <center id="top">
             <div class="info">
-                <h2 style="font-size: 1.2rem">SỐ PHIẾU #{{ $biennhan->id }}</h2>
+                <h2 style="font-size: 1.2rem">SỐ PHIẾU #{{ $ticket->id }}</h2>
             </div>
             <!--End Info-->
         </center>
@@ -150,9 +150,9 @@
         <div id="mid">
             <div class="info">
                 <p>
-                    <span style="text-transform: uppercase; font-weight: bold">{{ $khachhang->ten }}</span></br>
-                    Điện thoại: {{ $khachhang->sdt }}</br>
-                    Ngày sinh: {{ date("d/m/Y", strtotime($khachhang -> ngaysinh)) }}</br>
+                    <span style="text-transform: uppercase; font-weight: bold">{{ $ticket->client->ten }}</span></br>
+                    Điện thoại: {{ $ticket->client->sdt }}</br>
+                    Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client -> ngaysinh)) }}</br>
                 </p>
             </div>
         </div>
@@ -170,7 +170,7 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$biennhan->yeucau}}</p>
+                            <p class="itemtext">{{$ticket->yeucau}}</p>
                         </td>
                     </tr>
                     <tr class="tabletitle">
@@ -181,12 +181,12 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$biennhan->dongmay}} 
-                                - CPU {{$biennhan->cpu}} 
-                                - RAM {{$biennhan->ram}} 
-                                - HDD {{$biennhan->ocung}}
-                                - Phụ kiện {{$biennhan->khac}}
-                                - Tình trạng {{$biennhan->tinhtrang}}
+                            <p class="itemtext">{{$ticket->dongmay}} 
+                                - CPU {{$ticket->cpu}} 
+                                - RAM {{$ticket->ram}} 
+                                - HDD {{$ticket->ocung}}
+                                - Phụ kiện {{$ticket->khac}}
+                                - Tình trạng {{$ticket->tinhtrang}}
                             </p>
                         </td>
                     </tr>

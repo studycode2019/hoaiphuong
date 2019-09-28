@@ -29,46 +29,46 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('staff.cases.edit.post', ['case_id' => $biennhan->id])}}" method="post">
+              <form role="form" action="{{route('staff.ticket.edit.post', ['case_id' => $ticket->id])}}" method="post">
                 {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputSostt">Tên Khách Hàng:</label> {{$khachhang -> ten}}   |   
-                    <label for="inputSostt">Số Điện Thoại:</label> {{$khachhang -> sdt}}    |    
-                    <label for="inputSostt">Ngày Sinh:</label> {{$khachhang -> ngaysinh}}
-                    <input name="inputKhachhang" type="hidden" class="form-control" value="{{$khachhang -> id}}">
+                    <label for="inputSostt">Tên Khách Hàng:</label> {{$ticket->client -> ten}}   |   
+                    <label for="inputSostt">Số Điện Thoại:</label> {{$ticket->client -> sdt}}    |    
+                    <label for="inputSostt">Ngày Sinh:</label> {{$ticket->client -> ngaysinh}}
+                    <input name="inputKhachhang" type="hidden" class="form-control" value="{{$ticket->client -> id}}">
                   </div>
                   <div class="form-group">
                     <label for="inputStt">Biên nhận số:</label>
-                    <input name="inputStt" type="text" class="form-control" id="inputSostt" value="{{$biennhan -> id}}" readonly="readonly">
+                    <input name="inputStt" type="text" class="form-control" id="inputSostt" value="{{$ticket -> id}}" readonly="readonly">
                   </div>
                   <div class="form-group">
                     <label for="inputYeucau">Yêu cầu khách hàng:</label>
-                    <input name="inputYeucau" type="text" class="form-control" id="inputYeucau" value="{{$biennhan -> yeucau}}" autofocus required>
+                    <input name="inputYeucau" type="text" class="form-control" id="inputYeucau" value="{{$ticket -> yeucau}}" autofocus required>
                   </div>
                   <div class="form-group">
                     <label for="inputDongmay">Dòng máy:</label>
-                    <input name="inputDongmay"type="text" class="form-control" id="inputDongmay" value="{{$biennhan -> dongmay}}" required>
+                    <input name="inputDongmay"type="text" class="form-control" id="inputDongmay" value="{{$ticket -> dongmay}}" required>
                   </div>
                   <div class="form-group">
                     <label for="inputCpu">CPU:</label>
-                    <input name="inputCpu" type="text" class="form-control" id="inputCpu" value="{{$biennhan -> cpu}}">
+                    <input name="inputCpu" type="text" class="form-control" id="inputCpu" value="{{$ticket -> cpu}}">
                   </div>
                   <div class="form-group">
                     <label for="inputRam">Dung lượng RAM:</label>
-                    <input name="inputRam" type="text" class="form-control" id="inputRam" value="{{$biennhan -> ram}}">
+                    <input name="inputRam" type="text" class="form-control" id="inputRam" value="{{$ticket -> ram}}">
                   </div>
                   <div class="form-group">
                     <label for="inputOcung">Dung lượng ổ cứng:</label>
-                    <input name="inputOcung" type="text" class="form-control" id="inputOcung" value="{{$biennhan -> ocung}}">
+                    <input name="inputOcung" type="text" class="form-control" id="inputOcung" value="{{$ticket -> ocung}}">
                   </div>
                   <div class="form-group">
                     <label for="inputTinhtrang">Tình trạng máy:</label>
-                    <input name="inputTinhtrang" type="text" class="form-control" id="inputTinhtrang" value="{{$biennhan -> tinhtrang}}">
+                    <input name="inputTinhtrang" type="text" class="form-control" id="inputTinhtrang" value="{{$ticket -> tinhtrang}}">
                   </div>
                   <div class="form-group">
                     <label for="inputPhukien">Phụ kiện kèm theo:</label>
-                    <input name="inputPhukien" type="text" class="form-control" id="inputPhukien" value="{{$biennhan -> khac}}">
+                    <input name="inputPhukien" type="text" class="form-control" id="inputPhukien" value="{{$ticket -> khac}}">
                   </div>
                 </div>
                 <!-- /.card-body -->

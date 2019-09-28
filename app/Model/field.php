@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class field extends Model
 {
-    protected $table = '_receipt_cate';
+    protected $table = '_fields';
     protected $fillable = ['id', 'ten'];
     
-    public function rlsReceipt()
+    public function receipts()
     {
-        return $this->hasMany('App\Model\phieuthu', 'phieuthu_danhmuc_id');
+        return $this->hasMany('App\Model\receipt', 'phieuthu_danhmuc_id');
     }
 
-    public function rlsPayment()
+    public function payment()
     {
-        return $this->hasMany('App\Model\phieuchi');
+        return $this->hasMany('App\Model\payment');
     }
 }

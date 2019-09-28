@@ -6,17 +6,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Excel;
 use DB;
-
+use Core\Services\ClientServiceContract;
 use App\Http\Requests;
 use App\Http\Requests\AddClientRequest;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon; //bo dem thoi gian
 use App\Model\client;
-use App\Model\cases;
+use App\Model\ticket;
 use App\Model\class_list;
 
-class ClientController extends Controller
+class ClientsController extends Controller
 {
+    protected $service;
+    protected $model;
+
+    public function __construct(ClientServiceContract $service, client $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function getList() {
         if(UserInfo()->level<3) {
             return Redirect::back();
@@ -25,10 +34,9 @@ class ClientController extends Controller
         return view('khachhang-danhsach', $data);
     }
     
-    public function getView($khachhang_id) {
-        $data['khachhang'] = client::findOrFail($khachhang_id);
-        $data['biennhans'] = cases::where('khachhang_id', $khachhang_id)->get();;
-        $data['lophocs'] = class_list::where('khachhang_id', $khachhang_id)->get();
+    public function getView($client_id) {
+
+        $data['client'] = $this->service->find($client_id);
         return view('khachhang-xem', $data);
     }
 
@@ -56,26 +64,25 @@ class ClientController extends Controller
     public function postAdd(AddClientRequest $req) 
     {
         $model = new client;
-        $data = $req->only($model->fillable);
+        $data = $req->only($this->model->fillable);
 
         $id = DB::table($model->table)->insertGetId($data);
 
         return redirect()->route('staff.client.view.get', ['client_id'=>$id]);
     }
     
-    public function getEdit($khachhang_id) {
-        $data['khachhang'] = client::findOrFail($khachhang_id);
+    public function getEdit($client_id) {
+        $data['client'] = client::findOrFail($client_id);
         return view('khachhang-sua', $data);
     }
     
     public function postEdit(AddClientRequest $req) 
     {
-        $model = new client;
-        $data = $req->only($model::fillable);
+        $data = $req->only($this->model->fillable);
         
-        DB::table($model->table)->where('id', $req->id)->update($data);
+        DB::table($this->model->table)->where('id', $req->id)->update($data);
 
-        return redirect()->route('staff.client.view.get', ['client_id'=>$khachhang->id])->with('success', 'Đã cập nhật thành công!');
+        return redirect()->route('staff.client.view.get', ['client_id'=>$req->id])->with('success', 'Đã cập nhật thành công!');
     }
 
     public function getExportExcel()

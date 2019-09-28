@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class staff extends Authenticatable
 {
-    protected $table = '_staff';
+    protected $table = '_staffs';
     protected $fillable = ['id', 'sdt', 'ten', 'ngaysinh'];
     protected $hidden = [
         'matkhau', 'remember_token'
@@ -20,13 +20,16 @@ class staff extends Authenticatable
     {
         return $this->matkhau;
     }
-    public function rlsBiennhan() {
-        return $this->hasMany('App\Model\biennhan');
+
+    public function tickets() {
+        return $this->hasMany('App\Model\ticket');
     }
-    public function rlsPhieuthu() {
-        return $this->hasMany('App\Model\phieuthu');
+
+    public function receipts() {
+        return $this->hasMany('App\Model\receipt');
     }
-    public function rlsGroup()
+
+    public function group()
     {
         return $this->belongsTo('App\Model\group', 'group_id');
     }

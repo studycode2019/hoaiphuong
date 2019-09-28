@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class branch extends Model
 {
-    protected $table = '_branch';
+    protected $table = '_branches';
     protected $fillable = ['id', 'name'];
     
-    public function rlsReceipt()
+    public function reciepts()
     {
         return $this->hasMany('App\Model\receipt');
     }
 
-    public function rlsPayment()
+    public function payments()
     {
         return $this->hasMany('App\Model\payment');
     }

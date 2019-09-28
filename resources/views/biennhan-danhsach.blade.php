@@ -46,27 +46,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($biennhans as $biennhan)
+                @foreach($tickets as $ticket)
                 <tr>
-                  <td>{{date("d/m/Y", strtotime($biennhan->created_at))}}</td>
-                  <td>{{$biennhan->id}}</td>
-                  <td><a href="{{route('staff.cases.view.get', ['case_id' => $biennhan->id])}}">{{$biennhan->dongmay}}</a></td>
-                  <td>{{$biennhan->rlsClient->ten}}</td>
-                  <td>{{$biennhan->yeucau}}</td>
+                  <td>{{date("d/m/Y", strtotime($ticket->created_at))}}</td>
+                  <td>{{$ticket->id}}</td>
+                  <td><a href="{{route('staff.ticket.view.get', ['case_id' => $ticket->id])}}">{{$ticket->dongmay}}</a></td>
+                  <td>{{$ticket->client->ten}}</td>
+                  <td>{{$ticket->yeucau}}</td>
                   <td>
-                    <span class="badge bg-{{$biennhan->rlsCaseStatus->class}}"><span style="display: none;">{{$biennhan->rlsCaseStatus->id}}</span>{{$biennhan->rlsCaseStatus->ten}}</span>
+                    <span class="badge bg-{{$ticket->ticketStatus->class}}"><span style="display: none;">{{$ticket->ticketStatus->id}}</span>{{$ticket->ticketStatus->ten}}</span>
                   </td>
                   <td>
                     <div class="btn-group">
-                      <a href="{{route('staff.cases.view.get', ['case_id' => $biennhan->id])}}" class="btn btn-primary">Xem</a>
+                      <a href="{{route('staff.ticket.view.get', ['case_id' => $ticket->id])}}" class="btn btn-primary">Xem</a>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                       </button>
                       <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="{{route('staff.cases.printpos.get', ['case_id' => $biennhan->id])}}" target="_blank">In máy POS</a>
-                        <a class="dropdown-item" href="{{route('staff.cases.printinternal.get', ['case_id' => $biennhan->id])}}" target="_blank">In phiếu dán</a>
-                        <a class="dropdown-item" href="{{route('staff.cases.print.get', ['case_id' => $biennhan->id])}}" target="_blank">In biên nhận</a>
+                        <a class="dropdown-item" href="{{route('staff.ticket.printpos.get', ['case_id' => $ticket->id])}}" target="_blank">In máy POS</a>
+                        <a class="dropdown-item" href="{{route('staff.ticket.printinternal.get', ['case_id' => $ticket->id])}}" target="_blank">In phiếu dán</a>
+                        <a class="dropdown-item" href="{{route('staff.ticket.print.get', ['case_id' => $ticket->id])}}" target="_blank">In biên nhận</a>
                       </div>
                     </div>
                   </td>

@@ -6,24 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class payment extends Model
 {
-    protected $table = '_payment';
+    protected $table = '_payments';
     
-    public function rlsStaff()
+    public function staff()
     {
         return $this->belongsTo('App\Model\staff', 'nhanvien_id');
     }
     
-    public function rlsClient()
+    public function client()
     {
-        return $this->belongsTo('App\Model\client', 'ten');
+        return $this->belongsTo('App\Model\client', 'khachhang_id');
     }
     
-    public function rlsField()
+    public function field()
     {
         return $this->belongsTo('App\Model\field', 'phieuthu_danhmuc_id');
     }
 
-    public function rlsBranch()
+    public function branch()
     {
         return $this->belongsTo('App\Model\branch', 'branch_id');
     }

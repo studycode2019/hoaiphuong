@@ -8,19 +8,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class course extends Model
 {
     public $timestamps = true;
-    protected $table = '_class';
-    protected $dates = ['deleted_at'];
+    public $table = '_courses';
+    public $dates = ['deleted_at'];
+    public $fillable = ['name', 'shortname', 'lesson', 'opening_at', 'schedule', 'maxseat', 'teacher', 'tuition', 'note'];
     
-    public function rlsClassList()
+    public function courseStudents()
     {
-        return $this->hasMany('App\Model\class_list', 'lophoc_id');
+        return $this->hasMany('App\Model\course_student');
     }
 
     public function linkName() {
-        return '<a href="'.route('staff.classes.view.get', ['class_id' => $this->id], false).'">'.$this->ten.'</a>';
+        return '<a href="'.route('staff.course.view.get', ['course_id' => $this->id], false).'">'.$this->name.'</a>';
     }
 
     public function sum() {
-        return count($this->rlsClassList);
+        return count($this->courseStudents);
+    }
+
+    public function isFull()
+    {
+        return ($this->sum() >= $this->maxseat);
     }
 }

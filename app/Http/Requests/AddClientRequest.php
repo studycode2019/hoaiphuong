@@ -24,15 +24,15 @@ class AddClientRequest extends Request
     public function rules()
     {
         return [
-            'sdt' => 'required|regex:/(0)[0-9]{9}/'
+            'phone' => 'required|regex:/(0)[0-9]{9}/'
         ];
     }
     
     public function messages()
     {
         return [
-            'sdt.required' => 'Hãy nhập vào số điện thoại',
-            'sdt.regex' => 'Số điện thoại không đúng'
+            'phone.required' => 'Hãy nhập vào số điện thoại',
+            'phone.regex' => 'Số điện thoại không đúng'
         ];
     }
 }

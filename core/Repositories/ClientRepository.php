@@ -33,4 +33,14 @@ class ClientRepository implements ClientRepositoryContract
         $model = $this->find($id);
         return $model->destroy($id);
     }
+
+    public function all()
+    {
+        return $this->model->all();
+    }
+
+    public function getView($id)
+    {
+        return $this->model->with('tickets.ticketStatus', 'courseStudents.course')->find($id);
+    }
 }

@@ -14,8 +14,8 @@
 Route::get('/download', 'TaiveController@getDanhsachCongkhai');
 Route::get('/tracking', 'TrackingController@getTimkiem');
 Route::post('/search', 'TrackingController@postTracking');
-Route::get('/tracking/{biennhan_id}', 'TrackingController@getByBiennhan');
-Route::get('/customer/{khachhang_id}', 'TrackingController@getByKhachhang');
+Route::get('/tracking/{ticket_id}', 'TrackingController@getByTicket');
+Route::get('/customer/{client_id}', 'TrackingController@getByClient');
 
 Route::get('/login','LoginController@getLogin')->name('guest.login.get');
 Route::post('/login','LoginController@postLogin')->name('guest.login.post');
@@ -39,26 +39,29 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::get('/export/excel/edu', 'ClientsController@getExportExcelEdu')->name('staff.client.exportexceledu.get');
         Route::get('/export/excel/tech', 'ClientsController@getExportExcelTech')->name('staff.client.exportexceltech.get');
     });
-    
-    Route::get('/taichinh', 'TaichinhController@getTongquan');
-    Route::get('/taichinh/{danhmuc_id}', 'TaichinhController@getDanhmuc');
 
-    Route::group(['prefix' => 'receipt'], function ()
+    Route::group(['prefix' => 'financial'], function() 
     {
-        Route::get('/', 'ReceiptController@getList')->name('staff.receipt.list.get');
-        Route::get('/cate/{cate_id}', 'ReceiptController@getListByCate')->name('staff.receipt.listbycate.get');
-        Route::get('/view/{receipt_id}', 'ReceiptController@getView')->name('staff.receipt.view.get');
-        Route::get('/print/{receipt_id}', 'ReceiptController@getPrint')->name('staff.receipt.print.get');
-        Route::get('/add/{client_id}', 'ReceiptController@getAdd')->name('staff.receipt.add.get');
-        Route::post('/add', 'ReceiptController@postAdd')->name('staff.receipt.add.post');
+        Route::get('/', 'FinancialController@getTongquan');
+        Route::get('/{field_id}', 'FinancialController@getField');
     });
 
-    Route::group(['prefix' => 'payment'], function ()
+    Route::group(['prefix' => 'receipts'], function ()
     {
-        Route::get('/', 'PaymentController@getList')->name('staff.payment.list.get');
-        Route::get('/add/{client_id}', 'PaymentController@getAdd')->name('staff.payment.add.get');
-        Route::post('/add', 'PaymentController@postAdd')->name('staff.payment.add.post');
-        Route::get('/view/{payment_id}', 'PaymentController@getView')->name('staff.payment.view.get');
+        Route::get('/', 'ReceiptsController@getList')->name('staff.receipt.list.get');
+        Route::get('/field/{field_id}', 'ReceiptsController@getListbyField')->name('staff.receipt.listbyfield.get');
+        Route::get('/view/{receipt_id}', 'ReceiptsController@getView')->name('staff.receipt.view.get');
+        Route::get('/print/{receipt_id}', 'ReceiptsController@getPrint')->name('staff.receipt.print.get');
+        Route::get('/add/{client_id}', 'ReceiptsController@getAdd')->name('staff.receipt.add.get');
+        Route::post('/add', 'ReceiptsController@postAdd')->name('staff.receipt.add.post');
+    });
+
+    Route::group(['prefix' => 'payments'], function ()
+    {
+        Route::get('/', 'PaymentsController@getList')->name('staff.payment.list.get');
+        Route::get('/add/{client_id}', 'PaymentsController@getAdd')->name('staff.payment.add.get');
+        Route::post('/add', 'PaymentsController@postAdd')->name('staff.payment.add.post');
+        Route::get('/view/{payment_id}', 'PaymentsController@getView')->name('staff.payment.view.get');
     });
     
     Route::group(['prefix' => 'tickets'], function() 
@@ -74,55 +77,53 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::post('/edit', 'TicketsController@postEdit')->name('staff.ticket.edit.post');
         Route::get('/add/{client_id}', 'TicketsController@getAdd')->name('staff.ticket.add.get');
         Route::post('/add', 'TicketsController@postAdd')->name('staff.ticket.add.post');
-        Route::get('/add/{client_id}/old/{ticket_id}', 'TicketsController@getUseOld')->name('staff.ticket.useold.get');
+        Route::get('/add/useold/{ticket_id}', 'TicketsController@getUseOld')->name('staff.ticket.useold.get');
         Route::get('/view/{ticket_id}/status/{status_id}', 'TicketsController@getChangeStatus')->name('staff.ticket.changestatus.get');
     });
     
     Route::group(['prefix' => 'ticketlogs'], function() 
     {
-        Route::get('/', 'TicketLogController@getList')->name('staff.ticketlog.list.get');
-        Route::post('/add', 'TicketLogController@postAdd')->name('staff.ticketlog.add.post');
-        Route::get('/{ticketlog_id}/setpublic', 'TicketLogController@getSetpublic')->name('staff.ticketlog.setpublic.get');
+        Route::get('/', 'TicketLogsController@getList')->name('staff.ticketlog.list.get');
+        Route::post('/add', 'TicketLogsController@postAdd')->name('staff.ticketlog.add.post');
+        Route::get('/{ticketlog_id}/setpublic', 'TicketLogsController@getSetpublic')->name('staff.ticketlog.setpublic.get');
     });
     
-    Route::group(['prefix' => 'classes'], function ()
+    Route::group(['prefix' => 'courses'], function ()
     {
-        Route::get('/', 'ClassesController@getList')->name('staff.classes.list.get');
-        Route::get('/view/{lophoc_id}', 'ClassesController@getView')->name('staff.classes.view.get');
-        Route::get('/export/phone/{lophoc_id}', 'ClassesController@getExportPhone')->name('staff.classes.exportphone.get');
-        Route::get('/export/excel/{lophoc_id}', 'ClassesController@getExportExcel')->name('staff.classes.exportexcel.get');
-        Route::get('/add', 'ClassesController@getAdd')->name('staff.classes.add.get');
-        Route::post('/add', 'ClassesController@postAdd')->name('staff.classes.add.post');
-        Route::get('/edit/{lophoc_id}', 'ClassesController@getEdit')->name('staff.classes.edit.get');
-        Route::post('/edit', 'ClassesController@postEdit')->name('staff.classes.edit.post');
-        Route::get('/log', 'ClassesController@getNhatky')->name('staff.classlog.list.get');
+        Route::get('/', 'CoursesController@getList')->name('staff.course.list.get');
+        Route::get('/view/{course_id}', 'CoursesController@getView')->name('staff.course.view.get');
+        Route::get('/export/phone/{course_id}', 'CoursesController@getExportPhone')->name('staff.course.exportphone.get');
+        Route::get('/export/excel/{course_id}', 'CoursesController@getExportExcel')->name('staff.course.exportexcel.get');
+        Route::get('/add', 'CoursesController@getAdd')->name('staff.course.add.get');
+        Route::post('/add', 'CoursesController@postAdd')->name('staff.course.add.post');
+        Route::get('/edit/{course_id}', 'CoursesController@getEdit')->name('staff.course.edit.get');
+        Route::post('/edit', 'CoursesController@postEdit')->name('staff.course.edit.post');
+        Route::get('/log', 'CoursesController@getLogList')->name('staff.courselog.list.get');
     });
 
     Route::group(['prefix' => 'coursestudents'], function ()
     {
-        Route::get('/add/{client_id}', 'CourseStudentController@getAdd')->name('staff.coursestudent.add.get');
-        Route::post('/add', 'CourseStudentController@postAdd')->name('staff.coursestudent.add.post');
-        Route::get('/add/{client_id}/toclass/{class_id}', 'CourseStudentController@getAddnow')->name('staff.coursestudent.addnow.get');
-        Route::get('/edit/{coursestudent_id}', 'CourseStudentController@getEdit')->name('staff.coursestudent.edit.get');
-        Route::post('/edit', 'CourseStudentController@postEdit')->name('staff.coursestudent.edit.post');
-        Route::get('/delete/{coursestudent_id}', 'CourseStudentController@getDelete')->name('staff.coursestudent.delete.get');  
+        Route::get('/add/{client_id}', 'CourseStudentsController@getAdd')->name('staff.coursestudent.add.get');
+        Route::post('/add', 'CourseStudentsController@postAdd')->name('staff.coursestudent.add.post');
+        Route::get('/add/{client_id}/toclass/{class_id}', 'CourseStudentsController@getAddnow')->name('staff.coursestudent.addnow.get');
+        Route::get('/edit/{coursestudent_id}', 'CourseStudentsController@getEdit')->name('staff.coursestudent.edit.get');
+        Route::post('/edit', 'CourseStudentsController@postEdit')->name('staff.coursestudent.edit.post');
+        Route::get('/delete/{coursestudent_id}', 'CourseStudentsController@getDelete')->name('staff.coursestudent.delete.get');  
     });
 
     Route::group(['prefix' => 'profile'], function ()
     {
-        Route::get('/edit', 'NhanvienController@getCanhan')->name('staff.profile.edit.get');
-        Route::post('/edit', 'NhanvienController@postSuacanhan')->name('staff.profile.edit.post');
+        Route::get('/edit', 'ProfileController@getEdit')->name('staff.profile.edit.get');
+        Route::post('/edit', 'ProfileController@postEdit')->name('staff.profile.edit.post');
     });
-    
-    Route::get('/thongke/biennhan/{year}', 'ThongkeController@getBiennhanTheonam');
     
     Route::group(['prefix' => 'download'], function ()
     {
         Route::get('/', 'DownloadController@getList')->name('staff.download.list.get');
         Route::get('/add', 'DownloadController@getAdd')->name('staff.download.add.get');
         Route::post('/add', 'DownloadController@postAdd')->name('staff.download.add.post');
-        Route::get('/delete/{taive_id}', 'DownloadController@getDelete')->name('staff.download.delete.get');
-        Route::get('/edit/{taive_id}', 'DownloadController@getEdit')->name('staff.download.edit.get');
+        Route::get('/delete/{download_id}', 'DownloadController@getDelete')->name('staff.download.delete.get');
+        Route::get('/edit/{download_id}', 'DownloadController@getEdit')->name('staff.download.edit.get');
         Route::post('/edit', 'DownloadController@postEdit')->name('staff.download.edit.post');
     });
 });

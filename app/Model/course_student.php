@@ -10,14 +10,15 @@ class course_student extends Model
     public $timestamps = true;
     protected $table = '_course_students';
     protected $dates = ['deleted_at'];
+    public $fillable = ['client_id', 'course_id', 'deal_rate', 'deal_note', 'tuition_done', 'note'];
     
     public function client()
     {
-        return $this->belongsTo('App\Model\client', 'khachhang_id');
+        return $this->belongsTo('App\Model\client');
     }
     
     public function course()
     {
-        return $this->belongsTo('App\Model\course', 'lophoc_id');
+        return $this->belongsTo('App\Model\course');
     }
 }

@@ -18,7 +18,7 @@ class LoginController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
     
     protected $redirectTo = '/';
-    protected $username = 'sdt';
+    protected $username = 'phone';
     
     public function __construct()
     {
@@ -29,7 +29,7 @@ class LoginController extends Controller
         if (Auth::guard('staff')->check()) {
             return redirect()->route('staff.home.get');
         } else {
-            return view('dangnhap');
+            return view('login');
         }
         
     }

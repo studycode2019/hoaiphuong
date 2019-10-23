@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\classes;
+use App\Model\course;
 use App\Model\client;
 
 class course_log extends Model
@@ -13,26 +13,26 @@ class course_log extends Model
     
     public function staff()
     {
-        return $this->belongsTo('App\Model\staff', 'nhanvien_id');
+        return $this->belongsTo('App\Model\staff');
     }
     
     public function client()
     {
-        return $this->belongsTo('App\Model\client', 'khachhang_id');
+        return $this->belongsTo('App\Model\client');
     }
     
     public function course1()
     {
-        return $this->belongsTo('App\Model\course', 'lophoc1_id');
+        return $this->belongsTo('App\Model\course');
     }
 
     public function course2()
     {
-        return $this->belongsTo('App\Model\course', 'lophoc2_id');
+        return $this->belongsTo('App\Model\course');
     }
 
     public function setAddClass($class_id) {
-        $lophoc =  classes::findOrFail($class_id);
+        $lophoc =  course::findOrFail($class_id);
         $this->nhanvien_id = UserInfo()->id;
         $this->lophoc1_id = $lophoc->id;
         $this->noidung = 'Đã tạo lớp '.$lophoc->linkName();
@@ -40,7 +40,7 @@ class course_log extends Model
     }
 
     public function setAddStudent($client_id, $class1_id) {
-        $lophoc1 =  classes::findOrFail($class1_id);
+        $lophoc1 =  course::findOrFail($class1_id);
         $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;
@@ -51,8 +51,8 @@ class course_log extends Model
     }
 
     public function setChange($client_id, $class1_id, $class2_id, $content) {
-        $lophoc1 =  classes::findOrFail($class1_id);
-        $lophoc2 =  classes::findOrFail($class2_id);
+        $lophoc1 =  course::findOrFail($class1_id);
+        $lophoc2 =  course::findOrFail($class2_id);
         $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;
@@ -64,7 +64,7 @@ class course_log extends Model
     }
     
     public function setDelete($client_id, $class1_id) {
-        $lophoc1 =  classes::findOrFail($class1_id);
+        $lophoc1 =  course::findOrFail($class1_id);
         $khachhang =  client::findOrFail($client_id);
 
         $this->nhanvien_id = UserInfo()->id;

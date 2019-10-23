@@ -37,4 +37,17 @@ class ClientService implements ClientServiceContract
     {
         return $this->repository->destroy($id);
     }
+
+    public function getList()
+    {
+        if(UserInfo()->level<3) {
+            return Redirect::back();
+        }
+        return $this->repository->all();
+    }
+
+    public function getView($id)
+    {
+        return $this->repository->getView($id);
+    }
 }

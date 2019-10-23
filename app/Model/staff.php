@@ -8,17 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class staff extends Authenticatable
 {
     protected $table = '_staffs';
-    protected $fillable = ['id', 'sdt', 'ten', 'ngaysinh'];
+    protected $fillable = ['id', 'phone', 'name', 'birthday'];
     protected $hidden = [
         'matkhau', 'remember_token'
     ];
     public function username()
     {
-        return 'sdt';
-    }
-    public function getAuthPassword()
-    {
-        return $this->matkhau;
+        return 'phone';
     }
 
     public function tickets() {

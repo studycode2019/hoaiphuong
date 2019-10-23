@@ -6,27 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class receipt extends Model
 {
-    protected $table = '_receipts';
-    protected $fillable = ['id', 'solai', 'khachhang_id', 'nhanvien_id', 'noidung', 'sotien'];
+    public $table = '_receipts';
+    public $fillable = ['id', 'number', 'client_id', 'staff_id', 'field_id', 'branch_id', 'content', 'amount'];
     
     public function staff()
     {
-        return $this->belongsTo('App\Model\staff', 'nhanvien_id');
+        return $this->belongsTo('App\Model\staff');
     }
     
     public function client()
     {
-        return $this->belongsTo('App\Model\client', 'khachhang_id');
+        return $this->belongsTo('App\Model\client');
     }
     
     public function field()
     {
-        return $this->belongsTo('App\Model\field', 'phieuthu_danhmuc_id');
+        return $this->belongsTo('App\Model\field');
     }
     
     public function branch()
     {
-        return $this->belongsTo('App\Model\branch', 'branch_id');
+        return $this->belongsTo('App\Model\branch');
     }
     
 }

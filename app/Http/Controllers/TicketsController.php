@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon; //bo dem thoi gian
@@ -12,106 +13,80 @@ use App\Model\ticket;
 use App\Model\ticket_log;
 use App\Model\ticket_status;
 
+
+use Core\Services\TicketServiceContract;
+use Core\Services\TicketStatusServiceContract;
+use Core\Services\ClientServiceContract;
+
 class TicketsController extends Controller
 {
+    protected $model;
+    protected $service;
+    protected $ticket_status_service;
+    protected $client_service;
+
+    public function __construct(ticket $model, TicketServiceContract $service, TicketStatusServiceContract $ticket_status_service, ClientServiceContract $client_service)
+    {
+        $this->model = $model;
+        $this->service = $service;
+        $this->ticket_status_service = $ticket_status_service;
+        $this->client_service = $client_service;
+    }
+
     public function getList() { 
-        if(UserInfo()->level>=3) {
-            $data['tickets'] =  ticket::with('client')->get();
-        } else {
-            $data['tickets'] =  ticket::where('tiendo', '!=', 5)->with('client')->get();
-        }
-        return view('biennhan-danhsach', $data);
+        $data['tickets'] = $this->service->getList();
+        return view('ticket-list', $data);
     }
     
     public function getChangeStatus($ticket_id, $ticketstatus_id) {
-        $ticketStatus = ticket_status::findOrFail($ticketstatus_id);
-        $ticket = ticket::findOrFail($ticket_id);
-        $ticket->tiendo = $ticketStatus->id;
-        $ticket->save();
-        $ticketLog = new ticket_log;
-        $ticketLog->biennhan_id = $ticket->id;
-        $ticketLog->nhanvien_id = UserInfo()->id;
-        $ticketLog->noidung = "Đã chuyển trang thái thành ".$ticketStatus->ten;
-        $ticketLog->congkhai = 0;
-        $ticketLog->save();
-        
-        return redirect()->route('staff.ticket.view.get', ['ticket_id' => $ticket->id]);
+        $this->service->setStatusId($ticket_id, $ticketstatus_id);
+        return redirect()->route('staff.ticket.view.get', ['ticket_id' => $ticket_id]);
     }
     
     public function getView($ticket_id) {
-        $data['ticket'] = ticket::find($ticket_id);
-        $data['ticket_statuses'] = ticket_status::all();
-        return view('biennhan-xem', $data);
+        $data = $this->service->getView($ticket_id);
+        return view('ticket-view', $data);
     }
 
     public function getPrint($ticket_id) {
-        $data['ticket'] = ticket::find($ticket_id);
-        return view('biennhan-in', $data);
+        $data['ticket'] = $this->service->find($ticket_id);
+        return view('ticket-print', $data);
     }
 
     public function getPrintPos($ticket_id) {
-        $data['ticket'] = ticket::find($ticket_id);
-        return view('biennhan-inpos', $data);
+        $data['ticket'] = $this->service->find($ticket_id);
+        return view('ticket-printpos', $data);
     }
     
     public function getPrintInternal($ticket_id) {
-        $data['ticket'] = ticket::find($ticket_id);
-        return view('biennhan-inluu', $data);
+        $data['ticket'] = $this->service->find($ticket_id);
+        return view('ticket-printinternal', $data);
     }
     
     public function getAdd($khachhang_id) {
-        $data['khachhang'] = client::findOrFail($khachhang_id);
-        $data['biennhans'] = $data['khachhang']->rlsticket;
-        return view('biennhan-nhap', $data);
+        $data['client'] = client::findOrFail($khachhang_id);
+        return view('ticket-add', $data);
     }
     
-    public function postAdd(Request $request) {
-        $biennhan = new ticket;
-        $biennhan->khachhang_id = $request->inputKhachhang;
-        $biennhan->nhanvien_id = UserInfo()->id;
-        $biennhan->yeucau = $request->inputYeucau;
-        $biennhan->dongmay = $request->inputDongmay;
-        $biennhan->cpu = $request->inputCpu;
-        $biennhan->ram = $request->inputRam;
-        $biennhan->ocung = $request->inputOcung;
-        $biennhan->tinhtrang = $request->inputTinhtrang;
-        $biennhan->khac = $request->inputPhukien;
-        $biennhan->save();
-        $nhatky = new ticket_log;
-        $nhatky->biennhan_id = $biennhan->id;
-        $nhatky->nhanvien_id = UserInfo()->id;
-        $nhatky->noidung = "Đang chờ xử lý.";
-        $nhatky->congkhai = 1;
-        $nhatky->save();
-        
-        return redirect()->route('staff.ticket.view.get', ['case_id' => $biennhan->id]);
+    public function postAdd(Request $req) {
+        $ticket = $this->service->store($data);        
+        return redirect()->route('staff.ticket.view.get', ['case_id' => $ticket->id]);
     }
     
-    public function getUseOld($khachhang_id, $biennhan_id) {
-        $data['khachhang'] = client::findOrFail($khachhang_id);
-        $data['outStt'] = ticket::orderBy('id', 'desc')->first()->id+1;
-        $data['biennhans'] = $data['khachhang']->rlsticket;
-        $data['biennhancu'] = ticket::findOrFail($biennhan_id);
-        return view('biennhan-nhap', $data);
+    public function getUseOld($ticket_id) {
+        $data['ticket_old'] = $this->service->find($ticket_id);
+        $data['client'] = $data['ticket_old']->client;
+        return view('ticket-add', $data);
     }
     
-    public function getEdit($biennhan_id) {
-        $data['ticket'] = ticket::find($biennhan_id);
-        return view('biennhan-sua', $data);
+    public function getEdit($ticket_id) {
+        $data['ticket'] = $this->service->find($ticket_id);
+        return view('ticket-edit', $data);
     }
     
-    public function postEdit(Request $request) {
-        $biennhan = ticket::find($request->inputStt);
-        $biennhan->khachhang_id = $request->inputKhachhang;
-        $biennhan->yeucau = $request->inputYeucau;
-        $biennhan->dongmay = $request->inputDongmay;
-        $biennhan->cpu = $request->inputCpu;
-        $biennhan->ram = $request->inputRam;
-        $biennhan->ocung = $request->inputOcung;
-        $biennhan->tinhtrang = $request->inputTinhtrang;
-        $biennhan->khac = $request->inputPhukien;
-        $biennhan->save();
-        
-        return redirect()->route('staff.ticket.view.get', ['case_id' => $biennhan->id])->with('success', 'Đã cập nhật thành công!');
+    public function postEdit(Request $req) {
+        $data = $req->only($this->model->fillable);
+        $this->service->update($req->id, $data);
+        return redirect()->route('staff.ticket.view.get', ['case_id' => $req->id])->with('success', 'Đã cập nhật thành công!');
     }
 }

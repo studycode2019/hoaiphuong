@@ -161,6 +161,7 @@ return [
         Sentry\Laravel\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Core\Providers\CoreServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -211,6 +212,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Sentry' => Sentry\Laravel\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

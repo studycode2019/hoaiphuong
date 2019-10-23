@@ -21,7 +21,7 @@ class SearchController extends Controller
         } 
         
         if (strlen($keyword) == 10) {
-            $data = client::where('sdt', $keyword)->first();
+            $data = client::where('phone', $keyword)->first();
             if ($data) {
                 return redirect()->route('staff.client.view.get', ['client_id'=>$data->id]);
             } else {

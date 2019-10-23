@@ -67,7 +67,7 @@
           <img src="{{secure_asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{route('staff.profile.edit.get')}}" class="d-block">{{ UserInfo()->ten }}</a>
+          <a href="{{route('staff.profile.edit.get')}}" class="d-block">{{ UserInfo()->name }}</a>
         </div>
         <div class="info">
           <a href="{{route('staff.logout.get')}}" class="d-block"><i class="fa fa-sign-out"></i></a>
@@ -123,19 +123,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('staff.classes.list.get')}}" class="nav-link">
+                <a href="{{route('staff.course.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
                   <p>Danh sách lớp</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('staff.classes.add.get')}}" class="nav-link">
+                <a href="{{route('staff.course.add.get')}}" class="nav-link">
                   <i class="fa fa-plus nav-icon"></i>
                   <p>Thêm lớp mới</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('staff.classlog.list.get')}}" class="nav-link">
+                <a href="{{route('staff.courselog.list.get')}}" class="nav-link">
                   <i class="fa fa-history nav-icon"></i>
                   <p>Nhật ký lớp</p>
                 </a>

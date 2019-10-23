@@ -50,7 +50,7 @@ class CoursesController extends Controller
     }
     
     public function getView($course_id) {
-        $data['course'] = course::with('courseStudents.client')->find($course_id); 
+        $data['course'] = course::with('courseStudents.client')->findOrFail($course_id); 
         return view('course-studentlist', $data);
     }
 

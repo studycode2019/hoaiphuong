@@ -69,6 +69,7 @@ class TicketsController extends Controller
     }
     
     public function postAdd(Request $req) {
+        $data = $req->only($this->model->fillable);
         $ticket = $this->service->store($data);        
         return redirect()->route('staff.ticket.view.get', ['case_id' => $ticket->id]);
     }

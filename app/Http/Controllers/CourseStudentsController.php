@@ -34,8 +34,9 @@ class CourseStudentsController extends Controller
     }
 
     public function postAdd(Request $req){
-        $course = $this->service->postAdd($req);
-        return redirect()->route('staff.course.view.get', ['course_id' => $course->id])->with('msg', 'Thêm thành công!');
+        $data = $req->only($this->model->fillable);
+        $course = $this->service->store($data);
+        return redirect()->route('staff.course.view.get', ['course_id' => $req->course_id])->with('msg', 'Thêm thành công!');
     }
 
     public function getEdit($student_id) {

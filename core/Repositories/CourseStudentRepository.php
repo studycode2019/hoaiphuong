@@ -26,6 +26,7 @@ class CourseStudentRepository implements CourseStudentRepositoryContract
     }
 
     public function store($data) {
+        $data['staff_id'] = UserInfo();
         return $this->model->create($data);
     }
 

@@ -37,7 +37,7 @@
     @endif
     <form action="{{route('staff.coursestudent.add.post')}}" method="post">
     {{csrf_field()}}
-    <input type="hidden" name="khachhang_id" value="{{$client->id}}"/>
+    <input type="hidden" name="client_id" value="{{$client->id}}"/>
     <div class="row">
       <div class="col-md-12">
         <div class="card card-primary">
@@ -49,7 +49,7 @@
               </div>
               <div class="form-group col-md-12">
                 <label>Chọn lớp học</label>
-                <select name="inputLophocId" class="form-control select2" style="width: 100%;">
+                <select name="course_id" class="form-control select2" style="width: 100%;">
                   @foreach($courses as $data)
                   @if($data->sum()<$data->maxseat)
                   <option value="{{$data->id}}">{{$data->shortname}} - {{$data->name}} ({{$data->sum()}}/{{$data->maxseat}})</option>

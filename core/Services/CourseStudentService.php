@@ -48,8 +48,8 @@ class CourseStudentService implements CourseStudentServiceContract
 
     public function postAdd($data, CourseServiceContract $course_repo, ClientServiceContract $client_repo)
     {
-        $course = $course_repo->find($req->course_id);
-        $client = $client_repo->find($req->client_id);
+        $course = $course_repo->find($data->course_id);
+        $client = $client_repo->find($data->client_id);
 
         //XỬ LÝ KHI LỚP ĐÃ ĐẦY
         if($course->isFull()) {

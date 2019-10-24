@@ -41,7 +41,7 @@ class ClientService implements ClientServiceContract
     public function getList()
     {
         if(UserInfo()->level<3) {
-            return Redirect::back();
+            return redirect()->back();
         }
         return $this->repository->all();
     }

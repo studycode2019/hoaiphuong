@@ -9,6 +9,7 @@
             margin: 0 auto;
             width: 44mm;
             background: #FFF;
+            font-family: monospace;
         }
 
         #invoice-POS ::selection {
@@ -54,7 +55,7 @@
         }
 
         #invoice-POS #mid {
-            min-height: 80px;
+            /* min-height: 80px; */
         }
 
         #invoice-POS #bot {
@@ -152,7 +153,6 @@
                 <p>
                     <span style="text-transform: uppercase; font-weight: bold">{{ $ticket->client->name }}</span></br>
                     Điện thoại: {{ $ticket->client->phone }}</br>
-                    Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client -> ngaysinh)) }}</br>
                 </p>
             </div>
         </div>
@@ -182,11 +182,7 @@
                     <tr class="service">
                         <td class="tableitem">
                             <p class="itemtext">{{$ticket->model}} 
-                                - CPU {{$ticket->cpu}} 
-                                - RAM {{$ticket->ram}} 
-                                - HDD {{$ticket->storage}}
                                 - Phụ kiện {{$ticket->other}}
-                                - Tình trạng {{$ticket->note}}
                             </p>
                         </td>
                     </tr>

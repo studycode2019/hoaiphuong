@@ -8,6 +8,7 @@
             margin: 0 auto;
             width: 44mm;
             background: #FFF;
+            font-family: monospace;
         }
 
         #invoice-POS ::selection {
@@ -48,12 +49,9 @@
             border-bottom: 1px solid #EEE;
         }
 
-        #invoice-POS #top {
-            min-height: 100px;
-        }
 
         #invoice-POS #mid {
-            min-height: 80px;
+            /* min-height: 80px; */
         }
 
         #invoice-POS #bot {
@@ -139,10 +137,8 @@
     <div id="invoice-POS">
 
         <center id="top">
-            <img src="{{secure_asset('pos/logo2.png')}}">
             <div class="info">
-                <h2>BIÊN NHẬN MÁY<br>KỸ THUẬT</h2>
-                <h2 style="font-size: 1.2rem">SỐ PHIẾU #{{ $ticket->id }}</h2>
+                <h2 style="font-size: 1.3rem">BIÊN NHẬN #{{ $ticket->id }}</h2>
             </div>
             <!--End Info-->
         </center>
@@ -151,7 +147,7 @@
         <div id="mid">
             <div class="info">
                 <p>
-                    <span style="text-transform: uppercase; font-weight: bold">{{ $ticket->client->name }}</span></br>
+                    <span style="font-size: 1.1rem; text-transform: uppercase; font-weight: bold">{{ $ticket->client->name }}</span></br>
                     Điện thoại: {{ $ticket->client->phone }}</br>
                     Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client -> ngaysinh)) }}</br>
                 </p>
@@ -196,8 +192,8 @@
             <!--End Table-->
 
             <div id="legalcopy">
-                <p class="legal"><strong>Cảm ơn quý khách đã tin tưởng!</strong> 
-                * Xin quý khách giữ lại phiếu này và mang theo phiếu này khi đến nhận máy.
+                * Vui lòng mang theo phiếu này khi đến nhận máy!
+                <p class="legal"><strong>Chân thành cảm ơn sự tin tưởng của quý khách!</strong> 
                 </p>
             </div>
             <div id="legalcopy">

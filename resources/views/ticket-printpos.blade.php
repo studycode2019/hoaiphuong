@@ -206,7 +206,7 @@
                 <p style="height: 135px"></p>
                 </p>
             </div>
-            <center><p>Website: eduking.edu.vn<br>Phone: 08888.730.108</p></center>
+            <center><p>Website: eduking.edu.vn<br>Phone: 0888.730.108</p></center>
 
         </div>
         <!--End InvoiceBot-->

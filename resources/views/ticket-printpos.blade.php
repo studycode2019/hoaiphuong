@@ -148,8 +148,8 @@
             <div class="info">
                 <p>
                     <span style="font-size: 1.1rem; text-transform: uppercase; font-weight: bold">{{ $ticket->client->name }}</span></br>
-                    Điện thoại: {{ $ticket->client->phone }}</br>
-                    Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client->birthday)) }}</br>
+                    SĐT: {{ PhoneFormat($ticket->client->phone) }}</br>
+                    NS: {{ date("d/m/Y", strtotime($ticket->client->birthday)) }}</br>
                 </p>
             </div>
         </div>

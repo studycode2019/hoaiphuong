@@ -149,7 +149,7 @@
                 <p>
                     <span style="font-size: 1.1rem; text-transform: uppercase; font-weight: bold">{{ $ticket->client->name }}</span></br>
                     Điện thoại: {{ $ticket->client->phone }}</br>
-                    Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client -> ngaysinh)) }}</br>
+                    Ngày sinh: {{ date("d/m/Y", strtotime($ticket->client->birthday)) }}</br>
                 </p>
             </div>
         </div>
@@ -206,7 +206,7 @@
                 <p style="height: 135px"></p>
                 </p>
             </div>
-            <center><p>Website: eduking.edu.vn<br>Phone: 0888141811</p></center>
+            <center><p>Website: eduking.edu.vn<br>Phone: 08888.730.108</p></center>
 
         </div>
         <!--End InvoiceBot-->

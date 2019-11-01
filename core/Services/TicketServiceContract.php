@@ -11,6 +11,6 @@ interface TicketServiceContract
     public function update($id, $data);
     public function destroy($id);
     public function getList();
-    public function setStatusId($id, $ticketstatus_id);
+    public function setStatusId($id, $ticketstatus_id, $price);
     public function getView($id);
 }

@@ -66,9 +66,10 @@ class TicketService implements TicketServiceContract
         }
     }
 
-    public function setStatusId($id, $ticketstatus_id)
+    public function setStatusId($id, $ticketstatus_id, $price)
     {
         $data['ticket_status_id'] = $ticketstatus_id;
+        $data['price'] = $price;
         return $this->repository->update($id, $data);
     }
 

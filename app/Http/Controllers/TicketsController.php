@@ -38,8 +38,8 @@ class TicketsController extends Controller
         return view('ticket-list', $data);
     }
     
-    public function getChangeStatus($ticket_id, $ticketstatus_id) {
-        $this->service->setStatusId($ticket_id, $ticketstatus_id);
+    public function getChangeStatus($ticket_id, $ticketstatus_id, $price = NULL) {
+        $this->service->setStatusId($ticket_id, $ticketstatus_id, $price);
         return redirect()->route('staff.ticket.view.get', ['ticket_id' => $ticket_id]);
     }
     

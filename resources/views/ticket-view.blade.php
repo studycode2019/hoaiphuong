@@ -53,17 +53,6 @@
             </div>
             <!-- info row -->
             <div class="row invoice-info">
-              <!--<div class="col-md-6 invoice-col">-->
-              <!--  <address>-->
-              <!--    <strong>Trung tâm Đôrêmon Cần Thơ</strong><br>-->
-              <!--    C132/10A hẻm 132, đường 3 Tháng 2<br>-->
-              <!--    P. Hưng Lợi, Q. Ninh Kiều, TP. Cần Thơ<br>-->
-              <!--    <b>Số điện thoại:</b> (+84) 888-141811 hoặc (+84) 96-1020-096<br>-->
-              <!--    <b>Email:</b> hotro@trungtamdoremon.com<br>-->
-              <!--    <b>Website:</b> trungtamdoremon.com / cuahangdoremon.com-->
-              <!--  </address>-->
-              <!--</div>-->
-              <!-- /.col -->
               <div class="col-md-8 invoice-col">
                 <u>Thông tin khách hàng:</u>
                 <address>
@@ -85,7 +74,11 @@
                   </button>
                   <div class="dropdown-menu" role="menu">
                     @foreach ($ticket_statuses as $data)
+                    @if($data->id == 3) 
+                    <a class="dropdown-item" onclick="checkDone()">{{$data->name}}</a>
+                    @else
                     <a class="dropdown-item" href="{{route('staff.ticket.changestatus.get', ['case_id'=>$ticket->id, 'status_id'=>$data->id])}}">{{$data->name}}</a>
+                    @endif
                     @endforeach
                   </div>
                 </div>
@@ -154,20 +147,6 @@
               </div>
               <!-- /.col -->
             </div>
-            <!-- /.row -->
-            <!--<div class="row">-->
-            <!-- accepted payments column -->
-            <!--  <div class="col-6">-->
-            <!--    <p class="lead">NHÂN VIÊN</p>-->
-            <!--  </div>-->
-            <!-- /.col -->
-            <!--  <div class="col-6">-->
-            <!--    <p class="lead">KHÁCH HÀNG</p>-->
-            <!--  </div>-->
-            <!-- /.col -->
-            <!--</div>-->
-            <!-- /.row -->
-            <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
                 <a href="{{ route('staff.client.edit.get', ['client_id' => $ticket->client->id]) }}" class="btn btn-default">Sửa khách hàng</a>
@@ -191,6 +170,15 @@
           <!-- /.invoice -->
         </div>
         <div class="col-md-6">
+          @if (isset($ticket->price))
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert bg-maroon alert-primary">
+                <h5><i class="icon fa fa-money"></i>TỔNG CỘNG: <span style="font-size:1.5rem;font-weight: bold;">@if($ticket->price==0) MIỄN PHÍ @else {{ MoneyFormat($ticket->price) }} VNĐ @endif</span> </h5>
+              </div>
+            </div>
+          </div>
+          @endif
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Thêm nhật ký</h3>
@@ -295,5 +283,15 @@
     if (evt.keyCode == 119) //F8
       document.getElementById("btnIn").click();
   };
+  function checkDone() {
+    var price;
+    var input = prompt("Nhập vào phí dịch vụ:");
+    if (input == null || input == "") {
+      price = 0;
+    } else {
+      price = input;
+    }
+    window.location.href = "{{route('staff.ticket.changestatus.get', ['case_id'=>$ticket->id, 'status_id'=>3])}}/"+price;
+  }
 </script>
 @stop

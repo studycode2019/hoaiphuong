@@ -78,7 +78,7 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::get('/add/{client_id}', 'TicketsController@getAdd')->name('staff.ticket.add.get');
         Route::post('/add', 'TicketsController@postAdd')->name('staff.ticket.add.post');
         Route::get('/add/useold/{ticket_id}', 'TicketsController@getUseOld')->name('staff.ticket.useold.get');
-        Route::get('/view/{ticket_id}/status/{status_id}', 'TicketsController@getChangeStatus')->name('staff.ticket.changestatus.get');
+        Route::get('/view/{ticket_id}/status/{status_id}/{price?}', 'TicketsController@getChangeStatus')->name('staff.ticket.changestatus.get');
     });
     
     Route::group(['prefix' => 'ticketlogs'], function() 

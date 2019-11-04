@@ -14,7 +14,7 @@ class TicketRepository implements TicketRepositoryContract
 
     public function all()
     {
-        return $this->model->with('client', 'ticketStatus')->get();
+        return $this->model->with('client', 'ticketStatus')->orderBy('id', 'desc')->paginate(50);
     }
     
     public function paginate() {

@@ -2,6 +2,14 @@
 @section('head')
 <title>DEMO20 | Sổ biên nhận</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
+<style>
+  .pagination li {
+    padding: 10px; 
+  }
+  .pagination {
+    float: right;
+  }
+</style>
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -36,12 +44,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Ngày/Tháng</th>
+                  <th>Ngày nhận máy</th>
                   <th>Số phiếu</th>
                   <th>Dòng Máy</th>
                   <th>Tên khách hàng</th>
                   <th>Yêu cầu</th>
                   <th>Tiến độ</th>
+                  <th>Tổng cộng</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -56,6 +65,7 @@
                   <td>
                     <span class="badge bg-{{$ticket->ticketStatus->class}}"><span style="display: none;">{{$ticket->ticketStatus->id}}</span>{{$ticket->ticketStatus->name}}</span>
                   </td>
+                  <td>@if(isset($ticket->price)) @if($ticket->price==0) Miễn phí @else {{MoneyFormat($ticket->price)}} VNĐ @endif @endif</td>
                   <td>
                     <div class="btn-group">
                       <a href="{{route('staff.ticket.view.get', ['case_id' => $ticket->id])}}" class="btn btn-primary">Xem</a>
@@ -72,11 +82,14 @@
                   </td>
                 </tr>
                 @endforeach
-
                 </tbody>
               </table>
             </div>
             <!-- /.card-body -->
+            
+            <div class="dataTables_paginate paging_simple_numbers">
+              {{ $tickets->links() }}
+            </div>
           </div>
           <!-- /.card -->
         </div>
@@ -97,7 +110,8 @@
     $("#example1").DataTable({
         // "order": false,
         "order": [[ 5, "asc" ]],
-        "lengthMenu": [ 25, 50, 75, 100 ],
+        "lengthMenu": [ 50 ],
+        "bPaginate": false,
         "language": {
         	"sProcessing":   "Đang xử lý...",
         	"sLengthMenu":   "Xem _MENU_ mục",

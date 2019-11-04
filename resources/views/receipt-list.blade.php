@@ -54,7 +54,7 @@
                   <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}">{{$data->number}}</a></td>
                   <td>{{$data->client->name}}</td>
                   <td>{{$data->content}}</td>
-                  <td>{{number_format($data->sotien,0,",",".")}} ₫</td>
+                  <td>{{number_format($data->amount,0,",",".")}} ₫</td>
                   <td>{{$data->branch->name}}</td>
                   <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}" class="btn btn-primary">Xem</a></td>
                 </tr>

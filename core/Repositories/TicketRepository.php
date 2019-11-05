@@ -41,7 +41,7 @@ class TicketRepository implements TicketRepositoryContract
 
     public function getAllWithoutDone()
     {
-        return $this->model->where('ticket_status_id', '!=', 5)->with('client', 'ticketStatus')->get();
+        return $this->model->where('ticket_status_id', '!=', 5)->with('client', 'ticketStatus')->orderBy('id', 'desc')->paginate(50);
     }
 
     public function getView($id)

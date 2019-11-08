@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateReceiptsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('_receipts', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('number');
+			$table->integer('client_id');
+			$table->string('content')->nullable()->default('NULL');
+			$table->bigInteger('amount')->unsigned();
+			$table->integer('staff_id');
+			$table->timestamps();
+			$table->integer('field_id')->default(1);
+			$table->integer('branch_id')->default(0);
+			$table->softDeletes()->default('NULL');
+			$table->string('note')->nullable()->default('NULL');
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('_receipts');
+	}
+
+}

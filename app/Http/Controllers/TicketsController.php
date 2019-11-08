@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon; //bo dem thoi gian
 use App\Model\client;
 use App\Model\ticket;
-use App\Model\ticket_log;
-use App\Model\ticket_status;
 
 
 use Core\Services\TicketServiceContract;

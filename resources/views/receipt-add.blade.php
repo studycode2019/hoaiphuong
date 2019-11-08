@@ -62,7 +62,7 @@
               <input name="amount" type="number" class="form-control" id="amount" placeholder="Nhập vào số tiền" required>
             </div>
             <div class="form-group">
-              <label for="branch_id" style="color: #ff0505;"><i>Từ ngày 13/9/2019, người lập phiếu chịu trách nhiệm nhập lên hệ thống</i><br>Chi nhánh:</label>
+              <label for="branch_id">Chi nhánh:</label>
               <select name="branch_id" id="branch_id" class="form-control select2" style="width: 100%;">
                 @foreach ($branches as $data)
                 <option value="{{$data->id}}">{{$data->name}}</option>

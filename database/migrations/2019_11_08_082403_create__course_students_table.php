@@ -19,10 +19,10 @@ class CreateCourseStudentsTable extends Migration {
 			$table->integer('client_id');
 			$table->integer('deal_rate')->default(0);
 			$table->integer('tuition_done')->default(0);
-			$table->string('deal_note')->nullable()->default('NULL');
-			$table->softDeletes()->default('NULL');
+			$table->string('deal_note')->nullable();
+			$table->softDeletes();
 			$table->timestamps();
-			$table->string('note')->nullable()->default('NULL');
+			$table->string('note')->nullable();
 		});
 	}
 

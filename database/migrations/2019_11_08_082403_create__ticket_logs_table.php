@@ -17,7 +17,7 @@ class CreateTicketLogsTable extends Migration {
 			$table->increments('id');
 			$table->integer('ticket_id');
 			$table->integer('staff_id');
-			$table->string('content')->nullable()->default('NULL');
+			$table->string('content')->nullable();
 			$table->timestamps();
 			$table->boolean('is_public');
 		});

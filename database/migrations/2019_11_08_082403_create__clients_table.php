@@ -17,11 +17,11 @@ class CreateClientsTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('phone')->unique('khachhang_sdt_unique');
-			$table->date('birthday')->nullable()->default('NULL');
+			$table->date('birthday')->nullable();
 			$table->timestamps();
-			$table->string('zalo')->nullable()->default('NULL');
-			$table->string('major')->nullable()->default('NULL');
-			$table->string('email')->nullable()->default('NULL');
+			$table->string('zalo')->nullable();
+			$table->string('major')->nullable();
+			$table->string('email')->nullable();
 		});
 	}
 

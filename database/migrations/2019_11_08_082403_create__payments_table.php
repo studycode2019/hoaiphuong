@@ -16,14 +16,14 @@ class CreatePaymentsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('number');
-			$table->string('name')->nullable()->default('NULL');
+			$table->string('name')->nullable();
 			$table->bigInteger('amount')->unsigned();
 			$table->integer('branch_id')->default(0);
-			$table->string('content')->nullable()->default('NULL');
-			$table->string('note')->nullable()->default('NULL');
+			$table->string('content')->nullable();
+			$table->string('note')->nullable();
 			$table->integer('staff_id');
 			$table->integer('client_id')->default(766);
-			$table->softDeletes()->default('NULL');
+			$table->softDeletes();
 			$table->timestamps();
 			$table->integer('field_id')->default(1);
 		});

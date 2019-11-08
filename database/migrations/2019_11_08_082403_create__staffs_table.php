@@ -18,9 +18,9 @@ class CreateStaffsTable extends Migration {
 			$table->string('phone')->unique('nhanvien_sdt_unique');
 			$table->string('password');
 			$table->integer('level')->default(0);
-			$table->string('name')->nullable()->default('NULL');
-			$table->date('birthday')->nullable()->default('NULL');
-			$table->string('remember_token', 100)->nullable()->default('NULL');
+			$table->string('name')->nullable();
+			$table->date('birthday')->nullable();
+			$table->string('remember_token', 100)->nullable();
 			$table->timestamps();
 			$table->integer('group_id');
 		});

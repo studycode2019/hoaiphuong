@@ -16,17 +16,17 @@ class CreateTicketsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('client_id');
-			$table->string('requestment')->nullable()->default('NULL');
-			$table->string('model')->nullable()->default('NULL');
+			$table->string('requestment')->nullable();
+			$table->string('model')->nullable();
 			$table->string('cpu');
 			$table->string('ram');
-			$table->string('storage')->nullable()->default('NULL');
-			$table->string('other')->nullable()->default('NULL');
+			$table->string('storage')->nullable();
+			$table->string('other')->nullable();
 			$table->timestamps();
-			$table->string('note')->nullable()->default('NULL');
+			$table->string('note')->nullable();
 			$table->integer('ticket_status_id')->default(1);
 			$table->integer('staff_id');
-			$table->integer('price')->nullable()->default('NULL');
+			$table->integer('price')->nullable();
 		});
 	}
 

@@ -15,16 +15,16 @@ class CreateCoursesTable extends Migration {
 		Schema::create('_courses', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('shortname')->nullable()->default('NULL');
-			$table->string('name')->nullable()->default('NULL');
+			$table->string('shortname')->nullable();
+			$table->string('name')->nullable();
 			$table->integer('maxseat')->default(0);
 			$table->integer('tuition');
 			$table->date('opening_at');
 			$table->integer('lesson')->default(0);
-			$table->string('schedule')->nullable()->default('NULL');
-			$table->string('teacher')->nullable()->default('NULL');
-			$table->string('note')->nullable()->default('NULL');
-			$table->softDeletes()->default('NULL');
+			$table->string('schedule')->nullable();
+			$table->string('teacher')->nullable();
+			$table->string('note')->nullable();
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

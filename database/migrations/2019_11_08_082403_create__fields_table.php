@@ -15,8 +15,8 @@ class CreateFieldsTable extends Migration {
 		Schema::create('_fields', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name')->nullable()->default('NULL');
-			$table->softDeletes()->default('NULL');
+			$table->string('name')->nullable();
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

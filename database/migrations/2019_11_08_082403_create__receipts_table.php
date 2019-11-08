@@ -17,14 +17,14 @@ class CreateReceiptsTable extends Migration {
 			$table->increments('id');
 			$table->integer('number');
 			$table->integer('client_id');
-			$table->string('content')->nullable()->default('NULL');
+			$table->string('content')->nullable();
 			$table->bigInteger('amount')->unsigned();
 			$table->integer('staff_id');
 			$table->timestamps();
 			$table->integer('field_id')->default(1);
 			$table->integer('branch_id')->default(0);
-			$table->softDeletes()->default('NULL');
-			$table->string('note')->nullable()->default('NULL');
+			$table->softDeletes();
+			$table->string('note')->nullable();
 		});
 	}
 

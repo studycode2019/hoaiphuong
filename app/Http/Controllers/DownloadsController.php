@@ -25,10 +25,10 @@ class DownloadsController extends Controller
     
     public function postAdd(Request $request) {
         $download = new download;
-        $download->ten = $request->inputTen;
-        $download->mota = $request->inputMota;
-        $download->link = $request->inputLink;
-        $download->sha1 = $request->InputSha1;
+        $download->name = $request->name;
+        $download->description = $request->description;
+        $download->link = $request->link;
+        $download->sha1 = $request->sha1;
         $download->save();
         return redirect()->route('staff.download.list.get')->with('success','Đã thêm thành công!');
     }
@@ -40,10 +40,10 @@ class DownloadsController extends Controller
     
     public function postEdit(Request $request) {
         $download = download::findOrFail($request->inputId);
-        $download->ten = $request->inputTen;
-        $download->mota = $request->inputMota;
-        $download->link = $request->inputLink;
-        $download->sha1 = $request->InputSha1;
+        $download->name = $request->name;
+        $download->description = $request->description;
+        $download->link = $request->link;
+        $download->sha1 = $request->sha1;
         $download->save();
         return redirect()->route('staff.download.list.get')->with('success','Lưu thay đổi thành công!');
     }

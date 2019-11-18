@@ -1,8 +1,8 @@
 @extends('master')
 
 @section('head')
-<title>DEMO20 | Sửa học viên</title>
-<link rel="stylesheet" href="{{ secure_asset('plugins/select2/select2.min.css') }}">
+<title>SYS BDS</title>
+<link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
 @stop
   
 @section('main')
@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>SỬA THÔNG TIN</h1>
+            {{-- <h1>SỬA THÔNG TIN KHÁCH HÀNG</h1> --}}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Nhập lớp học</li>
+              <li class="breadcrumb-item active">Sửa thông tin</li>
             </ol>
           </div>
         </div>
@@ -39,17 +39,17 @@
     {{csrf_field()}}
     <input type="hidden" name="id" value="{{$course_student->id}}"/>
     <input type="hidden" name="client_id" value="{{$course_student->client_id}}"/>
-    <div class="row">
-      <div class="col-md-12">
+    <div class="row offset-3">
+      <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-body">
             <div class="col-md-12">
               <div class="form-group col-md-12">
-                <label>Tên học viên</label>
+                <label>Tên khách hàng</label>
                 <input type="text" class="form-control" value="{{$course_student->client->name}}" disabled>
               </div>
               <div class="form-group col-md-12">
-                <label>Chọn lớp học</label>
+                <label>Chọn dự án</label>
                 <select name="course_id" class="form-control select2" style="width: 100%;">
                   @foreach($courses as $data)
                   <option value="{{$data->id}}" @if($data->id==$course_student->course_id) selected="selected" @endif>{{$data->shortname}} - {{$data->name}}</option>
@@ -57,17 +57,17 @@
                 </select>
               </div>
               <div class="form-group col-md-12">
-                <label>Phần trăm ưu đãi (%)</label>
+                <label>Phần trăm ưu đãi đối với khách hàng VIP (%)</label>
                 <input type="number" class="form-control" name="deal_rate" value="{{ $course_student->deal_rate }}" required>
               </div>
               <div class="form-group col-md-12">
-                <label>Số tiền đã thu</label>
+                <label>Số tiền đã cọc</label>
                 <input type="number" class="form-control" name="tuition_done" value="{{ $course_student->tuition_done }}" required>
               </div>
-              <div class="form-group col-md-12">
-                <label>Chương trình ưu đãi</label>
+              {{-- <div class="form-group col-md-12">
+                <label>Nội dung ưu đãi - Quà tặng kèm theo</label>
                 <input type="textarea" class="form-control" name="deal_note" value="{{ $course_student->deal_note }}" placeholder="Ghi rõ nội dung ưu đãi" required>
-              </div>
+              </div> --}}
               <div class="form-group col-md-12">
                 <label>Ghi chú</label>
                 <input type="textarea" class="form-control" name="content" value="{{ $course_student->content }}" placeholder="Một vài dòng tâm sự...">
@@ -75,8 +75,10 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary pull-right">Lưu thay đổi</button>
-            <a onclick="history.go(-1);" class="btn">Quay lại</a>
+            <div class="row">
+                <div class="col-md-6"><button type="submit" class="btn btn-primary pull-right">Lưu thay đổi</button></div>
+                <div class="col-md-6"><button type="submit" class="btn btn-secondary pull-left"><a onclick="history.go(-1);">Quay lại</a></button></div>
+            </div>
           </div>
         </div>
       </div>

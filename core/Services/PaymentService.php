@@ -3,7 +3,6 @@
 namespace Core\Services;
 
 use Core\Repositories\PaymentRepositoryContract;
-use Core\Repositories\FieldRepositoryContract;
 
 class PaymentService implements PaymentServiceContract
 {

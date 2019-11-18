@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('head')
-<title>DEMO20 | Thêm lớp học mới</title>
+<title>@yield('title')</title>
 <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 @stop
   
@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>THÊM LỚP HỌC MỚI</h1>
+            <h1></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Nhập lớp học</li>
+              <li class="breadcrumb-item active">Thêm Nhà Đầu Tư</li>
             </ol>
           </div>
         </div>
@@ -41,20 +41,20 @@
       <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Thêm lớp học mới</h3>
+            <h3 class="card-title">Thêm Nhà Đầu Tư</h3>
           </div>
           <div class="card-body">
             <div class="col-md-12">
               <div class="form-group col-md-12">
-                <label>Tên lớp học</label>
+                <label>Tên Nhà Đầu Tư</label>
                 <input type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
               </div>
               <div class="form-group col-md-12">
-                <label>Mã lớp học</label>
+                <label>Mã NDT</label>
                 <input type="text" class="form-control" name="shortname" value="{{ old('shortname') }}" required autofocus>
               </div>
               <div class="form-group col-md-12">
-                <label>Số buổi</label>
+                <label>Số Lượng</label>
                 <input type="number" class="form-control" name="lesson" value="{{ old('lesson') }}" required>
               </div>
               <div class="form-group col-md-12">

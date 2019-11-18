@@ -1,8 +1,8 @@
 @extends('master')
 
 @section('head')
-<title>DEMO20 | Thêm học viên</title>
-<link rel="stylesheet" href="{{ secure_asset('plugins/select2/select2.min.css') }}">
+<title>SYS BDS</title>
+<link rel="stylesheet" href="{{asset('plugins/select2/select2.min.css') }}">
 @stop
   
 @section('main')
@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>THÊM HỌC VIÊN VÀO LỚP</h1>
+            {{-- <h1>THÊM KHÁCH HÀNG</h1> --}}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Nhập lớp học</li>
+              <li class="breadcrumb-item active">Thêm khách hàng vào dự án</li>
             </ol>
           </div>
         </div>
@@ -38,17 +38,17 @@
     <form action="{{route('staff.coursestudent.add.post')}}" method="post">
     {{csrf_field()}}
     <input type="hidden" name="client_id" value="{{$client->id}}"/>
-    <div class="row">
-      <div class="col-md-12">
+    <div class="row offset-3">
+      <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-body">
             <div class="col-md-12">
               <div class="form-group col-md-12">
-                <label>Tên học viên</label>
+                <label>Tên khách hàng</label>
                 <input type="text" class="form-control" value="{{$client->name}}" disabled>
               </div>
               <div class="form-group col-md-12">
-                <label>Chọn lớp học</label>
+                <label>Chọn dự án</label>
                 <select name="course_id" class="form-control select2" style="width: 100%;">
                   @foreach($courses as $data)
                   @if($data->sum()<$data->maxseat)
@@ -58,17 +58,17 @@
                 </select>
               </div>
               <div class="form-group col-md-12">
-                <label>Phần trăm ưu đãi (%)</label>
+                <label>Phần trăm ưu đãi đối với khách hàng VIP (%)</label>
                 <input type="number" class="form-control" name="deal_rate" value="{{ old('deal_rate') }}" required>
               </div>
               <div class="form-group col-md-12">
-                <label>Số tiền đã thu</label>
+                <label>Số tiền đã cọc</label>
                 <input type="number" class="form-control" name="tuition_done" value="{{ old('tuition_done') }}" required>
               </div>
-              <div class="form-group col-md-12">
-                <label>Chương trình ưu đãi</label>
+              {{-- <div class="form-group col-md-12">
+                <label></label>
                 <input type="textarea" class="form-control" name="deal_note" value="{{ old('deal_note') }}" placeholder="Ghi rõ nội dung ưu đãi">
-              </div>
+              </div> --}}
               <div class="form-group col-md-12">
                 <label>Ghi chú</label>
                 <input type="textarea" class="form-control" name="note" value="{{ old('note') }}" placeholder="Một vài dòng tâm sự...">

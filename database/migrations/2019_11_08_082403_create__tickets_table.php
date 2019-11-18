@@ -16,11 +16,11 @@ class CreateTicketsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('client_id');
-			$table->string('requestment')->nullable();
-			$table->string('model')->nullable();
-			$table->string('cpu');
-			$table->string('ram');
-			$table->string('storage')->nullable();
+			$table->string('address')->nullable();
+			$table->string('description')->nullable();
+			$table->string('length');
+			$table->string('width');
+			$table->string('manager')->nullable();
 			$table->string('other')->nullable();
 			$table->timestamps();
 			$table->string('note')->nullable();

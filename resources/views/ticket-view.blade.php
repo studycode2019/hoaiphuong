@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Xem biên nhân #{{$ticket->id}}</title>
+<title>DELI SYS #{{$ticket->id}}</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{secure_asset('plugins/iCheck/square/blue.css')}}">
 @stop
@@ -12,12 +12,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>XEM BIÊN NHẬN</h1>
+          {{-- <h1>XEM BIÊN NHẬN THIẾT KẾ</h1> --}}
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Xem biên nhận</li>
+            <li class="breadcrumb-item active">Xem chi tiết BDS</li>
           </ol>
         </div>
       </div>
@@ -33,7 +33,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h5><i class="icon fa fa-check"></i> Thành công!</h5>
             {{ session('success') }}
-          </div>
+          </div>    
         </div>
       </div>
       @endif
@@ -45,7 +45,7 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <i class="fa fa-wrench"></i> <b>BIÊN NHẬN SỬA CHỮA MÁY</b>
+                  <i class="fa fa-wrench"></i> <b class="text-uppercase">Thông tin đăng ký bán BDS</b>
                   <small class="float-right"><b>SỐ PHIẾU #{{ $ticket -> id }}</b></small>
                 </h4>
               </div>
@@ -59,8 +59,8 @@
                   <strong class="text-uppercase">{!! $ticket->client->linkName() !!}</strong><br>
                   <b>Số điện thoại:</b> <a href="tel:{{$ticket->client->phone}}">{{ PhoneFormat($ticket->client->phone) }}</a><br>
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($ticket->client->birthday)) }}<br>
-                  <b>Mã khách hàng:</b> KH{{ $ticket->client->id }}<br>
-                  <b>Ngày nhận máy:</b> {{ $ticket->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
+                  <b>Mã KH:</b> KH{{ $ticket->client->id }}<br>
+                  <b>Ngày nhận:</b> {{ $ticket->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
                   <b>Nhân viên nhận:</b> {{ $ticket->staff->name }}
                 </address>
               </div>
@@ -74,11 +74,7 @@
                   </button>
                   <div class="dropdown-menu" role="menu">
                     @foreach ($ticket_statuses as $data)
-                    @if($data->id == 3) 
-                    <a class="dropdown-item" onclick="checkDone()">{{$data->name}}</a>
-                    @else
                     <a class="dropdown-item" href="{{route('staff.ticket.changestatus.get', ['case_id'=>$ticket->id, 'status_id'=>$data->id])}}">{{$data->name}}</a>
-                    @endif
                     @endforeach
                   </div>
                 </div>
@@ -90,7 +86,7 @@
             <div class="row">
               <div class="col-12">
                 <address>
-                  <h5 class="text-uppercase"><b>Yêu cầu khách hàng:</b> {{ $ticket->requestment }}</h5>
+                  <h5 class="text-uppercase"><b>Thông tin đăng ký bán BDS:</b> {{ $ticket->requestment }}</h5>
                 </address>
               </div>
             </div>
@@ -101,27 +97,27 @@
                 <table class="table table-striped table table-bordered">
                   <tbody>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dòng máy</b></h5>
+                      <td class="text-uppercase" style="width: 200px"><b>Mô tả chi tiết</b></h5>
                       </td>
                       <td class="text-uppercase">{{ $ticket -> model }}</h5>
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>CPU</b></h5>
+                      <td class="text-uppercase" style="width: 200px"><b>Chiều dài</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $ticket -> cpu }}</h5>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng RAM</b></h5>
-                      </td>
-                      <td class="text-uppercase">{{ $ticket -> ram }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> length }}</h5>
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Dung lượng ổ cứng</b></h5>
+                      <td class="text-uppercase" style="width: 200px"><b>Chiều rộng</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $ticket -> storage }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> width }}</h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-uppercase" style="width: 200px"><b>Người quản lý dự án</b></h5>
+                      </td>
+                      <td class="text-uppercase">{{ $ticket -> manager }}</h5>
                       </td>
                     </tr>
                   </tbody>
@@ -131,15 +127,15 @@
                 <table class="table table-striped table table-bordered">
                   <tbody>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Phụ kiện kèm theo</b></h5>
+                      <td class="text-uppercase" style="width: 200px"><b>Ngày hẹn</b></h5>
                       </td>
                       <td class="text-uppercase">{{ $ticket -> other }}</h5>
                       </td>
                     </tr>
                     <tr>
-                      <td class="text-uppercase" style="width: 200px"><b>Tình trạng máy</b></h5>
+                      <td class="text-uppercase" style="width: 200px"><b>Giá</b></h5>
                       </td>
-                      <td class="text-uppercase">{{ $ticket -> note }}</h5>
+                      <td class="text-uppercase">{{ $ticket -> price }}</h5>
                       </td>
                     </tr>
                   </tbody>
@@ -153,7 +149,8 @@
                 <a href="{{ route('staff.ticket.edit.get', ['case_id' => $ticket->id]) }}" class="btn btn-default">Sửa biên nhận</a>
 
                 <div class="btn-group float-right">
-                  <a href="{{ route('staff.ticket.printpos.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a>
+                    <a href="{{ route('staff.ticket.print.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;In biên nhận</a>
+                  {{-- <a href="{{ route('staff.ticket.printpos.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn-primary" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN MÁY POS</a> --}}
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
@@ -163,22 +160,13 @@
                   </div>
                 </div>
                 
-                <a href="{{ route('staff.ticket.printinternal.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a>
+                {{-- <a href="{{ route('staff.ticket.printinternal.get', ['case_id' => $ticket->id]) }}" target="_blank" class="btn btn float-right"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU DÁN</a> --}}
               </div>
             </div>
           </div>
           <!-- /.invoice -->
         </div>
         <div class="col-md-6">
-          @if (isset($ticket->price))
-          <div class="row">
-            <div class="col-md-12">
-              <div class="alert bg-maroon alert-primary">
-                <h5><i class="icon fa fa-money"></i>TỔNG CỘNG: <span style="font-size:1.5rem;font-weight: bold;">@if($ticket->price==0) MIỄN PHÍ @else {{ MoneyFormat($ticket->price) }} VNĐ @endif</span> </h5>
-              </div>
-            </div>
-          </div>
-          @endif
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Thêm nhật ký</h3>
@@ -209,9 +197,9 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Nhật ký sửa chữa</h3>
+              <h3 class="card-title">Nhật ký bán hàng</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -283,15 +271,5 @@
     if (evt.keyCode == 119) //F8
       document.getElementById("btnIn").click();
   };
-  function checkDone() {
-    var price;
-    var input = prompt("Nhập vào phí dịch vụ:");
-    if (input == null || input == "") {
-      price = 0;
-    } else {
-      price = input;
-    }
-    window.location.href = "{{route('staff.ticket.changestatus.get', ['case_id'=>$ticket->id, 'status_id'=>3])}}/"+price;
-  }
 </script>
 @stop

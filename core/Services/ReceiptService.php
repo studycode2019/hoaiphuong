@@ -3,7 +3,6 @@
 namespace Core\Services;
 
 use Core\Repositories\ReceiptRepositoryContract;
-use Core\Repositories\FieldRepositoryContract;
 
 class ReceiptService implements ReceiptServiceContract
 {

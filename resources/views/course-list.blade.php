@@ -1,7 +1,7 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Danh sách các lớp</title>
-<link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
+<title>@yield('title')</title>
+<link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -19,12 +19,12 @@
         @endif
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DANH SÁCH CÁC LỚP HỌC</h1>
+            <h1></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Danh sách lớp</li>
+              <li class="breadcrumb-item active">Danh sách NDT</li>
             </ol>
           </div>
         </div>
@@ -37,20 +37,18 @@
         <div class="col-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Danh sách các lớp học</h3>
+              <h3 class="card-title">Danh sách nhà đầu tư</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Khai giảng</th>
-                  <th>Mã lớp học</th>
-                  <th>Tên</th>
-                  <th>Học phí</th>
-                  <th>Số buổi</th>
-                  <th>Lịch học</th>
-                  <th>Số lượng hiện tại</th>
+                  <th>Ngày</th>
+                  <th>Mã BDS</th>
+                  <th>Địa chỉ</th>
+                  <th>Số tiền</th>
+                  <th>Số lượng</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -106,8 +104,8 @@
 @stop
 
 @section('script')
-<script src="{{secure_asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{secure_asset('plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{ asset('plugins/datatables/dataTables.bootstrap4.js')}}"></script>
 <script>
   $(function () {
     $("#example1").DataTable({

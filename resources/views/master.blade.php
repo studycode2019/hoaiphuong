@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   @yield('head')
-  <title>DEMO20 | Blank Page</title>
+  <title>SYS BDS</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -12,7 +12,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{secure_asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -27,7 +27,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('staff.ticket.list.get')}}" class="nav-link">Biên nhận</a>
+        <a href="/" class="nav-link">Trang Chủ</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('staff.client.list.get')}}" class="nav-link">Khách hàng</a>
@@ -49,14 +49,14 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="{{secure_asset('dist/img/AdminLTELogo.png')}}"
+      <img src="{{asset('dist/img/AdminLTELogo.png')}}"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">CatoTek System</span>
+      <span class="brand-text font-weight-light">SYS BDS</span>
     </a>
 
     <!-- Sidebar -->
@@ -64,7 +64,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{secure_asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="{{route('staff.profile.edit.get')}}" class="d-block">{{ UserInfo()->name }}</a>
@@ -84,7 +84,7 @@
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-wrench"></i>
               <p>
-                Kỹ thuật
+                Danh Sách Bán BDS
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -92,13 +92,13 @@
               <li class="nav-item">
                 <a href="{{route('staff.ticket.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
-                  <p>Danh sách</p>
+                  <p>Danh sách bán BDS</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('staff.ticketlog.list.get')}}" class="nav-link">
                   <i class="fa fa-history nav-icon"></i>
-                  <p>Nhật ký sửa chữa</p>
+                  <p>Nhật ký thay đổi</p>
                 </a>
               </li>
             </ul>
@@ -108,7 +108,7 @@
             <a href="{{route('staff.client.list.get')}}" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
-                Danh bạ khách
+                Danh sách khách hàng
               </p>
             </a>
           </li>
@@ -117,7 +117,7 @@
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-university"></i>
               <p>
-                Lớp học
+                Dự án
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -125,19 +125,19 @@
               <li class="nav-item">
                 <a href="{{route('staff.course.list.get')}}" class="nav-link">
                   <i class="fa fa-list nav-icon"></i>
-                  <p>Danh sách lớp</p>
+                  <p>Danh sách dự án</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('staff.course.add.get')}}" class="nav-link">
                   <i class="fa fa-plus nav-icon"></i>
-                  <p>Thêm lớp mới</p>
+                  <p>Thêm dự án mới</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('staff.courselog.list.get')}}" class="nav-link">
                   <i class="fa fa-history nav-icon"></i>
-                  <p>Nhật ký lớp</p>
+                  <p>Nhật ký dự án</p>
                 </a>
               </li>
             </ul>
@@ -185,31 +185,31 @@
           <!--  </ul>-->
           <!--</li> -->
 
-          <li class="nav-item has-treeview menu-open">
+          {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-link"></i>
               <p>
-                Tải phần mềm
+                Sản phẩm
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/taive" class="nav-link">
+                <a href="{{route('staff.download.list.get')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Danh sách</p>
+                  <p>Danh sách sản phẩm</p>
                 </a>
               </li>
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/themtaive" class="nav-link">
+                <a href="{{route('staff.download.add.get')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Thêm phần mềm</p>
+                  <p>Thêm sản phẩm mới</p>
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -236,17 +236,17 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{secure_asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{secure_asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- SlimScroll -->
-<script src="{{secure_asset('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
-<script src="{{secure_asset('plugins/fastclick/fastclick.js')}}"></script>
+<script src="{{asset('plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{secure_asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{secure_asset('dist/js/demo.js')}}"></script>
+<script src="{{asset('dist/js/demo.js')}}"></script>
 @yield('script')
 </body>
 </html>

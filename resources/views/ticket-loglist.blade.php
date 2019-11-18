@@ -1,7 +1,7 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Nhật ký sửa chữa</title>
-<link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
+<title>SYS BDS</title>
+<link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -45,7 +45,7 @@
                 @foreach($ticket_logs as $data)
                 <tr>
                   <td>{{ date("Y/m/d - H:i", strtotime($data->created_at)) }}</td>
-                  <td><a href="{{route('staff.ticket.view.get', ['ticket_id' => $data->ticket->id])}}">#{{ $data->ticket->id }} - {{ $data->ticket->model }}</a> ({{ $data->ticket->requestment }})</td>
+                  <td><a href="{{route('staff.ticket.view.get', ['ticket_id' => $data->ticket->id])}}">#{{ $data->ticket->id }} - {{ $data->ticket->model }}</a> ({{ $data->ticket->address }})</td>
                   <td>{{ $data->staff->name }}: {{ $data->content }}</td>
                 </tr>
                 @endforeach

@@ -1,7 +1,7 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Danh sách phần mềm</title>
-<link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
+<title>SYS DELI | Danh sách File khách hàng</title>
+<link rel="stylesheet" href="{{asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DANH SÁCH PHẦN MỀ</h1>
+            <h1>DANH SÁCH FILE KHÁCH HÀNG</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Tải về</li>
+              <li class="breadcrumb-item active">Danh sách file khách hàng</li>
             </ol>
           </div>
         </div>
@@ -35,32 +35,34 @@
     @endif
       <div class="row">
         <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Danh sách biên nhận</h3>
+          <div class="card card-primary">
+            <div class="card-header text-uppercase text-center">
+              <h3 class="card-title">Danh sách File khách hàng</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped table-hover">
                     <thead>
-                      <tr>
-                        <th>Tên phần mềm</th>
+                      <tr class="text-center">
+                        <th>Tên khách hàng</th>
+                        <th>Tên File</th>
                         <th>Mô tả</th>
                         <th>SHA1</th>
-                        <th style="width: 10%"></th>
+                        <th style="width: 10%">Chức năng</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($taives as $taive)
+                      @foreach ($downloads as $data)
                       <tr>
-                        <td>{{$taive->ten}}</td>
-                        <td>{{$taive->mota}}</td>
-                        <td>{{$taive->sha1}}</td>
+
+                        <td>{{$data->name}}</td>
+                        <td>{{$data->description}}</td>
+                        <td>{{$data->sha1}}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="suataive/{{$taive->id}}" class="btn btn-success" target="_blank"><i class="nav-icon fa fa-download"></i></a>
-                            <a href="suataive/{{$taive->id}}" class="btn btn-primary"><i class="nav-icon fa fa-edit"></i></a>
-                            <a href="xoataive/{{$taive->id}}" class="btn btn-danger"><i class="nav-icon fa fa-trash"></i></a>
+                            <a href="{{route('staff.download.add.get', ['download_id' => $data->id])}}" class="btn btn-success" target="_blank"><i class="nav-icon fa fa-download"></i></a>
+                            <a href="{{route('staff.download.edit.get', ['download_id' => $data->id])}}" class="btn btn-primary"><i class="nav-icon fa fa-edit"></i></a>
+                            <a href="{{route('staff.download.delete.get', ['download_id' => $data->id])}}" class="btn btn-danger"><i class="nav-icon fa fa-trash"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -82,8 +84,8 @@
 @stop
 
 @section('script')
-<script src="{{secure_asset('plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{secure_asset('plugins/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('plugins/datatables/dataTables.bootstrap4.js')}}"></script>
 <script>
   $(function () {
     $("#example1").DataTable({

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('head')
-<title>DEMO20 | Thêm link tải về</title>
+<title>SYS DELI | Thêm FILE</title>
 <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 @stop
   
@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>THÊM LINK TẢI VỀ</h1>
+            <h1 class="text-warning">THÊM FILE KHÁCH HÀNG</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Tải về</li>
+              <li class="breadcrumb-item active">Thêm File</li>
             </ol>
           </div>
         </div>
@@ -43,28 +43,28 @@
       </div>
     @endforeach
     @endif
-    <form action="/themtaive" method="post">
+    <form action="{{route('staff.download.add.post')}}" method="post">
     {{csrf_field()}}
-    <div class="row">
-      <div class="col-md-12">
+    <div class="row offset-3">
+      <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-body">
             <div class="col-md-12">
               <div class="form-group col-md-12">
-                <label>Tên phần mềm</label>
-                <input type="text" class="form-control" name="inputTen" value="{{ old('inputTen') }}" required autofocus>
+                <label>Tên File khách hàng</label>
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
               </div>
               <div class="form-group col-md-12">
                 <label>Mô tả</label>
-                <input type="text" class="form-control" name="inputMota" value="{{ old('inputMota') }}">
+                <input type="text" class="form-control" name="description" value="{{ old('description') }}">
               </div>
               <div class="form-group col-md-12">
                 <label>Link</label>
-                <input type="text" class="form-control" name="inputLink" value="{{ old('inputLink') }}" required>
+                <input type="text" class="form-control" name="link" value="{{ old('link') }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>SHA1</label>
-                <input type="text" class="form-control" name="inputSha1" value="{{ old('inputSha1') }}">
+                <input type="text" class="form-control" name="sha1" value="{{ old('sha1') }}">
               </div>
             </div>
           </div>

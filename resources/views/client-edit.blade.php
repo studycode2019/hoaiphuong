@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Sửa khách hàng: {{$client->ten}}</title>
+<title>SYS BDS | Sửa TTKH: {{$client->ten}}</title>
 @stop
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>KHÁCH HÀNG</h1>
+            {{-- <h1 class="text-warning"><b>THÔNG TIN KHÁCH HÀNG</b></h1> --}}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -33,10 +33,11 @@
       </div>
     @endforeach
     @endif
-    
+    <div class="row offset-3">
+      <div class="col-md-6">
       <!-- general form elements -->
             <div class="card card-primary">
-              <div class="card-header">
+              <div class="card-header text-center text-uppercase">
                 <h3 class="card-title">Nhập thông tin khách hàng</h3>
               </div>
               <!-- /.card-header -->
@@ -58,7 +59,7 @@
                     <input name="birthday" type="date" class="form-control" id="birthday" value="{{$client->birthday}}">
                   </div>
                   <div class="form-group">
-                    <label for="zalo">Zalo:</label>
+                    <label for="zalo">Số chứng minh nhân dân - Căn cước:</label>
                     <input name="zalo" type="number" class="form-control" id="zalo" value="{{$client->zalo}}" >
                   </div>
                   <div class="form-group">
@@ -66,20 +67,29 @@
                     <input name="email" type="text" class="form-control" id="email" value="{{$client->email}}" >
                   </div>
                   <div class="form-group">
-                    <label for="major">Ngành học:</label>
+                    <label for="major">Nơi đăng ký HKTT:</label>
                     <input name="major" type="text" class="form-control" id="major" value="{{$client->major}}" >
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                  <a onclick="history.go(-1);" class="btn">Quay lại</a>
+                  <div class="row">
+                    <div class="col-md-6 text-right">
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-secondary"><a onclick="history.go(-1);">Quay lại</a></button>
+                    </div>
+                  </div>
+                  
+                  
                 </div>
               </form>
             </div>
             <!-- /.card -->
-
+          </div>
+        </div>
     </section>
     <!-- /.content -->
   </div>

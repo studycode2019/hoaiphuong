@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/download', 'TaiveController@getDanhsachCongkhai');
+Route::get('/download', 'DownloadsController@getList')->name('staff.download.list.get');
 Route::get('/tracking', 'TrackingController@getTimkiem');
 Route::post('/search', 'TrackingController@postTracking');
 Route::get('/tracking/{ticket_id}', 'TrackingController@getByTicket');
@@ -87,7 +87,7 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
         Route::post('/add', 'TicketLogsController@postAdd')->name('staff.ticketlog.add.post');
         Route::get('/{ticketlog_id}/setpublic', 'TicketLogsController@getSetpublic')->name('staff.ticketlog.setpublic.get');
     });
-    
+
     Route::group(['prefix' => 'courses'], function ()
     {
         Route::get('/', 'CoursesController@getList')->name('staff.course.list.get');
@@ -119,11 +119,11 @@ Route::group(['prefix' => '','middleware' => 'staff'], function()
     
     Route::group(['prefix' => 'download'], function ()
     {
-        Route::get('/', 'DownloadController@getList')->name('staff.download.list.get');
-        Route::get('/add', 'DownloadController@getAdd')->name('staff.download.add.get');
-        Route::post('/add', 'DownloadController@postAdd')->name('staff.download.add.post');
-        Route::get('/delete/{download_id}', 'DownloadController@getDelete')->name('staff.download.delete.get');
-        Route::get('/edit/{download_id}', 'DownloadController@getEdit')->name('staff.download.edit.get');
-        Route::post('/edit', 'DownloadController@postEdit')->name('staff.download.edit.post');
+        Route::get('/', 'DownloadsController@getList')->name('staff.download.list.get');
+        Route::get('/add', 'DownloadsController@getAdd')->name('staff.download.add.get');
+        Route::post('/add', 'DownloadsController@postAdd')->name('staff.download.add.post');
+        Route::get('/delete/{download_id}', 'DownloadsController@getDelete')->name('staff.download.delete.get');
+        Route::get('/edit/{download_id}', 'DownloadsController@getEdit')->name('staff.download.edit.get');
+        Route::post('/edit', 'DownloadsController@postEdit')->name('staff.download.edit.post');
     });
 });

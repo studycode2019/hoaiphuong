@@ -8,7 +8,7 @@ class ticket extends Model
 {
     public $timestamps = true;
     public $table = '_tickets';
-    public $fillable = ['client_id', 'staff_id', 'requestment', 'model', 'cpu', 'ram', 'storage', 'other', 'note', 'ticket_status_id', 'price'];
+    public $fillable = ['client_id', 'staff_id', 'address', 'description', 'length', 'width', 'storage', 'other', 'note', 'ticket_status_id', 'price'];
     
     public function client()
     {

@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Xem phiếu thu #{{$receipt->id}}</title>
+<title>SYS BDS | #{{$receipt->id}}</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{secure_asset('plugins/iCheck/square/blue.css')}}">
 @stop
@@ -12,7 +12,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>XEM PHIẾU THU</h1>
+          {{-- <h1>XEM PHIẾU THU</h1> --}}
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -26,13 +26,13 @@
   </section>
   <section class="content">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-6">
+      <div class="row offset-2">
+        <div class="col-8">
           <!-- Main content -->
           <div class="invoice p-3 mb-3">
             <!-- title row -->
-            <div class="row">
-              <div class="col-12">
+            <div class="row-12">
+              <div class="col">
                 <h4>
                   <i class="fa fa-globe"></i>  <b>PHIẾU THU</b>
                   <small class="float-right"><b>SỐ PHIẾU #{{ $receipt -> number }}</b></small>
@@ -48,7 +48,7 @@
                   <strong class="text-uppercase"><a href="{{route('staff.client.view.get', ['client_id'=>$receipt->client->id])}}">{{$receipt->client->name}}</a></strong><br>
                   <b>Số điện thoại: </b><a href="tel:{{$receipt->client->sdt}}">{{PhoneFormat($receipt->client->phone)}}</a><br>
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($receipt->client->birthday)) }}<br>
-                  <b>Mã khách hàng:</b> {{ $receipt->client->id }}<br>
+                  <b>Mã KH:</b> {{ $receipt->client->id }}<br>
                   <b>Ngày lập phiếu:</b> {{ $receipt->created_at->timezone('Asia/Ho_Chi_Minh')->format("d/m/Y - H:i") }}<br>
                   <b>Nhân viên lập:</b> {{ $receipt->staff->name }}
                 </address>
@@ -60,7 +60,7 @@
               <div class="col-12">
                 <address>
                   <h5 class="text-uppercase">
-                    <b>DANH SÁCH DỊCH VỤ</b>
+                    <b>DANH SÁCH</b>
                   </h5>
                 </address>
               </div>
@@ -71,17 +71,17 @@
               <div class="col-12 table-responsive">
                 <table class="table table-striped table table-bordered">
                   <thead>
-                    <tr>
+                    <tr class="text-center">
                       <th>STT</th>
-                      <th>Dịch vụ</th>
-                      <th>Thành tiền</th>
+                      <th>Nội dung</th>
+                      <th>Tổng số tiền</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-uppercase">1</td>
+                      <td class="text-uppercase text-center">1</td>
                       <td class="text-uppercase">{{ $receipt -> content }}</td>
-                      <td class="text-uppercase">{{ number_format($receipt->amount,0,",",".") }}</td>
+                      <td class="text-uppercase text-center">{{ number_format($receipt->amount,0,",",".") }}</td>
                     </tr>
                   </tbody>
                 </table>

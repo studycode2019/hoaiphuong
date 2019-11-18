@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Nhập biên nhận mới</title>
+<title>SYS BDS</title>
 @stop
 @section('main')
 <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>NHẬP BIÊN NHẬN</h1>
+          {{-- <h1>THÊM BDS MỚI</h1> --}}
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Nhập biên nhận</li>
+            <li class="breadcrumb-item active">Thêm bất động sản mới</li>
           </ol>
         </div>
       </div>
@@ -36,15 +36,15 @@
             <table class="table table-bordered">
               <tr>
                 <th>ID</th>
-                <th>Dòng máy</th>
-                <th>Cấu hình</th>
+                <th>Địa chỉ</th>
+                <th>Chi tiết lịch sử</th>
                 <th></th>
               </tr>
               @foreach($client->tickets as $data)
               <tr>
                 <td>{{$data->id}}</td>
-                <td>{{$data->requestment}}</td>
-                <td>CPU {{$data->cpu}}, RAM {{$data->ram}}, Ổ CỨNG {{$data->storage}}</td>
+                <td>{{$data->address}}</td>
+                <td>Chiều dài: {{$data->length}}, Chiều rộng: {{$data->width}}, Người nhận dự án: {{$data->manager}}</td>
                 <td><a href="{{route('staff.ticket.useold.get', ['case_id' => $data->id])}}" class="btn btn-block btn-primary">Sử dụng</a></td>
               </tr>
               @endforeach
@@ -52,9 +52,11 @@
           </div>
       </div>
       @endif
-      <div class="card card-primary">
+      <div class="row offset-3">
+        <div class="col-md-6">
+            <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Nhập thông tin biên nhận</h3>
+          <h3 class="card-title text-center text-uppercase">Thêm thông tin bất động sản</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -66,43 +68,52 @@
               <label for="inputSostt">Số Điện Thoại:</label> {{$client->phone}}    |    
               <label for="inputSostt">Ngày Sinh:</label> {{date("d/m/Y", strtotime($client->birthday))}}
               <input name="client_id" type="hidden" class="form-control" value="{{$client->id}}">
-              <input name="staff_id" type="hidden" class="form-control" value="{{UserInfo()->id}}">
+              {{-- <input name="staff_id" type="hidden" class="form-control" value="{{UserInfo()->id}}"> --}}
             </div>
             <div class="form-group">
-              <label for="requestment">Yêu cầu khách hàng:</label>
-              <input name="requestment" type="text" class="form-control" id="requestment" placeholder="Cần xử lý những gì?" autofocus required>
+                <label for="manager">Người nhận dự án:</label> {{ UserInfo()->name }} 
+                {{-- <input name="manager" type="text" class="form-control" id="manager" value="{{ UserInfo()->name }}"> --}}
             </div>
             <div class="form-group">
-              <label for="model">Dòng máy:</label>
-              <input name="model"type="text" class="form-control" id="model" placeholder="Asus N53TK, Dell Inspiron 15,..." @if(isset($ticket_old)) value="{{$ticket_old->model}}" @endif required>
+              <label for="address">Địa chỉ:</label>
+              <input name="address" type="text" class="form-control" id="address" placeholder="Địa chỉ cụ thể,..." autofocus required>
             </div>
             <div class="form-group">
-              <label for="cpu">CPU:</label>
-              <input name="cpu" type="text" class="form-control" id="cpu" placeholder="AMD AX, Intel iX-1234,..." @if(isset($ticket_old)) value="{{$ticket_old->cpu}}" @endif required>
+              <label for="description">Mô tả chi tiết:</label>
+              <input name="description"type="text" class="form-control" id="description" placeholder="Gần trường học, bệnh viện,..." @if(isset($ticket_old)) value="{{$ticket_old->model}}" @endif required>
             </div>
             <div class="form-group">
-              <label for="ram">Dung lượng RAM:</label>
-              <input name="ram" type="text" class="form-control" id="ram" placeholder="Bao nhiêu GB?" @if(isset($ticket_old)) value="{{$ticket_old->ram}}" @endif required>
+              <label for="length">Chiều dài:</label>
+              <input name="length" type="number" class="form-control" id="length" placeholder="Tính đơn vị mét vuông" @if(isset($ticket_old)) value="{{$ticket_old->length}}" @endif required>
             </div>
             <div class="form-group">
-              <label for="storage">Dung lượng ổ cứng:</label>
-              <input name="storage" type="text" class="form-control" id="storage" placeholder="Bao nhiêu GB?" @if(isset($ticket_old)) value="{{$ticket_old->storage}}" @endif required>
+              <label for="width">Chiều rộng:</label>
+              <input name="width" type="number" class="form-control" id="width" placeholder="Tính đơn vị mét vuông" @if(isset($ticket_old)) value="{{$ticket_old->width}}" @endif required>
             </div>
             <div class="form-group">
-              <label for="note">Tình trạng máy:</label>
-              <input name="note" type="text" class="form-control" id="note" placeholder="Bình thường, Tình trạng Pin,..." required>
+              <label for="note">Giá:</label>
+              <input name="price" type="number" class="form-control" id="price" required>
             </div>
             <div class="form-group">
-              <label for="other">Phụ kiện kèm theo:</label>
-              <input name="other" type="text" class="form-control" id="other" placeholder="Sạc, túi chống sốc,..." required>
+              <label for="other">Ghi chú:</label>
+              <input name="other" type="text" class="form-control" id="other" placeholder="Khách hàng muốn làm gì,..." required>
             </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Thêm vào</button>
-            <a onclick="history.go(-1);" class="btn">Quay lại</a>
+            <div class="row">
+              <div class="col-md-6 text-right">
+                  <button type="submit" class="btn btn-primary">Đăng ký bán</button>
+              </div>
+              <div class="col-md-6">
+                  <button type="submit" class="btn btn-secondary"><a onclick="history.go(-1);">Quay lại</a></button>
+              </div>
+            </div>
+            
           </div>
         </form>
+      </div>
+        </div>
       </div>
       <!-- /.card -->
     </div>

@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Danh sách khách hàng</title>
+<title>SYS DELI | Danh sách khách hàng</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
@@ -10,13 +10,13 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>SỔ KHÁCH HÀNG</h1>
+          <div class="col-sm-6 text-uppercase text-warning">
+            <h1><b>DANH SÁCH KHÁCH HÀNG</b></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Sổ khách hàng</li>
+              <li class="breadcrumb-item active">Danh sách khách hàng</li>
             </ol>
           </div>
         </div>
@@ -27,28 +27,30 @@
     <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Danh sách khách hàng</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
-                <tr>
-                  <th>Mã khách hàng</th>
+                <tr class="text-center">
+                  <th>Mã KH</th>
                   <th>Tên khách hàng</th>
-                  <th>Số điện thoại</th>
                   <th>Ngày sinh</th>
+                  <th>Số điện thoại</th>
+                  <th>Email</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($clients as $data)
                 <tr>
-                  <td>{{$data->id}}</td>
+                  <td class="text-center">{{$data->id}}</td>
                   <td>{!!$data->linkName()!!}</td>
-                  <td>{!!$data->linkPhone()!!}</td>
-                  <td>@if (isset($data->birthday)) {{date("d/m/Y", strtotime($data->birthday))}} @else Không có @endif</td>
+                  <td class="text-center">@if (isset($data->birthday)) {{date("d/m/Y", strtotime($data->birthday))}} @else Không có @endif</td>
+                  <td class="text-center">{!!$data->linkPhone()!!}</td>
+                  <td>{!!$data->email!!}</td>
                 </tr>
                 @endforeach
                 </tfoot>

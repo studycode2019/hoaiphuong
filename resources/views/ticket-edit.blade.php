@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-  <title>DEMO20 | Sửa biên nhận</title>
+  <title>SYS BDS</title>
 @endsection
 @section('main')
   <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>SỬA BIÊN NHẬN</h1>
+            <h1></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Sửa biên nhận</li>
+              <li class="breadcrumb-item">Sửa thông tin bán BDS </li>
             </ol>
           </div>
         </div>
@@ -24,11 +24,12 @@
 
     <!-- Main content -->
     <section class="content">
+        <div class="row offset-3">
       <!-- general form elements -->
-          <div class="col-md-12">
+          <div class="col-md-8">
             <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Sửa thông tin biên nhận</h3>
+              <div class="card-header text-center text-uppercase" style="color:#FFFFFF">
+                <h3 class="card-title">Sửa thông tin bán BDS</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -44,49 +45,55 @@
                     <input type="hidden" name="ticket_status_id" value="{{ $ticket->ticket_status_id }}">
                   </div>
                   <div class="form-group">
-                    <label for="id">Biên nhận số:</label>
+                    <label for="id">Mã BDS:</label>
                     <input name="id" type="text" class="form-control" id="id" value="{{$ticket -> id}}" readonly="readonly">
                   </div>
                   <div class="form-group">
-                    <label for="requestment">Yêu cầu khách hàng:</label>
-                    <input name="requestment" type="text" class="form-control" id="requestment" value="{{$ticket -> requestment}}" autofocus required>
+                    <label for="address">Địa chỉ:</label>
+                    <input name="address" type="text" class="form-control" id="address" value="{{$ticket -> address}}" autofocus required>
                   </div>
                   <div class="form-group">
-                    <label for="model">Dòng máy:</label>
-                    <input name="model"type="text" class="form-control" id="model" value="{{$ticket -> model}}" required>
+                    <label for="description">Mô tả chi tiết:</label>
+                    <input name="description"type="text" class="form-control" id="description" value="{{$ticket -> description}}" required>
                   </div>
                   <div class="form-group">
-                    <label for="cpu">CPU:</label>
-                    <input name="cpu" type="text" class="form-control" id="cpu" value="{{$ticket -> cpu}}">
+                    <label for="length">Chiều dài:</label>
+                    <input name="length" type="number" class="form-control" id="length" value="{{$ticket -> length}}">
                   </div>
                   <div class="form-group">
-                    <label for="ram">Dung lượng RAM:</label>
-                    <input name="ram" type="text" class="form-control" id="ram" value="{{$ticket -> ram}}">
+                    <label for="width">Chiều rộng:</label>
+                    <input name="width" type="number" class="form-control" id="width" value="{{$ticket -> width}}">
                   </div>
                   <div class="form-group">
-                    <label for="storage">Dung lượng ổ cứng:</label>
-                    <input name="storage" type="text" class="form-control" id="storage" value="{{$ticket -> storage}}">
+                    <label for="manager">Người quản lý dự án:</label>
+                    <input name="manager" type="text" class="form-control" id="manager" value="{{$ticket -> manager}}">
                   </div>
                   <div class="form-group">
-                    <label for="note">Tình trạng máy:</label>
-                    <input name="note" type="text" class="form-control" id="note" value="{{$ticket -> note}}">
+                    <label for="note">Giá:</label>
+                    <input name="price" type="number" class="form-control" id="price" value="{{$ticket -> price}}">
                   </div>
                   <div class="form-group">
-                    <label for="other">Phụ kiện kèm theo:</label>
+                    <label for="other">Ngày hẹn:</label>
                     <input name="other" type="text" class="form-control" id="other" value="{{$ticket -> other}}">
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Lưu chỉnh sửa</button>
-                  <a onclick="history.go(-1);" class="btn">Quay lại</a>
+                  <div class="row">
+                    <div class="col-md-6 text-right">
+                        <button type="submit" class="btn btn-primary">Lưu chỉnh sửa</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-secondary"><a onclick="history.go(-1);">Quay lại</a></button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
           </div>
             <!-- /.card -->
-
+        </div>
     </section>
     <!-- /.content -->
   </div>

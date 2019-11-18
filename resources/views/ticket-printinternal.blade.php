@@ -170,7 +170,7 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$ticket->requestment}}</p>
+                            <p class="itemtext">{{$ticket->address}}</p>
                         </td>
                     </tr>
                     <tr class="tabletitle">
@@ -181,7 +181,7 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$ticket->model}} 
+                            <p class="itemtext">{{$ticket->description}} 
                                 - Phụ kiện {{$ticket->other}}
                             </p>
                         </td>

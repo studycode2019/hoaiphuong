@@ -167,7 +167,7 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$ticket->requestment}}</p>
+                            <p class="itemtext">{{$ticket->address}}</p>
                         </td>
                     </tr>
                     <tr class="tabletitle">
@@ -178,10 +178,10 @@
 
                     <tr class="service">
                         <td class="tableitem">
-                            <p class="itemtext">{{$ticket->model}} 
-                                - CPU {{$ticket->cpu}} 
-                                - RAM {{$ticket->ram}} 
-                                - HDD {{$ticket->storage}}
+                            <p class="itemtext">{{$ticket->description}} 
+                                - length {{$ticket->length}} 
+                                - width {{$ticket->width}} 
+                                - HDD {{$ticket->manager}}
                                 - Phụ kiện {{$ticket->other}}
                                 - Tình trạng {{$ticket->note}}
                             </p>

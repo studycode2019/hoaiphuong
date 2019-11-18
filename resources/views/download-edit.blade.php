@@ -43,29 +43,29 @@
       </div>
     @endforeach
     @endif
-    <form action="/suataive" method="post">
+    <form action="{{ route('staff.download.edit.post') }}" method="post">
     {{csrf_field()}}
-    <input type="hidden" name="inputId" value="{{ $taive->id }}" />
-    <div class="row">
-      <div class="col-md-12">
+    <input type="hidden" name="id" value="{{ $download->id }}" />
+    <div class="row offset-3">
+      <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-body">
             <div class="col-md-12">
               <div class="form-group col-md-12">
                 <label>Tên phần mềm</label>
-                <input type="text" class="form-control" name="inputTen" value="{{ $taive->ten }}" required autofocus>
+                <input type="text" class="form-control" name="name" value="{{ $download->name }}" required autofocus>
               </div>
               <div class="form-group col-md-12">
                 <label>Mô tả</label>
-                <input type="text" class="form-control" name="inputMota" value="{{ $taive->mota }}">
+                <input type="text" class="form-control" name="description" value="{{ $download->description }}">
               </div>
               <div class="form-group col-md-12">
                 <label>Link</label>
-                <input type="text" class="form-control" name="inputLink" value="{{ $taive->link }}" required>
+                <input type="text" class="form-control" name="link" value="{{ $download->link }}" required>
               </div>
               <div class="form-group col-md-12">
                 <label>SHA1</label>
-                <input type="text" class="form-control" name="inputSha1" value="{{ $taive->sha1 }}">
+                <input type="text" class="form-control" name="sha1" value="{{ $download->sha1 }}">
               </div>
             </div>
           </div>

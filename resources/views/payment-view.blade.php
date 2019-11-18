@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Xem phiếu chi #{{$payment->id}}</title>
+<title>SYS DELI | Xem phiếu chi #{{$payment->id}}</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{secure_asset('plugins/iCheck/square/blue.css')}}">
 @stop
@@ -45,7 +45,7 @@
               <div class="col-md-6 invoice-col">
                 <u>Thông tin phiếu chi:</u>
                 <address>
-                  <strong class="text-uppercase"><a href="/xemkhachhang/{{$payment->client->id}}">{{$payment->client->name}}</a></strong><br>
+                  <strong class="text-uppercase"><a href="{{route('staff.client.view.get', ['client_id' => $payment->client->id])}}">{{$payment->client->name}}</a></strong><br>
                   <b>Số điện thoại: </b><a href="tel:{{$payment->client->sdt}}">{{PhoneFormat($payment->client->phone)}}</a><br>
                   <b>Ngày sinh:</b> {{ date("d/m/Y", strtotime($payment->client -> birthday)) }}<br>
                   <b>Mã khách hàng:</b> {{ $payment->client -> id }}<br>
@@ -99,8 +99,8 @@
           <!-- this row will not appear when printing -->
           <div class="card card-footer">
             <div class="col-12">
-              <a href="/suaphieuchi/{{ $payment -> id }}" class="btn btn-default" autofocus>Sửa phiếu chi</a>
-              <a href="/inphieuchi/{{ $payment -> id }}" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU chi</a>
+              <a href="#" class="btn btn-default" autofocus>Xem phiếu chi</a>
+              <a href="#" target="_blank" class="btn btn-primary float-right" id="btnIn"><i class="fa fa-print"></i>&nbsp;&nbsp;IN PHIẾU chi</a>
             </div>
           </div>
         </div>

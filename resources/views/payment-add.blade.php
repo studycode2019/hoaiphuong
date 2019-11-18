@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Nhập phiếu chi mới</title>
+<title>SYS BDS</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/select2/select2.min.css')}}">
 @stop
 @section('main')
@@ -11,7 +11,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>NHẬP PHIẾU CHI</h1>
+          {{-- <h1>NHẬP PHIẾU CHI</h1> --}}
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -36,8 +36,9 @@
     </div>
     @endforeach
     @endif
+    <div class="row offset-3">
     <!-- general form elements -->
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Nhập thông tin phiếu chi</h3>
@@ -62,7 +63,7 @@
               <input name="amount" type="number" class="form-control" id="amount" placeholder="Nhập vào số tiền" required>
             </div>
             <div class="form-group">
-              <label for="branch_id" style="color: #ff0505;"><i>Từ ngày 13/9/2019, người lập phiếu chịu trách nhiệm nhập lên hệ thống</i>
+              {{-- <label for="branch_id" style="color: #ff0505;"><i>Từ ngày 13/9/2019, người lập phiếu chịu trách nhiệm nhập lên hệ thống</i> --}}
               <br>Chi nhánh:</label>
               <select name="branch_id" id="branch_id" class="form-control select2" style="width: 100%;">
                 @foreach ($branches as $data)
@@ -85,12 +86,19 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Thêm vào</button>
-            <a onclick="history.go(-1);" class="btn">Quay lại</a>
+            <div class="row">
+              <div class="col-6 text-right">
+                  <button type="submit" class="btn btn-primary">Thêm vào</button>
+              </div>
+              <div class="col-6">
+                  <button type="submit" class="btn btn-secondary"><a onclick="history.go(-1);">Quay lại</a></button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
     </div>
+  </div>
     <!-- /.card -->
   </section>
   <!-- /.content -->

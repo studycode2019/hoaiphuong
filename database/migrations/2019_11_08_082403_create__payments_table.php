@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration {
 			$table->string('content')->nullable();
 			$table->string('note')->nullable();
 			$table->integer('staff_id');
-			$table->integer('client_id')->default(766);
+			$table->integer('client_id');
 			$table->softDeletes();
 			$table->timestamps();
 			$table->integer('field_id')->default(1);

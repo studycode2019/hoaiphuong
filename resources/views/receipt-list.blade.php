@@ -1,6 +1,6 @@
 @extends('master')
 @section('head')
-<title>DEMO20 | Sổ phiếu thu @if(isset($danhmuc)): {{$danhmuc->ten}} @endif</title>
+<title>SYS BDS</title>
 <link rel="stylesheet" href="{{secure_asset('plugins/datatables/dataTables.bootstrap4.css')}}">
 @stop
 @section('main')
@@ -27,36 +27,34 @@
     <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Danh sách phiếu thu</h3>
+          <div class="card card-primary">
+            <div class="card-header text-center text-uppercase">
+                <h3 class="card-title">Danh sách phiếu thu</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Timestamp</th>
-                  <th>Branch</th>
-                  <th>No.</th>
-                  <th>Custommer</th>
-                  <th>Note</th>
-                  <th>Amount</th>
-                  <th>Cate</th>
-                  <th></th>
+                <tr class="text-center">
+                  <th>Thời gian</th>
+                  <th>Khu vực</th>
+                  <th>Mã phiếu thu</th>
+                  <th>Khách hàng</th>
+                  <th>Nội dung</th>
+                  <th>Tổng tiền</th>
+                  <th>Chức năng</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($receipts as $data)
-                <tr>
-                  <td>{{date("Y/m/d h:m:i", strtotime($data->created_at))}}</td>
+                <tr class="text-center">
+                  <td>{{date("Y/m/d", strtotime($data->created_at))}}</td>
                   <td><span class="badge bg-info">{{$data->branch->name}}</span> <span class="badge bg-danger">{{$data->field->name}}</span></td>
                   <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}">{{$data->number}}</a></td>
-                  <td>{{$data->client->name}}</td>
-                  <td>{{$data->content}}</td>
+                  <td class="text-left">{{$data->client->name}}</td>
+                  <td class="text-left">{{$data->content}}</td>
                   <td>{{number_format($data->amount,0,",",".")}} ₫</td>
-                  <td>{{$data->branch->name}}</td>
-                  <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}" class="btn btn-primary">Xem</a></td>
+                  <td><a href="{{route('staff.receipt.view.get', ['receipt_id' => $data->id])}}" class="btn btn-primary">Xem chi tiết</a></td>
                 </tr>
                 @endforeach
                 </tfoot>
